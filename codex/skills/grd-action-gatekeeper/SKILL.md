@@ -1,20 +1,20 @@
 ---
-name: "GRD Idea Seeker"
-description: "Search the web for relevant references, cite them, and generate evidence-backed research idea sketches"
+name: "GRD Action Gatekeeper"
+description: "List proposed actions, label risk, and require researcher approval for medium/high risk steps"
 ---
 
-# Codex GRD Skill: grd-research-idea-seeker
+# Codex GRD Skill: grd-action-gatekeeper
 
 <when_to_use>
-Use when user wants related work discovery, external references, or idea generation grounded in citations.
+Use before making code, config, or data changes, running expensive jobs, or changing evaluation protocol.
 </when_to_use>
 
 <source_of_truth>
-Align ideas with `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` stage expectations.
+Align with `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` and project safety constraints.
 </source_of_truth>
 
 <clarification_rule>
-Before searching, ask a short clarification question about scope, constraints, and desired output if missing.
+If you are not sure what the user wants, pause and ask for pseudocode or a concrete step-by-step outline before continuing.
 </clarification_rule>
 
 <delivery_rule>
@@ -51,19 +51,9 @@ Contract:
 </action_policy>
 
 <execution_contract>
-1. Confirm topic scope and constraints (time, compute, risk tolerance, success metric).
-2. Search web sources with priority on primary references (papers, official docs, benchmark sites, maintainer repos).
-3. Filter to high-signal references that directly inform the user question.
-4. Summarize each selected reference briefly with claim, method, and relevance.
-5. Generate 3-5 research idea sketches linked to cited references.
-6. For each sketch include: hypothesis, novelty angle, first experiment, risk, and decision metric.
-7. Return a clear references list (title + URL) for every cited source.
-8. Write `.grd/research/IDEA_SEEKER.md` when artifact output is requested.
-9. Ask whether to save a research note as `.grd/research/notes/<timestamp_title>.md`.
+1. Summarize the user goal in one sentence.
+2. Propose a short action list (files and commands).
+3. Label each action LOW, MED, or HIGH risk.
+4. Provide rollback plan and verification steps.
+5. Ask for approval only for MED and HIGH actions.
 </execution_contract>
-
-<quality_bar>
-- Distinguish evidence vs inference explicitly.
-- Avoid uncited claims.
-- Prefer recent and authoritative sources.
-</quality_bar>

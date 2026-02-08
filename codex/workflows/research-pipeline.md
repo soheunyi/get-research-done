@@ -2,6 +2,13 @@
 
 Use this pipeline when the primary goal is AI/statistics research instead of production feature delivery.
 
+## Stage 0: Research Notes (Continuous)
+- Keep a running evidence log as experiments evolve.
+- Capture anomalies, discarded branches, and decision rationale.
+
+Output:
+- `RESEARCH_NOTES.md`
+
 ## Stage 1: Hypothesis Design
 - Define one falsifiable hypothesis.
 - Define target metric, baseline, and minimum effect size.
@@ -9,6 +16,15 @@ Use this pipeline when the primary goal is AI/statistics research instead of pro
 
 Output:
 - `HYPOTHESIS.md`
+
+## Stage 1.5: Analysis Plan (Pre-commit)
+- Define primary vs secondary metrics.
+- Define aggregation across seeds (mean/std and CI method).
+- Define statistical test or estimator (and multiple comparisons strategy if needed).
+- Define leakage checks and no test peeking rule.
+
+Output:
+- `ANALYSIS_PLAN.md`
 
 ## Stage 2: Experiment Plan
 - Build an experiment matrix: variants, controls, datasets, seeds.
@@ -33,6 +49,14 @@ Output:
 Output:
 - `EVALUATION.md`
 
+## Stage 3.5: Error Analysis and Sanity Checks
+- Slice analysis across data subsets and inspect failure cases.
+- Run sanity checks (label shuffle and controls where relevant).
+- Confirm no leakage, correct split usage, and stable evaluation scripts.
+
+Output:
+- `ERROR_ANALYSIS.md`
+
 ## Stage 4: Ablation and Robustness
 - Isolate contribution of each major component.
 - Run stress tests: seed sensitivity, data slice robustness, hyperparameter range.
@@ -41,12 +65,14 @@ Output:
 Output:
 - `ABLATION.md`
 
-## Stage 0: Research Notes (Continuous)
-- Keep a running evidence log as experiments evolve.
-- Capture anomalies, discarded branches, and decision rationale.
+## Stage 4.5: Numerical Stability and Determinism (if applicable)
+- Audit nondeterminism sources and seed propagation.
+- Check numerical stability (tolerances, precision, overflow, underflow).
+- Run convergence or refinement tests when using discretizations or solvers.
 
 Output:
-- `RESEARCH_NOTES.md`
+- `NUMERICS_AUDIT.md`
+- `RANDOMNESS_AUDIT.md`
 
 ## Stage 5: Reproducibility Packaging
 - Lock environment, dataset versions, and exact commands.

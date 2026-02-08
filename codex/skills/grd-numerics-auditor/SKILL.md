@@ -1,20 +1,20 @@
 ---
-name: "GRD Idea Seeker"
-description: "Search the web for relevant references, cite them, and generate evidence-backed research idea sketches"
+name: "GRD Numerics Auditor"
+description: "Audit numerical stability, tolerances, precision, and convergence or sanity checks"
 ---
 
-# Codex GRD Skill: grd-research-idea-seeker
+# Codex GRD Skill: grd-numerics-auditor
 
 <when_to_use>
-Use when user wants related work discovery, external references, or idea generation grounded in citations.
+Use for numerical analysis code, scientific computing, or when results are sensitive to tolerances or precision.
 </when_to_use>
 
 <source_of_truth>
-Align ideas with `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` stage expectations.
+Align with `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 4.5 and write `.grd/research/NUMERICS_AUDIT.md` when requested.
 </source_of_truth>
 
 <clarification_rule>
-Before searching, ask a short clarification question about scope, constraints, and desired output if missing.
+If you are not sure what the user wants, pause and ask for pseudocode or a concrete step-by-step outline before continuing.
 </clarification_rule>
 
 <delivery_rule>
@@ -51,19 +51,8 @@ Contract:
 </action_policy>
 
 <execution_contract>
-1. Confirm topic scope and constraints (time, compute, risk tolerance, success metric).
-2. Search web sources with priority on primary references (papers, official docs, benchmark sites, maintainer repos).
-3. Filter to high-signal references that directly inform the user question.
-4. Summarize each selected reference briefly with claim, method, and relevance.
-5. Generate 3-5 research idea sketches linked to cited references.
-6. For each sketch include: hypothesis, novelty angle, first experiment, risk, and decision metric.
-7. Return a clear references list (title + URL) for every cited source.
-8. Write `.grd/research/IDEA_SEEKER.md` when artifact output is requested.
-9. Ask whether to save a research note as `.grd/research/notes/<timestamp_title>.md`.
+1. Identify numerically sensitive operations and likely failure modes.
+2. Recommend scaling, normalization, safer formulations, and precision guidance.
+3. Propose convergence, refinement, or gradient checks when applicable.
+4. Provide minimal sanity tests and acceptance thresholds.
 </execution_contract>
-
-<quality_bar>
-- Distinguish evidence vs inference explicitly.
-- Avoid uncited claims.
-- Prefer recent and authoritative sources.
-</quality_bar>
