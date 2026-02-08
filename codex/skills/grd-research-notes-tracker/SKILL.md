@@ -18,7 +18,8 @@ If user intent is unclear, ask a short clarification question before continuing.
 </clarification_rule>
 
 <execution_contract>
-1. Append a timestamped note entry.
-2. Include observation, evidence pointer, decision, and next action.
-3. Keep notes compact and reproducibility-focused.
+1. First ask the user what they want to record.
+2. Append a timestamped note entry.
+3. Include observation, evidence pointer, decision, and next action.
+4. Keep notes compact and reproducibility-focused.
 </execution_contract>

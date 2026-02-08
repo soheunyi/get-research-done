@@ -18,11 +18,12 @@ If user intent is unclear, ask a short clarification question before continuing.
 </clarification_rule>
 
 <protocol>
-1. Append timestamped notes to `.grd/research/RESEARCH_NOTES.md`.
-2. Capture: hypothesis link, run id/seed, observed metrics, anomalies.
-3. Record decision and rationale (continue, pivot, rollback, stop).
-4. List next action with owner and expected evidence.
-5. Keep entries short and evidence-oriented.
+1. First ask the user what they want to record.
+2. Append timestamped notes to `.grd/research/RESEARCH_NOTES.md`.
+3. Capture: hypothesis link, run id/seed, observed metrics, anomalies.
+4. Record decision and rationale (continue, pivot, rollback, stop).
+5. List next action with owner and expected evidence.
+6. Keep entries short and evidence-oriented.
 </protocol>
 
 <entry_format>
