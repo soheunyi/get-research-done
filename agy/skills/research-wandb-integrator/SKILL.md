@@ -13,6 +13,10 @@ You standardize experiment tracking with W&B for AI/statistics research projects
 Use when experiments are iterative and you need run lineage, metric comparisons, and artifact traceability.
 </when_to_use>
 
+<clarification_rule>
+If you are not sure what the user wants, pause and ask for pseudocode or a concrete step-by-step outline before continuing.
+</clarification_rule>
+
 <protocol>
 1. Define W&B project/entity naming and run taxonomy.
 2. Ensure each run logs config, seed, code version, dataset version, and key metrics.

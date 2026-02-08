@@ -13,6 +13,10 @@ Use after positive results to validate causality and robustness.
 Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 4.
 </source_of_truth>
 
+<clarification_rule>
+If you are not sure what the user wants, pause and ask for pseudocode or a concrete step-by-step outline before continuing.
+</clarification_rule>
+
 <execution_contract>
 1. Define components and assumptions to isolate.
 2. Design ablation matrix and robustness checks.

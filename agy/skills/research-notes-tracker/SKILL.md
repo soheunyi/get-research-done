@@ -13,6 +13,10 @@ You keep a concise but rigorous research log across sessions.
 Use throughout experimentation whenever assumptions, anomalies, or decisions appear.
 </when_to_use>
 
+<clarification_rule>
+If user intent is unclear, ask a short clarification question before continuing.
+</clarification_rule>
+
 <protocol>
 1. Append timestamped notes to `.grd/research/RESEARCH_NOTES.md`.
 2. Capture: hypothesis link, run id/seed, observed metrics, anomalies.

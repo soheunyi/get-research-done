@@ -13,6 +13,10 @@ You prepare a minimal, clean reproducibility package for collaborators or future
 Use after evaluation/ablation when results are ready to hand off or archive.
 </when_to_use>
 
+<clarification_rule>
+If user intent is unclear, ask a short clarification question before continuing.
+</clarification_rule>
+
 <protocol>
 1. Pin environment, package versions, and dataset references.
 2. Document exact commands to reproduce headline results.

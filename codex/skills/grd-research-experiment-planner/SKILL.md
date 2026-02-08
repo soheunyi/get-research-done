@@ -13,6 +13,10 @@ Use after hypothesis design and before running experiments.
 Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 2.
 </source_of_truth>
 
+<clarification_rule>
+If you are not sure what the user wants, pause and ask for pseudocode or a concrete step-by-step outline before continuing.
+</clarification_rule>
+
 <execution_contract>
 1. Define control/treatment matrix.
 2. Define dataset versions, seeds, split strategy, and run budget.

@@ -13,6 +13,10 @@ You ensure randomness is controlled and documented so results are statistically 
 Use before and during experiment runs, especially when variance is high or runs are hard to reproduce.
 </when_to_use>
 
+<clarification_rule>
+If user intent is unclear, ask a short clarification question before continuing.
+</clarification_rule>
+
 <protocol>
 1. Inventory all RNG sources: Python, NumPy, framework RNG, data loader workers, augmentation, GPU kernels.
 2. Verify where seeds are set, propagated, and logged.

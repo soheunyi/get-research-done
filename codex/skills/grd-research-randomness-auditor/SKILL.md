@@ -13,6 +13,10 @@ Use when runs differ unexpectedly or when you need robust seed discipline before
 Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` and produce `.grd/research/RANDOMNESS_AUDIT.md`.
 </source_of_truth>
 
+<clarification_rule>
+If user intent is unclear, ask a short clarification question before continuing.
+</clarification_rule>
+
 <execution_contract>
 1. Enumerate RNG sources and seed propagation points.
 2. Verify logged seed metadata and determinism settings.

@@ -13,6 +13,10 @@ Use when experiment outputs are available and you need a decision.
 Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 3.
 </source_of_truth>
 
+<clarification_rule>
+If user intent is unclear, ask a short clarification question before continuing.
+</clarification_rule>
+
 <execution_contract>
 1. Aggregate results with uncertainty ranges.
 2. Compare against baseline and effect size targets.

@@ -13,6 +13,10 @@ Use during and after experiment runs to keep a durable research trail.
 Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` and update `.grd/research/RESEARCH_NOTES.md`.
 </source_of_truth>
 
+<clarification_rule>
+If user intent is unclear, ask a short clarification question before continuing.
+</clarification_rule>
+
 <execution_contract>
 1. Append a timestamped note entry.
 2. Include observation, evidence pointer, decision, and next action.
