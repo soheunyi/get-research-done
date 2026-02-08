@@ -18,10 +18,11 @@ If you are not sure what the user wants, ask for pseudocode or a concrete step-b
 </clarification_rule>
 
 <execution_contract>
-1. Define the decision question, constraints, and success criteria.
-2. Generate 2-4 candidate approaches.
-3. Evaluate tradeoffs: assumptions, expected impact, risk, effort, and time.
-4. Recommend one approach with explicit rationale and known failure modes.
-5. Propose the next smallest validating action.
-6. Produce `.grd/research/DEEP_THINKING.md` when artifact output is requested.
+1. Ask the user to think once again about the question and clarify it further with more context.
+2. Define the decision question, constraints, and success criteria.
+3. Generate 2-4 candidate approaches.
+4. Evaluate tradeoffs: assumptions, expected impact, risk, effort, and time.
+5. Recommend one approach with explicit rationale and known failure modes.
+6. Propose the next smallest validating action.
+7. Produce `.grd/research/DEEP_THINKING.md` when artifact output is requested.
 </execution_contract>

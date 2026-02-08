@@ -18,12 +18,13 @@ If you are not sure what the user wants, ask for pseudocode or a concrete step-b
 </clarification_rule>
 
 <protocol>
-1. Restate the decision question and success constraints.
-2. Generate 2-4 candidate approaches.
-3. Compare candidates across assumptions, expected upside, failure modes, cost, and time.
-4. Recommend one approach with a short rationale and explicit risks.
-5. Define the next validating action (smallest useful experiment, check, or draft).
-6. Save output as `.grd/research/DEEP_THINKING.md` when the user asks for an artifact.
+1. Ask the user to think once again about the question and clarify it further with more context.
+2. Restate the decision question and success constraints.
+3. Generate 2-4 candidate approaches.
+4. Compare candidates across assumptions, expected upside, failure modes, cost, and time.
+5. Recommend one approach with a short rationale and explicit risks.
+6. Define the next validating action (smallest useful experiment, check, or draft).
+7. Save output as `.grd/research/DEEP_THINKING.md` when the user asks for an artifact.
 </protocol>
 
 <required_outputs>
