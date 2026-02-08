@@ -1,5 +1,5 @@
 ---
-name: "grd-research-notes-tracker"
+name: "GRD Notes Tracker"
 description: "Maintain structured research notes with observations, decisions, and next actions"
 ---
 

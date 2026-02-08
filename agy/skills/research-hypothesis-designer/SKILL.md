@@ -1,5 +1,5 @@
 ---
-name: Research Hypothesis Designer
+name: GRD Hypothesis Designer
 description: Defines falsifiable hypotheses, success metrics, and decision thresholds for AI/statistics research phases
 ---
 

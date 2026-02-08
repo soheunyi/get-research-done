@@ -1,5 +1,5 @@
 ---
-name: "grd-research-wandb-integrator"
+name: "GRD W&B Integrator"
 description: "Standardize Weights & Biases tracking for reproducible experiment lineage"
 ---
 

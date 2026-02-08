@@ -1,5 +1,5 @@
 ---
-name: Research Notes Tracker
+name: GRD Notes Tracker
 description: Maintains structured running research notes with decisions, anomalies, and next experiments
 ---
 

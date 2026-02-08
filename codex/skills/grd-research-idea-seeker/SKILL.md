@@ -1,5 +1,5 @@
 ---
-name: "grd-research-idea-seeker"
+name: "GRD Idea Seeker"
 description: "Search the web for relevant references, cite them, and generate evidence-backed research idea sketches"
 ---
 

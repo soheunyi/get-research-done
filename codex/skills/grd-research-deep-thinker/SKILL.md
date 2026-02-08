@@ -1,5 +1,5 @@
 ---
-name: "grd-research-deep-thinker"
+name: "GRD Deep Thinker"
 description: "Structure ambiguous research decisions into options, tradeoffs, and a defensible recommendation"
 ---
 

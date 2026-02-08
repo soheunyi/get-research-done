@@ -1,5 +1,5 @@
 ---
-name: Research Change Attribution Inspector
+name: GRD Change Attribution Inspector
 description: Identifies what changed and what stayed invariant between experiment variants to explain metric deltas
 ---
 

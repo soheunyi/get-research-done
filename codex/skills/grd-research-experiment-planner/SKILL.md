@@ -1,5 +1,5 @@
 ---
-name: "grd-research-experiment-planner"
+name: "GRD Experiment Planner"
 description: "Plan reproducible experiments with controls, seeds, splits, and statistical protocol"
 ---
 

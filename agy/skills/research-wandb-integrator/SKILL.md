@@ -1,5 +1,5 @@
 ---
-name: Research W&B Integrator
+name: GRD W&B Integrator
 description: Adds disciplined Weights & Biases tracking to experiments with reproducibility-focused logging standards
 ---
 

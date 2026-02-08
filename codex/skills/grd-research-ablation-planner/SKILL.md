@@ -1,5 +1,5 @@
 ---
-name: "grd-research-ablation-planner"
+name: "GRD Ablation Planner"
 description: "Design ablations and robustness checks to isolate true contribution"
 ---
 

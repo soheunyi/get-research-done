@@ -1,5 +1,5 @@
 ---
-name: "grd-research-change-attribution-inspector"
+name: "GRD Change Attribution Inspector"
 description: "Determine what changed vs stayed invariant across runs to explain observed metric deltas"
 ---
 

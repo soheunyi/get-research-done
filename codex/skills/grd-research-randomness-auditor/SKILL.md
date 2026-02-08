@@ -1,5 +1,5 @@
 ---
-name: "grd-research-randomness-auditor"
+name: "GRD Randomness Auditor"
 description: "Audit seeds and nondeterminism sources to keep experiments reproducible and comparable"
 ---
 

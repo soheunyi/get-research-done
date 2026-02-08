@@ -1,5 +1,5 @@
 ---
-name: Research Randomness Auditor
+name: GRD Randomness Auditor
 description: Audits seed handling and nondeterminism sources so experiment differences are attributable and reproducible
 ---
 

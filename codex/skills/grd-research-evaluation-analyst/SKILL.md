@@ -1,5 +1,5 @@
 ---
-name: "grd-research-evaluation-analyst"
+name: "GRD Evaluation Analyst"
 description: "Analyze results with uncertainty and significance to classify hypothesis outcome"
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: "grd-research-hypothesis-designer"
+name: "GRD Hypothesis Designer"
 description: "Define falsifiable hypotheses, metrics, and stop criteria for research phases"
 ---
 

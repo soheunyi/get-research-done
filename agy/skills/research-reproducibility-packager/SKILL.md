@@ -1,5 +1,5 @@
 ---
-name: Research Reproducibility Packager
+name: GRD Reproducibility Packager
 description: Produces replication-ready documentation, environment locks, and evidence-linked research summaries
 ---
 

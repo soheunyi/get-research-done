@@ -1,5 +1,5 @@
 ---
-name: Research Deep Thinker
+name: GRD Deep Thinker
 description: Produces structured option analysis and decision rationale when research direction, method choice, or tradeoffs are unclear
 ---
 

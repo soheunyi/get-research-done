@@ -1,5 +1,5 @@
 ---
-name: Research Evaluation Analyst
+name: GRD Evaluation Analyst
 description: Analyzes experiment outcomes with uncertainty and significance checks to determine hypothesis status
 ---
 

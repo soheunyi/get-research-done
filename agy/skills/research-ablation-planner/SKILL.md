@@ -1,5 +1,5 @@
 ---
-name: Research Ablation Planner
+name: GRD Ablation Planner
 description: Designs and evaluates ablations and robustness checks to isolate true contribution of system components
 ---
 

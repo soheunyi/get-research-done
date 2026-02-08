@@ -1,5 +1,5 @@
 ---
-name: Research Idea Seeker
+name: GRD Idea Seeker
 description: Searches the web for relevant references, extracts useful evidence, and proposes concise research idea sketches with citations
 ---
 

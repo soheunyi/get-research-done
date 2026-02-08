@@ -1,5 +1,5 @@
 ---
-name: Research Experiment Planner
+name: GRD Experiment Planner
 description: Builds experiment matrices, controls, evaluation protocols, and execution plans for reproducible research
 ---
 

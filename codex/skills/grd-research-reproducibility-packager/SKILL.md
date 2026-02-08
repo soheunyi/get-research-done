@@ -1,5 +1,5 @@
 ---
-name: "grd-research-reproducibility-packager"
+name: "GRD Reproducibility Packager"
 description: "Package environment, commands, and evidence for clean reproducibility"
 ---
 
