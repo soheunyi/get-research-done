@@ -17,6 +17,10 @@ Use after experiment runs complete and before deciding next direction.
 If user intent is unclear, ask a short clarification question before continuing.
 </clarification_rule>
 
+<delivery_rule>
+Default to concise chat output. Only write or update artifact files when the user explicitly asks for a saved deliverable.
+</delivery_rule>
+
 <protocol>
 1. Aggregate metrics by variant with uncertainty ranges.
 2. Compare to baseline and compute effect sizes.

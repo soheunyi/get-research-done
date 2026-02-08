@@ -17,6 +17,10 @@ Use when a model/approach shows gains and you need to validate where gains come 
 If you are not sure what the user wants, pause and ask for pseudocode or a concrete step-by-step outline before continuing.
 </clarification_rule>
 
+<delivery_rule>
+Default to concise chat output. Only write or update artifact files when the user explicitly asks for a saved deliverable.
+</delivery_rule>
+
 <protocol>
 1. List major components and assumptions to isolate.
 2. Design one-factor and grouped ablations.

@@ -17,6 +17,10 @@ Use before and during experiment runs, especially when variance is high or runs 
 If user intent is unclear, ask a short clarification question before continuing.
 </clarification_rule>
 
+<delivery_rule>
+Default to concise chat output. Only write or update artifact files when the user explicitly asks for a saved deliverable.
+</delivery_rule>
+
 <protocol>
 1. Inventory all RNG sources: Python, NumPy, framework RNG, data loader workers, augmentation, GPU kernels.
 2. Verify where seeds are set, propagated, and logged.

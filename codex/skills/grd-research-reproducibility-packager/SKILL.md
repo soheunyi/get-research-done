@@ -17,6 +17,10 @@ Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 
 If user intent is unclear, ask a short clarification question before continuing.
 </clarification_rule>
 
+<delivery_rule>
+Default to concise chat output. Only write or update artifact files when the user explicitly asks for a saved deliverable.
+</delivery_rule>
+
 <execution_contract>
 1. Pin environment and dataset versions.
 2. Document exact rerun commands.

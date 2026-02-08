@@ -17,6 +17,10 @@ Use for early-stage research planning before implementation, especially when sco
 If you are not sure what the user wants, pause and ask for pseudocode or a concrete step-by-step outline before continuing.
 </clarification_rule>
 
+<delivery_rule>
+Default to concise chat output. Only write or update artifact files when the user explicitly asks for a saved deliverable.
+</delivery_rule>
+
 <protocol>
 1. Write one primary hypothesis and optional secondary hypotheses.
 2. Define baseline, target metric, and minimum practical effect size.

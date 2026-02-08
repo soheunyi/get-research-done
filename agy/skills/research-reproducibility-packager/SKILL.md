@@ -17,6 +17,10 @@ Use after evaluation/ablation when results are ready to hand off or archive.
 If user intent is unclear, ask a short clarification question before continuing.
 </clarification_rule>
 
+<delivery_rule>
+Default to concise chat output. Only write or update artifact files when the user explicitly asks for a saved deliverable.
+</delivery_rule>
+
 <protocol>
 1. Pin environment, package versions, and dataset references.
 2. Document exact commands to reproduce headline results.

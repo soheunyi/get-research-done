@@ -17,6 +17,10 @@ Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 
 If you are not sure what the user wants, pause and ask for pseudocode or a concrete step-by-step outline before continuing.
 </clarification_rule>
 
+<delivery_rule>
+Default to concise chat output. Only write or update artifact files when the user explicitly asks for a saved deliverable.
+</delivery_rule>
+
 <execution_contract>
 1. Write one falsifiable hypothesis.
 2. Define baseline, metric, effect size, and decision threshold.

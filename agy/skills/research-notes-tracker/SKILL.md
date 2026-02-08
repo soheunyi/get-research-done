@@ -17,6 +17,10 @@ Use throughout experimentation whenever assumptions, anomalies, or decisions app
 If user intent is unclear, ask a short clarification question before continuing.
 </clarification_rule>
 
+<delivery_rule>
+Default to concise chat output. Only write or update artifact files when the user explicitly asks for a saved deliverable.
+</delivery_rule>
+
 <protocol>
 1. First ask the user what they want to record.
 2. Append timestamped notes to `.grd/research/RESEARCH_NOTES.md`.

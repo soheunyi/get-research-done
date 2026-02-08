@@ -17,6 +17,10 @@ Use after hypotheses are defined and before coding/training runs start.
 If you are not sure what the user wants, pause and ask for pseudocode or a concrete step-by-step outline before continuing.
 </clarification_rule>
 
+<delivery_rule>
+Default to concise chat output. Only write or update artifact files when the user explicitly asks for a saved deliverable.
+</delivery_rule>
+
 <protocol>
 1. Define control and treatment variants.
 2. Define dataset versions, split policy, seeds, and run budget.

@@ -17,6 +17,10 @@ Use `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` to align 
 If you are not sure what the user wants, ask for pseudocode or a concrete step-by-step outline before continuing.
 </clarification_rule>
 
+<delivery_rule>
+Default to concise chat output. Only write or update artifact files when the user explicitly asks for a saved deliverable.
+</delivery_rule>
+
 <execution_contract>
 1. Ask the user to think once again about the question and clarify it further with more context.
 2. Define the decision question, constraints, and success criteria.

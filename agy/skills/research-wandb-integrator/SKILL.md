@@ -17,6 +17,10 @@ Use when experiments are iterative and you need run lineage, metric comparisons,
 If you are not sure what the user wants, pause and ask for pseudocode or a concrete step-by-step outline before continuing.
 </clarification_rule>
 
+<delivery_rule>
+Default to concise chat output. Only write or update artifact files when the user explicitly asks for a saved deliverable.
+</delivery_rule>
+
 <protocol>
 1. Define W&B project/entity naming and run taxonomy.
 2. Ensure each run logs config, seed, code version, dataset version, and key metrics.
