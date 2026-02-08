@@ -29,6 +29,7 @@ Default to concise chat output. Only write or update artifact files when the use
 5. Produce 3-5 idea sketches grounded in the references.
 6. For each idea sketch, include: hypothesis, novelty angle, minimum viable experiment, expected risk, and success metric.
 7. Provide a references section with title and URL for every source used.
+8. Ask whether to save a research note as `.grd/research/notes/<timestamp_title>.md`.
 </protocol>
 
 <output_format>

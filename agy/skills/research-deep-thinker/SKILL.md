@@ -29,6 +29,7 @@ Default to concise chat output. Only write or update artifact files when the use
 5. Recommend one approach with a short rationale and explicit risks.
 6. Define the next validating action (smallest useful experiment, check, or draft).
 7. Save output as `.grd/research/DEEP_THINKING.md` when the user asks for an artifact.
+8. Ask whether to save a research note as `.grd/research/notes/<timestamp_title>.md`.
 </protocol>
 
 <required_outputs>

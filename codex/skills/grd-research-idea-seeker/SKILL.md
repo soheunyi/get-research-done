@@ -30,6 +30,7 @@ Default to concise chat output. Only write or update artifact files when the use
 6. For each sketch include: hypothesis, novelty angle, first experiment, risk, and decision metric.
 7. Return a clear references list (title + URL) for every cited source.
 8. Write `.grd/research/IDEA_SEEKER.md` when artifact output is requested.
+9. Ask whether to save a research note as `.grd/research/notes/<timestamp_title>.md`.
 </execution_contract>
 
 <quality_bar>

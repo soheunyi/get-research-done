@@ -29,4 +29,5 @@ Default to concise chat output. Only write or update artifact files when the use
 5. Recommend one approach with explicit rationale and known failure modes.
 6. Propose the next smallest validating action.
 7. Produce `.grd/research/DEEP_THINKING.md` when artifact output is requested.
+8. Ask whether to save a research note as `.grd/research/notes/<timestamp_title>.md`.
 </execution_contract>
