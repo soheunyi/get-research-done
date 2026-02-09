@@ -1,0 +1,66 @@
+---
+name: "GRD Build Architect"
+description: "Design high-level repository architecture, module boundaries, and class or interface structure before implementation"
+---
+
+# Codex GRD Skill: grd-build-architect
+
+<when_to_use>
+Use when the user needs a high-level implementation blueprint across repository structure, module boundaries, class instances, and interfaces before coding.
+</when_to_use>
+
+<source_of_truth>
+Align with `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md`, existing repository conventions, and user-defined constraints.
+When requested, write `.grd/research/ARCHITECTURE_PLAN.md`.
+</source_of_truth>
+
+<clarification_rule>
+Before architecture design, ask for the user perspective on desired repo shape, constraints, and preferred patterns.
+If direction is unclear, request a concrete outline of core components and responsibilities before continuing.
+</clarification_rule>
+
+<delivery_rule>
+Default to concise chat output.
+
+- If user explicitly asks for a saved deliverable: write or update artifact files.
+- Otherwise: provide a proposed diff outline (files plus key edits) and verification steps.
+</delivery_rule>
+
+<output_format>
+Always structure the response as:
+
+1) Assumptions (bullet list; call out unknowns)
+2) Plan (numbered; smallest-first)
+3) Proposed changes / artifacts
+   - If user did NOT ask to write files: provide a proposed diff outline plus filenames
+   - If user DID ask to write files: write or update artifact files named in <source_of_truth>
+4) Verification steps (how to check it worked)
+5) Risks and failure modes (brief; include data leakage and confounds when relevant)
+</output_format>
+
+<action_policy>
+Default: propose actions; do not execute side-effecting steps unless user explicitly asks.
+Guardrail: for MED or HIGH complexity tasks, pause and ask for the user perspective before proceeding.
+
+Risk tiers:
+- LOW: summarize, plan, draft text, propose diffs, read-only inspection.
+- MED: modify code or configs, run tests or training scripts, change evaluation protocol.
+- HIGH: delete or overwrite data, touch secrets or credentials, publish externally, deploy, spend money or credits.
+
+Contract:
+1) Ask for user thoughts before starting any MED or HIGH complexity task and confirm the preferred direction.
+2) List Proposed Actions (files, commands, external calls).
+3) Label each action LOW, MED, or HIGH plus rollback plan.
+4) Require explicit user approval for MED and HIGH actions.
+</action_policy>
+
+<execution_contract>
+1. Define architecture goals, constraints, and non-goals with the user.
+2. Propose repository layout and module boundaries with explicit ownership and dependency directions.
+3. Define class or interface map: responsibilities, lifecycle, and collaboration patterns.
+4. Specify data contracts and state flow across components.
+5. Identify extension points and migration strategy from current code to target structure.
+6. List implementation phases with smallest useful slice first.
+7. Add verification strategy (unit, integration, and architectural invariants).
+8. Produce `.grd/research/ARCHITECTURE_PLAN.md` when artifact output is requested.
+</execution_contract>
