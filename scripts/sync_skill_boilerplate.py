@@ -20,7 +20,9 @@ SKILLS_ROOT = REPO_ROOT / "codex" / "skills"
 TAGS = (
     "context_budget",
     "intent_lock",
+    "questioning_loop",
     "precision_contract",
+    "anti_enterprise",
     "delivery_rule",
     "output_format",
     "action_policy",

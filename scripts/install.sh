@@ -20,4 +20,4 @@ if [ "$ROOT/get-research-done" != "$PACK_DIR" ]; then
 fi
 
 echo "Installed get-research-done pack into $ROOT"
-echo 'Use Codex skills: $grd-research-hypothesis-designer, $grd-research-experiment-planner, $grd-research-evaluation-analyst'
+echo 'Use Codex skills: $grd-hypothesis-designer, $grd-experiment-planner, $grd-evaluation-analyst'

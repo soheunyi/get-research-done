@@ -7,7 +7,11 @@ Portable research workflow pack for AI/statistics projects.
 - Codex research pipeline doc: `codex/workflows/research-pipeline.md`
 - Antigravity skills: `agy/skills/*`
 - Codex skills: `codex/skills/*`
-- Templates: `templates/research-notes.md`, `templates/wandb-config.md`
+- Stateful status helper skill for Codex: `codex/skills/grd-state-keeper/SKILL.md`
+- Brownfield codebase-mapping skill for Codex: `codex/skills/grd-codebase-mapper/SKILL.md`
+- Phase implementation research skill for Codex: `codex/skills/grd-phase-researcher/SKILL.md`
+- Guided questioning loop for Codex skills: `codex/skills/_shared/COMMON_BLOCKS.md`
+- Templates: `templates/research-notes.md`, `templates/wandb-config.md`, `templates/state.md`, `templates/roadmap.md`
 
 ## Codex Skill Boilerplate Sync
 Shared Codex skill boilerplate lives in:
@@ -25,6 +29,14 @@ Checks:
 - `python3 scripts/sync_skill_boilerplate.py --check`
 - `make sync-skills` (same as `--fix`)
 - `make check-skills` (same as `--check`)
+
+## Stateful Loop (Recommended)
+For GSD-like continuity in Codex sessions:
+
+1. Start with `grd-state-keeper`
+2. Maintain `.grd/STATE.md` and `.grd/ROADMAP.md`
+3. Route to stage skill (`grd-codebase-mapper`, `grd-phase-researcher`, etc.)
+4. Return to state-keeper after each major result to update next action
 
 ## Transplant for Antigravity only
 Antigravity supports slash commands (for example `/grd-...`) from workflow assets in `agy/workflows/`.

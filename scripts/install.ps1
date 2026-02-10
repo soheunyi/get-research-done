@@ -14,4 +14,4 @@ Copy-Item -Force "get-research-done/templates/research-notes.md" "$Root/.grd/tem
 Copy-Item -Force "get-research-done/templates/wandb-config.md" "$Root/.grd/templates/wandb-config.md"
 
 Write-Host "Installed get-research-done pack into $Root"
-Write-Host 'Use Codex skills: $grd-research-hypothesis-designer, $grd-research-experiment-planner, $grd-research-evaluation-analyst'
+Write-Host 'Use Codex skills: $grd-hypothesis-designer, $grd-experiment-planner, $grd-evaluation-analyst'
