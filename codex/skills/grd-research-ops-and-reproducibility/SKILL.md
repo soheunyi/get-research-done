@@ -1,20 +1,21 @@
 ---
-name: "GRD Reproducibility Packager"
-description: "Package environment, commands, and evidence for clean reproducibility"
+name: "GRD Research Ops and Reproducibility"
+description: "Unify experiment instrumentation, artifact lineage, and reproducibility packaging for reliable handoff"
 ---
 
-# Codex GRD Skill: grd-research-reproducibility-packager
+# Codex GRD Skill: grd-research-ops-and-reproducibility
 
 <when_to_use>
-Use when preparing handoff, publication support, or long-term project memory.
+Use when the user needs durable experiment tracking plus reproducibility packaging for handoff or publication support.
 </when_to_use>
 
 <source_of_truth>
-Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 5.
+Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 2.5 and Stage 5.
+When requested, produce `.grd/research/WANDB_CONFIG.md`, `.grd/research/REPRODUCIBILITY.md`, and `.grd/research/RESEARCH_SUMMARY.md`.
 </source_of_truth>
 
 <clarification_rule>
-If user intent is unclear, ask a short clarification question before continuing.
+If user intent is unclear, ask one short clarification question before continuing.
 </clarification_rule>
 
 <precision_contract>
@@ -74,8 +75,10 @@ Contract:
 </action_policy>
 
 <execution_contract>
-1. Pin environment and dataset versions.
-2. Document exact rerun commands.
-3. Tie claims to artifacts and expected variance.
-4. Produce `.grd/research/REPRODUCIBILITY.md` and `.grd/research/RESEARCH_SUMMARY.md`.
+1. Define experiment tracking schema: naming, metadata, grouping, and artifact conventions.
+2. Enforce logging contract: config, seed, dataset version, commit SHA, and key metrics.
+3. Define artifact lineage and alias rules to support reproducible claims.
+4. Pin environment and dataset versions with exact rerun commands.
+5. Tie claims to tracked runs and artifacts, including expected variance caveats.
+6. Produce `.grd/research/WANDB_CONFIG.md`, `.grd/research/REPRODUCIBILITY.md`, and `.grd/research/RESEARCH_SUMMARY.md` when artifact output is requested.
 </execution_contract>

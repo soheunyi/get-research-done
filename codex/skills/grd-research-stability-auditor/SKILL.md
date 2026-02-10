@@ -1,21 +1,21 @@
 ---
-name: "GRD Action Gatekeeper"
-description: "List proposed actions, label risk, and require researcher approval for medium/high risk steps"
+name: "GRD Stability Auditor"
+description: "Audit numerical stability and randomness control to keep research outcomes reproducible and trustworthy"
 ---
 
-# Codex GRD Skill: grd-action-gatekeeper
+# Codex GRD Skill: grd-research-stability-auditor
 
 <when_to_use>
-Use before making code, config, or data changes, running expensive jobs, or changing evaluation protocol.
+Use when results are sensitive to seeds, nondeterminism, tolerances, or numerical precision.
 </when_to_use>
 
 <source_of_truth>
-Align with `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` and project safety constraints.
+Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 4.5.
+When requested, produce `.grd/research/STABILITY_AUDIT.md`.
 </source_of_truth>
 
 <clarification_rule>
-Before any complex task, first ask for the user perspective, constraints, and preferred direction.
-If intent remains unclear, pause and ask for pseudocode or a concrete step-by-step outline before continuing.
+If user intent is unclear, ask one short clarification question before continuing.
 </clarification_rule>
 
 <precision_contract>
@@ -75,9 +75,10 @@ Contract:
 </action_policy>
 
 <execution_contract>
-1. Summarize the user goal in one sentence.
-2. Propose a short action list (files and commands).
-3. Label each action LOW, MED, or HIGH risk.
-4. Provide rollback plan and verification steps.
-5. Ask for approval only for MED and HIGH actions.
+1. Enumerate nondeterminism sources and seed propagation points.
+2. Verify deterministic settings, RNG metadata capture, and run comparability assumptions.
+3. Audit numerically sensitive operations (precision, tolerances, overflow/underflow risks).
+4. Propose minimal diagnostics (seed variance checks, perturbation checks, convergence/refinement checks) with acceptance thresholds.
+5. Prioritize remediation steps and expected impact on reliability.
+6. Produce `.grd/research/STABILITY_AUDIT.md` when artifact output is requested.
 </execution_contract>
