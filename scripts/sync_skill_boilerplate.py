@@ -17,7 +17,14 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 COMMON_BLOCKS = REPO_ROOT / "codex" / "skills" / "_shared" / "COMMON_BLOCKS.md"
 SKILLS_ROOT = REPO_ROOT / "codex" / "skills"
-TAGS = ("delivery_rule", "output_format", "action_policy")
+TAGS = (
+    "context_budget",
+    "intent_lock",
+    "precision_contract",
+    "delivery_rule",
+    "output_format",
+    "action_policy",
+)
 
 
 def load_common_blocks() -> dict[str, str]:
@@ -42,45 +49,46 @@ def find_skill_files() -> list[Path]:
     return files
 
 
-def replace_or_insert(text: str, tag: str, block: str) -> tuple[str, bool]:
-    pattern = re.compile(rf"(?s)<{tag}>\n.*?\n</{tag}>")
-    if pattern.search(text):
-        updated = pattern.sub(block, text, count=1)
-        return updated, updated != text
-
-    insertion = "\n\n" + block
+def _find_insertion_index(text: str) -> int:
     for anchor in ("clarification_rule", "source_of_truth"):
-        anchor_pattern = re.compile(rf"(?s)</{anchor}>")
-        m = anchor_pattern.search(text)
+        m = re.search(rf"(?s)</{anchor}>", text)
         if m:
-            idx = m.end()
-            return text[:idx] + insertion + text[idx:], True
+            return m.end()
+    return len(text.rstrip("\n"))
 
-    return text.rstrip("\n") + "\n\n" + block + "\n", True
+
+def apply_blocks(text: str, blocks: dict[str, str]) -> str:
+    updated = text
+    missing: list[str] = []
+
+    for tag in TAGS:
+        pattern = re.compile(rf"(?s)<{tag}>\n.*?\n</{tag}>")
+        match = pattern.search(updated)
+        if match:
+            updated = pattern.sub(blocks[tag], updated, count=1)
+        else:
+            missing.append(tag)
+
+    if missing:
+        idx = _find_insertion_index(updated)
+        payload = "\n\n" + "\n\n".join(blocks[tag] for tag in missing)
+        updated = updated[:idx] + payload + updated[idx:]
+
+    return updated.rstrip("\n") + "\n"
 
 
 def sync_file(path: Path, blocks: dict[str, str]) -> bool:
     original = path.read_text(encoding="utf-8")
-    updated = original
-    changed = False
-
-    for tag in TAGS:
-        updated, block_changed = replace_or_insert(updated, tag, blocks[tag])
-        changed = changed or block_changed
-
-    updated = updated.rstrip("\n") + "\n"
+    updated = apply_blocks(original, blocks)
     if updated != original:
         path.write_text(updated, encoding="utf-8")
         return True
-    return changed and updated != original
+    return False
 
 
 def check_file(path: Path, blocks: dict[str, str]) -> bool:
     original = path.read_text(encoding="utf-8")
-    candidate = original
-    for tag in TAGS:
-        candidate, _ = replace_or_insert(candidate, tag, blocks[tag])
-    candidate = candidate.rstrip("\n") + "\n"
+    candidate = apply_blocks(original, blocks)
     return candidate != original
 
 

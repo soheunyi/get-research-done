@@ -18,6 +18,27 @@ Before any complex task, first ask for the user perspective, constraints, and pr
 If intent remains unclear, pause and ask for pseudocode or a concrete step-by-step outline before continuing.
 </clarification_rule>
 
+<precision_contract>
+- Provide exact file paths, commands, and expected outputs.
+- Use numbered steps and execute smallest-valid slice first.
+- State assumptions and unknowns explicitly; do not silently guess.
+- Define done criteria and verification commands before execution.
+- If blocked, report the blocker and the next minimal unblocked action.
+</precision_contract>
+
+<context_budget>
+- Read only files directly relevant to the task.
+- Start with up to 8 files; if more are needed, state why before continuing.
+- Prefer targeted excerpts and summaries over full-file reads.
+- Do not scan unrelated directories.
+</context_budget>
+
+<intent_lock>
+- Before action, restate the user intent in up to 3 sentences.
+- If ambiguity could change the outcome, ask one focused clarification.
+- For MED/HIGH actions, pause and confirm direction before proceeding.
+</intent_lock>
+
 <delivery_rule>
 Default to concise chat output.
 
