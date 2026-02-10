@@ -9,6 +9,23 @@ Portable research workflow pack for AI/statistics projects.
 - Codex skills: `codex/skills/*`
 - Templates: `templates/research-notes.md`, `templates/wandb-config.md`
 
+## Codex Skill Boilerplate Sync
+Shared Codex skill boilerplate lives in:
+
+- `codex/skills/_shared/COMMON_BLOCKS.md`
+
+To update shared blocks:
+
+1. Edit `codex/skills/_shared/COMMON_BLOCKS.md`
+2. Run `python3 scripts/sync_skill_boilerplate.py --fix`
+3. Commit resulting skill updates
+
+Checks:
+
+- `python3 scripts/sync_skill_boilerplate.py --check`
+- `make sync-skills` (same as `--fix`)
+- `make check-skills` (same as `--check`)
+
 ## Transplant for Antigravity only
 Antigravity supports slash commands (for example `/grd-...`) from workflow assets in `agy/workflows/`.
 

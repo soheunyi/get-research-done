@@ -1,16 +1,17 @@
 ---
 name: "GRD Experiment Planner"
-description: "Plan reproducible experiments with controls, seeds, splits, and statistical protocol"
+description: "Plan reproducible experiments with pre-committed analysis design, controls, seeds, splits, and statistical protocol"
 ---
 
 # Codex GRD Skill: grd-research-experiment-planner
 
 <when_to_use>
-Use after hypothesis design and before running experiments.
+Use after hypothesis design and before running experiments, including pre-committed analysis planning.
 </when_to_use>
 
 <source_of_truth>
-Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 2.
+Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 1.5 and Stage 2.
+When requested, produce `.grd/research/ANALYSIS_PLAN.md` and `.grd/research/EXPERIMENT_PLAN.md`.
 </source_of_truth>
 
 <clarification_rule>
@@ -54,8 +55,10 @@ Contract:
 </action_policy>
 
 <execution_contract>
-1. Define control/treatment matrix.
-2. Define dataset versions, seeds, split strategy, and run budget.
-3. Define metrics, CI, and significance tests.
-4. Produce `.grd/research/EXPERIMENT_PLAN.md`.
+1. Define primary and secondary endpoints, estimator, and decision thresholds.
+2. Define seed aggregation, CI method, significance tests, and multiple comparisons handling when needed.
+3. Define strict no test peeking and leakage checklist.
+4. Define control and treatment matrix.
+5. Define dataset versions, seeds, split strategy, and run budget.
+6. Produce `.grd/research/ANALYSIS_PLAN.md` and `.grd/research/EXPERIMENT_PLAN.md` when artifact output is requested.
 </execution_contract>

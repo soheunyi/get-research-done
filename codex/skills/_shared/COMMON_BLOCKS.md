@@ -1,23 +1,3 @@
----
-name: "GRD Analysis Plan Generator"
-description: "Create a pre-committed analysis plan: metrics, CIs, tests, leakage checks, and decision rules"
----
-
-# Codex GRD Skill: grd-research-analysis-plan-generator
-
-<when_to_use>
-Use after hypothesis design and before running experiments.
-</when_to_use>
-
-<source_of_truth>
-Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 1.5 and write `.grd/research/ANALYSIS_PLAN.md`.
-</source_of_truth>
-
-<clarification_rule>
-Before any complex task, first ask for the user perspective, constraints, and preferred direction.
-If intent remains unclear, pause and ask for pseudocode or a concrete step-by-step outline before continuing.
-</clarification_rule>
-
 <delivery_rule>
 Default to concise chat output.
 
@@ -52,11 +32,3 @@ Contract:
 3) Label each action LOW, MED, or HIGH plus rollback plan.
 4) Require explicit user approval for MED and HIGH actions.
 </action_policy>
-
-<execution_contract>
-1. Define primary and secondary endpoints plus estimator.
-2. Define seed aggregation and CI method.
-3. Define statistical tests and multiple comparisons handling when needed.
-4. Define strict no test peeking and leakage checklist.
-5. Define decision thresholds (supports, inconclusive, reject).
-</execution_contract>

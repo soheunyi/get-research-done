@@ -1,20 +1,22 @@
 ---
-name: "GRD Deep Thinker"
-description: "Structure ambiguous research decisions into options, tradeoffs, and a defensible recommendation"
+name: "GRD Attribution and Robustness"
+description: "Unify reactive change attribution and proactive ablation planning to isolate causal drivers and robustness"
 ---
 
-# Codex GRD Skill: grd-research-deep-thinker
+# Codex GRD Skill: grd-research-attribution-and-robustness
 
 <when_to_use>
-Use when a research decision is ambiguous, multiple methods are plausible, or the user asks for deeper reasoning before execution.
+Use when results changed and you need to explain why, or when positive results need causal isolation and robustness validation.
 </when_to_use>
 
 <source_of_truth>
-Use `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` to align recommendations with stage goals.
+Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 3.5 and Stage 4.
+When requested, produce `.grd/research/ATTRIBUTION_AND_ABLATION.md`.
 </source_of_truth>
 
 <clarification_rule>
-If you are not sure what the user wants, ask for pseudocode or a concrete step-by-step outline before continuing.
+Before any complex task, first ask for the user perspective, constraints, and preferred direction.
+If intent remains unclear, pause and ask for pseudocode or a concrete step-by-step outline before continuing.
 </clarification_rule>
 
 <delivery_rule>
@@ -53,12 +55,11 @@ Contract:
 </action_policy>
 
 <execution_contract>
-1. Ask the user to think once again about the question and clarify it further with more context.
-2. Define the decision question, constraints, and success criteria.
-3. Generate 2-4 candidate approaches.
-4. Evaluate tradeoffs: assumptions, expected impact, risk, effort, and time.
-5. Recommend one approach with explicit rationale and known failure modes.
-6. Propose the next smallest validating action.
-7. Produce `.grd/research/DEEP_THINKING.md` when artifact output is requested.
-8. Ask whether to save a research note as `.grd/research/notes/<timestamp_title>.md`.
+1. Diff run conditions and classify changed versus invariant factors.
+2. Flag confounds, leakage risks, and unknowns that block strong attribution.
+3. Rank attribution hypotheses by evidence strength.
+4. Design the minimal ablation and robustness matrix to isolate plausible causes.
+5. Prioritize next experiments by expected information gain and cost.
+6. Summarize causal conclusions, remaining uncertainty, and recommended next checks.
+7. Produce `.grd/research/ATTRIBUTION_AND_ABLATION.md` when artifact output is requested.
 </execution_contract>

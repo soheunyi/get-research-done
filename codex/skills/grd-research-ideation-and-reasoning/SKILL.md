@@ -1,20 +1,22 @@
 ---
-name: "GRD Idea Seeker"
-description: "Search the web for relevant references, cite them, and generate evidence-backed research idea sketches"
+name: "GRD Ideation and Reasoning"
+description: "Combine cited idea discovery with structured tradeoff reasoning to recommend the next validating research direction"
 ---
 
-# Codex GRD Skill: grd-research-idea-seeker
+# Codex GRD Skill: grd-research-ideation-and-reasoning
 
 <when_to_use>
-Use when user wants related work discovery, external references, or idea generation grounded in citations.
+Use when the user needs research idea discovery plus decision-quality reasoning across multiple candidate approaches.
 </when_to_use>
 
 <source_of_truth>
-Align ideas with `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` stage expectations.
+Use `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` to align recommendations with stage goals.
+When requested, write `.grd/research/IDEATION_AND_REASONING.md`.
 </source_of_truth>
 
 <clarification_rule>
-Before searching, ask a short clarification question about scope, constraints, and desired output if missing.
+Before searching or recommending, ask a short clarification question about scope, constraints, and desired output.
+If intent remains unclear, ask for pseudocode or a concrete step-by-step outline before continuing.
 </clarification_rule>
 
 <delivery_rule>
@@ -53,14 +55,14 @@ Contract:
 </action_policy>
 
 <execution_contract>
-1. Confirm topic scope and constraints (time, compute, risk tolerance, success metric).
-2. Search web sources with priority on primary references (papers, official docs, benchmark sites, maintainer repos).
-3. Filter to high-signal references that directly inform the user question.
-4. Summarize each selected reference briefly with claim, method, and relevance.
-5. Generate 3-5 research idea sketches linked to cited references.
-6. For each sketch include: hypothesis, novelty angle, first experiment, risk, and decision metric.
-7. Return a clear references list (title + URL) for every cited source.
-8. Write `.grd/research/IDEA_SEEKER.md` when artifact output is requested.
+1. Confirm topic scope, constraints, success metric, and acceptable risk.
+2. Search high-signal sources with priority on primary references (papers, official docs, benchmark sites, maintainer repos).
+3. Distill key evidence and separate evidence from inference.
+4. Generate 2-4 candidate approaches grounded in cited references.
+5. Evaluate tradeoffs for each approach: assumptions, expected impact, risk, effort, and time.
+6. Recommend one approach with explicit rationale and known failure modes.
+7. Propose the next smallest validating action and optional follow-up experiments.
+8. Produce `.grd/research/IDEATION_AND_REASONING.md` when artifact output is requested.
 9. Ask whether to save a research note as `.grd/research/notes/<timestamp_title>.md`.
 </execution_contract>
 
