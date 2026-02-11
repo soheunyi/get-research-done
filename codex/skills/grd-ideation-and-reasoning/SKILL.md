@@ -1,5 +1,10 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_codex_wrappers.py
+-->
+
 ---
-name: "GRD Ideation and Reasoning"
+name: "grd-ideation-and-reasoning"
 description: "Generate evidence-backed research directions and compare tradeoffs to recommend the next validating move. Use when the user asks for new ideas, alternatives, or decision support across approaches. Not for final statistical evaluation."
 ---
 
@@ -22,7 +27,7 @@ Use when the user needs research idea discovery plus decision-quality reasoning 
 </when_to_use>
 
 <source_of_truth>
-Use `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` to align recommendations with stage goals.
+Use `.grd/workflows/research-pipeline.md` to align recommendations with stage goals.
 When requested, write `.grd/research/IDEATION_AND_REASONING.md`.
 </source_of_truth>
 

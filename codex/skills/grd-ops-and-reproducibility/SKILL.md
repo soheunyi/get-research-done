@@ -1,5 +1,10 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_codex_wrappers.py
+-->
+
 ---
-name: "GRD Research Ops and Reproducibility"
+name: "grd-ops-and-reproducibility"
 description: "Define experiment operations, artifact lineage, and reproducibility packaging for reliable handoff. Use when the user asks to standardize tracking, lock environments, or prepare replication instructions. Not for causal attribution or hypothesis generation."
 ---
 
@@ -22,8 +27,8 @@ Use when the user needs durable experiment tracking plus reproducibility packagi
 </when_to_use>
 
 <source_of_truth>
-Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 2.5 and Stage 5.
-Use artifact naming/frontmatter rules in `@GSD_ROOT@get-research-done/templates/research-artifact-format.md`.
+Follow `.grd/workflows/research-pipeline.md` Stage 2.5 and Stage 5.
+Use artifact naming/frontmatter rules in `.grd/templates/research-artifact-format.md`.
 When requested, produce run-scoped artifacts and refresh `.grd/research/latest` alias to the active run.
 </source_of_truth>
 

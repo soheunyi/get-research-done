@@ -1,5 +1,10 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_codex_wrappers.py
+-->
+
 ---
-name: "GRD Research State Keeper"
+name: "grd-state-keeper"
 description: "Run a guided questioning loop, persist research status, and route to the right next GRD skill or stage. Use when the user starts or resumes work, asks what to do next, or wants `.grd/STATE.md` and `.grd/ROADMAP.md` updated. Not for deep technical analysis of a single artifact."
 ---
 
@@ -23,7 +28,7 @@ Use when the user asks what to do next, starts a new research thread, resumes af
 </when_to_use>
 
 <source_of_truth>
-Align with `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md`.
+Align with `.grd/workflows/research-pipeline.md`.
 Primary artifacts:
 - `.grd/STATE.md`
 - `.grd/ROADMAP.md`

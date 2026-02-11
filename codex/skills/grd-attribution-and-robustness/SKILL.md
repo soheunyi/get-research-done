@@ -1,5 +1,10 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_codex_wrappers.py
+-->
+
 ---
-name: "GRD Attribution and Robustness"
+name: "grd-attribution-and-robustness"
 description: "Analyze attribution, ablations, and robustness to isolate causal drivers of performance changes. Use when the user asks what changed results, which component matters, or how robust findings are. Not for initial experiment design."
 ---
 
@@ -22,7 +27,7 @@ Use when results changed and you need to explain why, or when positive results n
 </when_to_use>
 
 <source_of_truth>
-Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 3.5 and Stage 4.
+Follow `.grd/workflows/research-pipeline.md` Stage 3.5 and Stage 4.
 When requested, produce `.grd/research/ATTRIBUTION_AND_ABLATION.md`.
 </source_of_truth>
 

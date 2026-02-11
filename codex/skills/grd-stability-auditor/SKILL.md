@@ -1,5 +1,10 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_codex_wrappers.py
+-->
+
 ---
-name: "GRD Stability Auditor"
+name: "grd-stability-auditor"
 description: "Audit numerical stability and randomness controls to keep outcomes reproducible and trustworthy. Use when the user asks about nondeterminism, seed sensitivity, precision issues, or flaky runs. Not for generic metric comparison without stability concerns."
 ---
 
@@ -22,7 +27,7 @@ Use when results are sensitive to seeds, nondeterminism, tolerances, or numerica
 </when_to_use>
 
 <source_of_truth>
-Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 4.5.
+Follow `.grd/workflows/research-pipeline.md` Stage 4.5.
 When requested, produce `.grd/research/STABILITY_AUDIT.md`.
 </source_of_truth>
 

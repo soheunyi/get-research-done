@@ -1,5 +1,10 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_codex_wrappers.py
+-->
+
 ---
-name: "GRD Build Architect"
+name: "grd-build-architect"
 description: "Design repository architecture, module boundaries, and migration slices before implementation. Use when the user asks for project structure, interface boundaries, or a stepwise refactor plan. Not for low-level code implementation."
 ---
 
@@ -22,7 +27,7 @@ Use when the user needs a high-level implementation blueprint across repository 
 </when_to_use>
 
 <source_of_truth>
-Align with `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md`, existing repository conventions, and user-defined constraints.
+Align with `.grd/workflows/research-pipeline.md`, existing repository conventions, and user-defined constraints.
 If present, treat `.grd/codebase/CURRENT.md`, `.grd/codebase/TARGET.md`, and `.grd/codebase/GAPS.md` as the baseline context before proposing structural changes.
 When requested, write `.grd/research/ARCHITECTURE_PLAN.md`.
 </source_of_truth>

@@ -1,3 +1,8 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_codex_wrappers.py
+-->
+
 <context_budget>
 - Start with directly relevant files, then expand scope when evidence requires it.
 - Read enough source context to make reliable decisions; do not enforce an arbitrary file cap.

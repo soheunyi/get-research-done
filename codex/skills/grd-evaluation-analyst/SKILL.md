@@ -1,5 +1,10 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_codex_wrappers.py
+-->
+
 ---
-name: "GRD Evaluation Analyst"
+name: "grd-evaluation-analyst"
 description: "Analyze experiment results with uncertainty and significance to classify hypothesis outcomes. Use when the user asks to interpret metrics, compare variants, or decide support versus inconclusive versus reject. Not for designing experiments or generating new hypotheses."
 ---
 
@@ -22,8 +27,8 @@ Use when experiment outputs are available and you need a decision.
 </when_to_use>
 
 <source_of_truth>
-Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 3.
-Use artifact naming/frontmatter rules in `@GSD_ROOT@get-research-done/templates/research-artifact-format.md`.
+Follow `.grd/workflows/research-pipeline.md` Stage 3.
+Use artifact naming/frontmatter rules in `.grd/templates/research-artifact-format.md`.
 </source_of_truth>
 
 <upstream_inputs>

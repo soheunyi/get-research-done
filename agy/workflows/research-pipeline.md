@@ -1,9 +1,14 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_agy_wrappers.py
+-->
+
 # GSD Research Pipeline
 
 Use this pipeline when the primary goal is AI/statistics research instead of production feature delivery.
 
 Artifact format reference:
-- `templates/research-artifact-format.md`
+- `.grd/templates/research-artifact-format.md`
 
 Run convention:
 - Group linked artifacts under `.grd/research/runs/{run_id}/`
@@ -67,7 +72,7 @@ Output:
 - Define hard stop criteria (time/budget) and validity threats.
 - Use iterative thesis -> antithesis -> synthesis questioning to refine assumptions before locking the hypothesis.
 - Commit analysis decision rule for this run (`analysis_committed: true`) before execution-heavy stages.
-- After locking hypothesis, nudge state tracking to append a hypothesis handoff note for Stage 3 traceability.
+- After locking hypothesis, nudge `grd-state-keeper` to append a hypothesis handoff note for Stage 3 traceability.
 
 Output:
 - `.grd/research/runs/{run_id}/0_INDEX.md`
@@ -98,6 +103,14 @@ Output:
 Output:
 - `.grd/research/runs/{run_id}/3_EVALUATION.md`
 
+## Stage 3.5: Error Analysis and Sanity Checks
+- Slice analysis across data subsets and inspect failure cases.
+- Run sanity checks (label shuffle and controls where relevant).
+- Confirm no leakage, correct split usage, and stable evaluation scripts.
+
+Output:
+- `ERROR_ANALYSIS.md`
+
 ## Stage 4: Ablation and Robustness
 - Isolate contribution of each major component.
 - Run stress tests: seed sensitivity, data slice robustness, hyperparameter range.
@@ -105,6 +118,15 @@ Output:
 
 Output:
 - `.grd/research/runs/{run_id}/4_ABLATION.md`
+
+## Stage 4.5: Numerical Stability and Determinism (if applicable)
+- Audit nondeterminism sources and seed propagation.
+- Check numerical stability (tolerances, precision, overflow, underflow).
+- Run convergence or refinement tests when using discretizations or solvers.
+
+Output:
+- `.grd/research/runs/{run_id}/4_NUMERICS_AUDIT.md`
+- `.grd/research/runs/{run_id}/4_RANDOMNESS_AUDIT.md`
 
 ## Stage 5: Reproducibility Packaging
 - Lock environment, dataset versions, and exact commands.

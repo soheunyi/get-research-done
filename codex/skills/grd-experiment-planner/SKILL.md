@@ -1,5 +1,10 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_codex_wrappers.py
+-->
+
 ---
-name: "GRD Experiment Planner"
+name: "grd-experiment-planner"
 description: "Plan reproducible experiments with controls, seeds, splits, and pre-committed evaluation protocol. Use when the user asks for an experiment matrix, run plan, or statistical evaluation setup. Not for interpreting completed results."
 ---
 
@@ -22,8 +27,8 @@ Use after hypothesis design and before running experiments, including pre-commit
 </when_to_use>
 
 <source_of_truth>
-Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 2.
-Use artifact naming/frontmatter rules in `@GSD_ROOT@get-research-done/templates/research-artifact-format.md`.
+Follow `.grd/workflows/research-pipeline.md` Stage 2.
+Use artifact naming/frontmatter rules in `.grd/templates/research-artifact-format.md`.
 When requested, produce run-scoped artifacts in `.grd/research/runs/{run_id}/`.
 </source_of_truth>
 

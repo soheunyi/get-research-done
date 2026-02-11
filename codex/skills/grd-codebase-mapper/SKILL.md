@@ -1,5 +1,10 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_codex_wrappers.py
+-->
+
 ---
-name: "GRD Codebase Mapper"
+name: "grd-codebase-mapper"
 description: "Map current repository state, target state, and prioritized implementation gaps. Use when starting in an existing codebase, resuming after drift, or asking what exists now versus what should be built next. Not for hypothesis metrics or evaluation decisions."
 ---
 
@@ -22,7 +27,7 @@ Use when starting work in an existing repository, after significant code drift, 
 </when_to_use>
 
 <source_of_truth>
-Align with existing repository conventions and `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md`.
+Align with existing repository conventions and `.grd/workflows/research-pipeline.md`.
 When requested, produce:
 - `.grd/codebase/CURRENT.md`
 - `.grd/codebase/TARGET.md`

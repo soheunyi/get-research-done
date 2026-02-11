@@ -1,9 +1,14 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_codex_wrappers.py
+-->
+
 # GSD Research Pipeline
 
 Use this pipeline when the primary goal is AI/statistics research instead of production feature delivery.
 
 Artifact format reference:
-- `templates/research-artifact-format.md`
+- `.grd/templates/research-artifact-format.md`
 
 Run convention:
 - Group linked artifacts under `.grd/research/runs/{run_id}/`

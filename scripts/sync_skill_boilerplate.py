@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sync shared SKILL.md boilerplate blocks across codex skills.
+"""Sync shared SKILL.md boilerplate blocks across skills.
 
 Usage:
   python scripts/sync_skill_boilerplate.py --check
@@ -15,8 +15,8 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-COMMON_BLOCKS = REPO_ROOT / "codex" / "skills" / "_shared" / "COMMON_BLOCKS.md"
-SKILLS_ROOT = REPO_ROOT / "codex" / "skills"
+COMMON_BLOCKS = REPO_ROOT / "skills" / "_shared" / "COMMON_BLOCKS.md"
+SKILLS_ROOT = REPO_ROOT / "skills"
 TAGS = (
     "context_budget",
     "intent_lock",
@@ -111,7 +111,7 @@ def main() -> int:
             for item in out_of_sync:
                 print(f"- {item}")
             return 1
-        print("All codex skill files are in sync.")
+        print("All skill files are in sync.")
         return 0
 
     changed_files = [str(path) for path in skill_files if sync_file(path, blocks)]

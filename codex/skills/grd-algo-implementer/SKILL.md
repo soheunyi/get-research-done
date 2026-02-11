@@ -1,5 +1,10 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_codex_wrappers.py
+-->
+
 ---
-name: "GRD Algo Implementer"
+name: "grd-algo-implementer"
 description: "Implement research code from approved pseudocode or specs with validation checks and deterministic behavior. Use when the user asks to implement algorithms, refactor experiment code, or turn plans into executable code. Not for high-level workflow routing or hypothesis/evaluation decisions."
 ---
 
@@ -22,7 +27,7 @@ Use when the user wants to implement or refactor an algorithm into production-qu
 </when_to_use>
 
 <source_of_truth>
-Align implementation with `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` and project codebase conventions.
+Align implementation with `.grd/workflows/research-pipeline.md` and project codebase conventions.
 When requested, write `.grd/research/ALGO_IMPLEMENTATION.md` to document design and verification.
 </source_of_truth>
 

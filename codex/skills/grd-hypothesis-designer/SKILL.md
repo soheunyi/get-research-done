@@ -1,5 +1,10 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_codex_wrappers.py
+-->
+
 ---
-name: "GRD Hypothesis Designer"
+name: "grd-hypothesis-designer"
 description: "Define falsifiable hypotheses, metrics, baselines, and stop criteria for research phases. Use when the user has an idea and asks to convert it into a testable hypothesis. Not for final run scheduling or result interpretation."
 ---
 
@@ -23,8 +28,8 @@ Use for hypothesis framing before writing experiment code.
 </when_to_use>
 
 <source_of_truth>
-Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 1.
-Use artifact naming/frontmatter rules in `@GSD_ROOT@get-research-done/templates/research-artifact-format.md`.
+Follow `.grd/workflows/research-pipeline.md` Stage 1.
+Use artifact naming/frontmatter rules in `.grd/templates/research-artifact-format.md`.
 </source_of_truth>
 
 <cross_skill_handoff>

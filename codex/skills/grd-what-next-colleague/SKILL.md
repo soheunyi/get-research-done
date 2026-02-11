@@ -1,5 +1,10 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_codex_wrappers.py
+-->
+
 ---
-name: "GRD What Next Colleague"
+name: "grd-what-next-colleague"
 description: "Run a multi-turn research conversation to determine the next direction and a concrete next action. Use for prompts like 'what next', 'I'm stuck', 'help me choose direction', or 'should I pivot?'. Not for direct implementation, detailed experiment planning, or final statistical evaluation."
 ---
 
@@ -31,7 +36,7 @@ If the user asks to execute or deeply plan, hand off immediately:
 </boundary_rule>
 
 <source_of_truth>
-Use `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` for stage alignment.
+Use `.grd/workflows/research-pipeline.md` for stage alignment.
 Primary context files:
 - `.grd/STATE.md`
 - `.grd/ROADMAP.md`
@@ -57,21 +62,12 @@ Protocol:
 3. Always include an explicit open-ended path:
    "If none fit, describe your own direction."
 4. After each answer, summarize "Captured so far" in bullets.
-5. Keep iterating while refining:
+5. Continue only until next actions are clear for:
    - objective
    - constraints
    - environment
    - success criteria
-6. Every 3 turns, add a decision checkpoint:
-   - current thesis
-   - strongest contradiction
-   - top 2 candidate directions
-7. End each turn with this explicit choice contract:
-   - `Continue exploring`
-   - `Summarize and decide`
-   - `Stop`
-8. Do not stop on model confidence alone.
-9. Stop only when the user explicitly says they are satisfied, says "stop", or asks to move to execution.
+6. Stop questioning once confidence is sufficient for execution.
 
 Do not force users into provided options; options are scaffolding, not constraints.
 </questioning_loop>
@@ -117,20 +113,17 @@ Default to concise chat output.
 </delivery_rule>
 
 <output_format>
-Use two modes:
+Always structure the response as:
 
-1) Conversation turn mode (default)
-- Captured so far (2-5 bullets)
-- One high-leverage question
-- 2-4 concrete options
-- Open-ended option: "If none fit, describe your own direction."
-- End-of-turn choices: `Continue exploring` / `Summarize and decide` / `Stop`
+1) Assumptions (bullet list; call out unknowns)
+2) Plan (numbered; smallest-first)
+3) Proposed changes / artifacts
+   - If user did NOT ask to write files: provide a proposed diff outline plus filenames
+   - If user DID ask to write files: write or update artifact files named in <source_of_truth>
+4) Verification steps (how to check it worked)
+5) Risks and failure modes (brief; include data leakage and confounds when relevant)
 
-2) Convergence mode (when user wants to lock direction)
-- Decision snapshot (chosen direction and why)
-- Alternatives not chosen (and key tradeoff)
-- Next smallest action (verifiable in one session)
-- Handoff skill recommendation
+If the skill defines additional required sections (for example, evidence taxonomy or artifact tables), include them after item 5.
 </output_format>
 
 <action_policy>

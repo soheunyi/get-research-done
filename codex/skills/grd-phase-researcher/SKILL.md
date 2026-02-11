@@ -1,5 +1,10 @@
+<!-- GENERATED FILE. Do not edit directly.
+Source of truth: skills/*, workflows/*
+Regenerate: python3 scripts/sync_codex_wrappers.py
+-->
+
 ---
-name: "GRD Phase Researcher"
+name: "grd-phase-researcher"
 description: "Research implementation patterns for a defined phase and produce prescriptive guidance for execution. Use when the user asks what stack to use, what pitfalls to avoid, or requests phase research before planning or coding. Not for end-to-end orchestration or final evaluation."
 ---
 
@@ -57,7 +62,7 @@ Use when a phase goal is defined and you need fast, high-confidence implementati
 </when_to_use>
 
 <source_of_truth>
-Align with `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` and user-provided phase constraints.
+Align with `.grd/workflows/research-pipeline.md` and user-provided phase constraints.
 When requested, produce `.grd/research/phases/{phase_id}-RESEARCH.md`.
 </source_of_truth>
 
