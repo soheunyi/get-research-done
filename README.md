@@ -8,6 +8,7 @@ Portable research workflow pack for AI/statistics projects.
 - Antigravity skills: `agy/skills/*`
 - Codex skills: `codex/skills/*`
 - Stateful status helper skill for Codex: `codex/skills/grd-state-keeper/SKILL.md`
+- Conversational what-next colleague for Codex: `codex/skills/grd-what-next-colleague/SKILL.md`
 - Brownfield codebase-mapping skill for Codex: `codex/skills/grd-codebase-mapper/SKILL.md`
 - Phase implementation research skill for Codex: `codex/skills/grd-phase-researcher/SKILL.md`
 - Guided questioning loop for Codex skills: `codex/skills/_shared/COMMON_BLOCKS.md`

@@ -167,6 +167,7 @@ Route by stage intent:
 - Architecture before coding -> `grd-build-architect`
 - Implementation request -> `grd-algo-implementer`
 - Idea generation and tradeoff analysis -> `grd-ideation-and-reasoning`
+- Conversational "what next" direction-setting -> `grd-what-next-colleague`
 - Ongoing notes capture -> `grd-state-keeper` (self)
 </routing_table>
 
