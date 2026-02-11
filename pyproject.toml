@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[project]
+name = "get-research-done"
+version = "0.1.0"
+description = "Portable research workflow pack for AI/statistics projects."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+  { name = "soheunyi" },
+]
+license = { text = "MIT" }
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/soheunyi/get-research-done"
+
+[project.scripts]
+grd-install = "get_research_done.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/get_research_done"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"skills" = "src/get_research_done/assets/skills"
+"templates" = "src/get_research_done/assets/templates"
+"workflows" = "src/get_research_done/assets/workflows"
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src/get_research_done",
+  "/skills",
+  "/templates",
+  "/workflows",
+  "/README.md",
+  "/pyproject.toml",
+]

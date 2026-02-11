@@ -2,9 +2,53 @@
 
 Portable research workflow pack for AI/statistics projects.
 
-## Install (Recommended: Make)
+## Install (Recommended: Python CLI)
 
-Run from this repository:
+Install the package, then run `grd-install` from anywhere.
+
+`pipx` (recommended for isolated CLI tools):
+
+```bash
+pipx install "git+https://github.com/soheunyi/get-research-done.git"
+```
+
+`pip`:
+
+```bash
+python3 -m pip install "git+https://github.com/soheunyi/get-research-done.git"
+```
+
+From a local checkout during development:
+
+```bash
+python3 -m pip install -e .
+```
+
+Install into a target repository:
+
+```bash
+# Default target is "core" (runtime + codex/claude/opencode/gemini)
+grd-install /path/to/target-repo
+
+# Runtime docs/templates only
+grd-install /path/to/target-repo --target runtime
+
+# Per-tool
+grd-install /path/to/target-repo --target codex
+grd-install /path/to/target-repo --target claude
+grd-install /path/to/target-repo --target opencode
+grd-install /path/to/target-repo --target gemini
+
+# Multiple targets
+grd-install /path/to/target-repo --target runtime,codex
+
+# Show valid target names
+grd-install --list-targets
+```
+
+## Install (Make Alternative)
+
+Run from this repository checkout:
 
 ```bash
 # Show all install targets
