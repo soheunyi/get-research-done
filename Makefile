@@ -4,7 +4,7 @@ DEST_RESOLVED := $(if $(filter ~,$(DEST)),$(HOME),$(patsubst ~/%,$(HOME)/%,$(DES
 
 .PHONY: \
 	sync-skills check-skills sync-codex sync-agy \
-	install-runtime install-codex install-claude install-opencode install-gemini install-agy install-legacy-codex \
+	install-runtime install-codex install-claude install-opencode install-gemini \
 	install-core install-all install-help
 
 sync-skills:
@@ -40,14 +40,6 @@ install-gemini: install-runtime
 	mkdir -p "$(DEST_RESOLVED)/.gemini/skills"
 	cp -R skills/. "$(DEST_RESOLVED)/.gemini/skills/"
 
-install-agy: install-runtime
-	mkdir -p "$(DEST_RESOLVED)/.agent/skills"
-	cp -R agy/skills/. "$(DEST_RESOLVED)/.agent/skills/"
-
-install-legacy-codex: install-runtime
-	mkdir -p "$(DEST_RESOLVED)/.codex/skills"
-	cp -R skills/. "$(DEST_RESOLVED)/.codex/skills/"
-
 install-core: install-runtime install-codex install-claude install-opencode install-gemini
 
 install-all:
@@ -60,7 +52,5 @@ install-help:
 	@echo "  make install-claude DEST=..."
 	@echo "  make install-opencode DEST=..."
 	@echo "  make install-gemini DEST=..."
-	@echo "  make install-agy DEST=..."
-	@echo "  make install-legacy-codex DEST=..."
 	@echo "  make install-core DEST=...      # runtime + codex/claude/opencode/gemini"
 	@echo "  make install-all DEST=...       # full installer script"
