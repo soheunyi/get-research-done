@@ -61,6 +61,14 @@ Output:
 Output:
 - `.grd/research/phases/{phase_id}-RESEARCH.md`
 
+## Stage 0.75: Deep Reasoning Question Draft (Optional)
+- Draft a high-quality prompt/question for external deep-thinking models when reasoning complexity is high.
+- Summarize relevant context, clarify the exact question, and define all mathematical terms/symbols explicitly.
+- Add strict answer-format expectations and success criteria to reduce ambiguity.
+
+Output:
+- `.grd/research/questions/{question_id}-QUESTION.md`
+
 ## Stage 1: Hypothesis Design
 - Define one falsifiable hypothesis.
 - Define target metric, baseline, and minimum effect size.
