@@ -2,6 +2,11 @@
 
 Use this template when drafting a question for a deep-thinking model.
 
+## Format and Mode Declaration
+- Mode: `deep_reasoning` | `lit_review`
+- Desired format profile: `strict_structured` | `compact_brief` | `theorem_proof` | `research_brief` | custom
+- If custom, format instruction:
+
 ## Context Summary
 - Known facts:
 - Current approach:
@@ -23,6 +28,16 @@ Optional sub-questions:
 - What "prove/derive/estimate/bound" means here:
 - Assumptions and approximations:
 
+## Literature Review Scope and Search Strategy (If Applicable)
+- Topic boundary:
+- Inclusion criteria:
+- Exclusion criteria:
+- Time window:
+- Preferred source types:
+- Seed keywords / queries:
+- Required synthesis style (taxonomy/comparison/gaps):
+- Citation expectations:
+
 ## Constraints
 - In scope:
 - Out of scope:
@@ -30,6 +45,11 @@ Optional sub-questions:
 - Disallowed methods:
 - Time/compute limits:
 - Rigor level expected:
+
+## Non-Negotiable Quality Constraints
+- Keep mathematical notation consistent and define symbols once.
+- Require explicit reasoning path (stepwise rationale or equivalent transparent logic).
+- Make final output checkable against stated objectives and constraints.
 
 ## Expected Answer Format
 1. Short answer in 2-4 sentences.

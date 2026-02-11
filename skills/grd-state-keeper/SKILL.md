@@ -164,7 +164,7 @@ Route by stage intent:
 - Stage 4 Attribution/Ablation/Robustness -> `Attribution and Robustness`
 - Stage 4.5 Stability/Determinism -> `Stability Auditor`
 - Stage 5 Reproducibility -> `Research Ops and Reproducibility`
-- Deep reasoning prompt drafting -> `Question Maker`
+- Deep reasoning prompt drafting or literature-review prompt drafting -> `Question Maker`
 - Architecture before coding -> `Build Architect`
 - Implementation request -> `Algo Implementer`
 - Idea generation and tradeoff analysis -> `Ideation and Reasoning`

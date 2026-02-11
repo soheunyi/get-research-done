@@ -62,8 +62,9 @@ Output:
 - `.grd/research/phases/{phase_id}-RESEARCH.md`
 
 ## Stage 0.75: Deep Reasoning Question Draft (Optional)
-- Draft a high-quality prompt/question for external deep-thinking models when reasoning complexity is high.
+- Draft a high-quality prompt/question for external deep-thinking or deep-research (literature survey) models.
 - Summarize relevant context, clarify the exact question, and define all mathematical terms/symbols explicitly.
+- For literature-review prompts, specify topic boundaries, inclusion/exclusion criteria, and source/citation expectations.
 - Add strict answer-format expectations and success criteria to reduce ambiguity.
 
 Output:
