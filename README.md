@@ -46,6 +46,22 @@ grd-install /path/to/target-repo --target runtime,codex
 grd-install --list-targets
 ```
 
+Uninstall from a target repository:
+
+```bash
+# Remove all GRD-installed skills (keeps .grd runtime artifacts by default)
+grd-uninstall /path/to/target-repo
+
+# Remove specific skill targets
+grd-uninstall /path/to/target-repo --target codex,claude
+
+# Also remove runtime docs/templates
+grd-uninstall /path/to/target-repo --include-runtime
+
+# Show valid uninstall target names
+grd-uninstall --list-targets
+```
+
 ## Install (Make Alternative)
 
 Run from this repository checkout:
