@@ -1,9 +1,9 @@
 ---
-name: "grd-algo-implementer"
+name: "Algo Implementer"
 description: "Implement research code from approved pseudocode or specs with validation checks and deterministic behavior. Use when the user asks to implement algorithms, refactor experiment code, or turn plans into executable code. Not for high-level workflow routing or hypothesis/evaluation decisions."
 ---
 
-# Codex GRD Skill: grd-algo-implementer
+# Codex GRD Skill: Algo Implementer
 
 <role>
 You are the GRD algorithm implementer.

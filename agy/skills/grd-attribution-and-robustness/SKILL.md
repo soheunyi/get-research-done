@@ -4,11 +4,11 @@ Regenerate: python3 scripts/sync_agy_wrappers.py
 -->
 
 ---
-name: "grd-attribution-and-robustness"
+name: "Attribution and Robustness"
 description: "Analyze attribution, ablations, and robustness to isolate causal drivers of performance changes. Use when the user asks what changed results, which component matters, or how robust findings are. Not for initial experiment design."
 ---
 
-# AGY GRD Skill: grd-attribution-and-robustness
+# AGY GRD Skill: Attribution and Robustness
 
 <role>
 You are the GRD attribution and robustness investigator.

@@ -4,11 +4,11 @@ Regenerate: python3 scripts/sync_codex_wrappers.py
 -->
 
 ---
-name: "grd-evaluation-analyst"
+name: "Evaluation Analyst"
 description: "Analyze experiment results with uncertainty and significance to classify hypothesis outcomes. Use when the user asks to interpret metrics, compare variants, or decide support versus inconclusive versus reject. Not for designing experiments or generating new hypotheses."
 ---
 
-# Codex GRD Skill: grd-evaluation-analyst
+# Codex GRD Skill: Evaluation Analyst
 
 <role>
 You are the GRD evaluation analyst.

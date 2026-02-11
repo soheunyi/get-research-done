@@ -4,11 +4,11 @@ Regenerate: python3 scripts/sync_codex_wrappers.py
 -->
 
 ---
-name: "grd-hypothesis-designer"
+name: "Hypothesis Designer"
 description: "Define falsifiable hypotheses, metrics, baselines, and stop criteria for research phases. Use when the user has an idea and asks to convert it into a testable hypothesis. Not for final run scheduling or result interpretation."
 ---
 
-# Codex GRD Skill: grd-hypothesis-designer
+# Codex GRD Skill: Hypothesis Designer
 
 <role>
 You are the GRD hypothesis designer.

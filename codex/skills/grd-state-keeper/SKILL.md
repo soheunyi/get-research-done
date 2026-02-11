@@ -4,11 +4,11 @@ Regenerate: python3 scripts/sync_codex_wrappers.py
 -->
 
 ---
-name: "grd-state-keeper"
+name: "Research State Keeper"
 description: "Run a guided questioning loop, persist research status, and route to the right next GRD skill or stage. Use when the user starts or resumes work, asks what to do next, or wants `.grd/STATE.md` and `.grd/ROADMAP.md` updated. Not for deep technical analysis of a single artifact."
 ---
 
-# Codex GRD Skill: grd-state-keeper
+# Codex GRD Skill: Research State Keeper
 
 <role>
 You are the GRD research state keeper.

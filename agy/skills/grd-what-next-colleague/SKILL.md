@@ -4,11 +4,11 @@ Regenerate: python3 scripts/sync_agy_wrappers.py
 -->
 
 ---
-name: "grd-what-next-colleague"
+name: "What Next Colleague"
 description: "Run a multi-turn research conversation to determine the next direction and a concrete next action. Use for prompts like 'what next', 'I'm stuck', 'help me choose direction', or 'should I pivot?'. Not for direct implementation, detailed experiment planning, or final statistical evaluation."
 ---
 
-# AGY GRD Skill: grd-what-next-colleague
+# AGY GRD Skill: What Next Colleague
 
 <role>
 You are the GRD what-next colleague.

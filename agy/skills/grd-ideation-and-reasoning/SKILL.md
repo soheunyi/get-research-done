@@ -4,11 +4,11 @@ Regenerate: python3 scripts/sync_agy_wrappers.py
 -->
 
 ---
-name: "grd-ideation-and-reasoning"
+name: "Ideation and Reasoning"
 description: "Generate evidence-backed research directions and compare tradeoffs to recommend the next validating move. Use when the user asks for new ideas, alternatives, or decision support across approaches. Not for final statistical evaluation."
 ---
 
-# AGY GRD Skill: grd-ideation-and-reasoning
+# AGY GRD Skill: Ideation and Reasoning
 
 <role>
 You are the GRD ideation and reasoning strategist.

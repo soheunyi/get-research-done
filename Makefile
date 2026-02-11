@@ -1,5 +1,6 @@
 PYTHON ?= python3
 DEST ?= .
+DEST_RESOLVED := $(if $(filter ~,$(DEST)),$(HOME),$(patsubst ~/%,$(HOME)/%,$(DEST)))
 
 .PHONY: \
 	sync-skills check-skills sync-codex sync-agy \
@@ -19,38 +20,38 @@ sync-agy:
 	$(PYTHON) scripts/sync_agy_wrappers.py
 
 install-runtime:
-	mkdir -p "$(DEST)/.grd/templates" "$(DEST)/.grd/workflows"
-	cp -R templates/. "$(DEST)/.grd/templates/"
-	cp -R workflows/. "$(DEST)/.grd/workflows/"
+	mkdir -p "$(DEST_RESOLVED)/.grd/templates" "$(DEST_RESOLVED)/.grd/workflows"
+	cp -R templates/. "$(DEST_RESOLVED)/.grd/templates/"
+	cp -R workflows/. "$(DEST_RESOLVED)/.grd/workflows/"
 
 install-codex: install-runtime
-	mkdir -p "$(DEST)/.agents/skills"
-	cp -R skills/. "$(DEST)/.agents/skills/"
+	mkdir -p "$(DEST_RESOLVED)/.agents/skills"
+	cp -R skills/. "$(DEST_RESOLVED)/.agents/skills/"
 
 install-claude: install-runtime
-	mkdir -p "$(DEST)/.claude/skills"
-	cp -R skills/. "$(DEST)/.claude/skills/"
+	mkdir -p "$(DEST_RESOLVED)/.claude/skills"
+	cp -R skills/. "$(DEST_RESOLVED)/.claude/skills/"
 
 install-opencode: install-runtime
-	mkdir -p "$(DEST)/.opencode/skills"
-	cp -R skills/. "$(DEST)/.opencode/skills/"
+	mkdir -p "$(DEST_RESOLVED)/.opencode/skills"
+	cp -R skills/. "$(DEST_RESOLVED)/.opencode/skills/"
 
 install-gemini: install-runtime
-	mkdir -p "$(DEST)/.gemini/skills"
-	cp -R skills/. "$(DEST)/.gemini/skills/"
+	mkdir -p "$(DEST_RESOLVED)/.gemini/skills"
+	cp -R skills/. "$(DEST_RESOLVED)/.gemini/skills/"
 
 install-agy: install-runtime
-	mkdir -p "$(DEST)/.agent/skills"
-	cp -R agy/skills/. "$(DEST)/.agent/skills/"
+	mkdir -p "$(DEST_RESOLVED)/.agent/skills"
+	cp -R agy/skills/. "$(DEST_RESOLVED)/.agent/skills/"
 
 install-legacy-codex: install-runtime
-	mkdir -p "$(DEST)/.codex/skills"
-	cp -R skills/. "$(DEST)/.codex/skills/"
+	mkdir -p "$(DEST_RESOLVED)/.codex/skills"
+	cp -R skills/. "$(DEST_RESOLVED)/.codex/skills/"
 
 install-core: install-runtime install-codex install-claude install-opencode install-gemini
 
 install-all:
-	bash scripts/install.sh "$(DEST)"
+	bash scripts/install.sh "$(DEST_RESOLVED)"
 
 install-help:
 	@echo "Install targets (use DEST=/path/to/repo):"

@@ -4,11 +4,11 @@ Regenerate: python3 scripts/sync_agy_wrappers.py
 -->
 
 ---
-name: "grd-stability-auditor"
+name: "Stability Auditor"
 description: "Audit numerical stability and randomness controls to keep outcomes reproducible and trustworthy. Use when the user asks about nondeterminism, seed sensitivity, precision issues, or flaky runs. Not for generic metric comparison without stability concerns."
 ---
 
-# AGY GRD Skill: grd-stability-auditor
+# AGY GRD Skill: Stability Auditor
 
 <role>
 You are the GRD stability auditor.

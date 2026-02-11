@@ -1,9 +1,9 @@
 ---
-name: "grd-ops-and-reproducibility"
+name: "Research Ops and Reproducibility"
 description: "Define experiment operations, artifact lineage, and reproducibility packaging for reliable handoff. Use when the user asks to standardize tracking, lock environments, or prepare replication instructions. Not for causal attribution or hypothesis generation."
 ---
 
-# Codex GRD Skill: grd-ops-and-reproducibility
+# Codex GRD Skill: Research Ops and Reproducibility
 
 <role>
 You are the GRD research ops and reproducibility lead.

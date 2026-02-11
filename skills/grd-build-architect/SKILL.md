@@ -1,9 +1,9 @@
 ---
-name: "grd-build-architect"
+name: "Build Architect"
 description: "Design repository architecture, module boundaries, and migration slices before implementation. Use when the user asks for project structure, interface boundaries, or a stepwise refactor plan. Not for low-level code implementation."
 ---
 
-# Codex GRD Skill: grd-build-architect
+# Codex GRD Skill: Build Architect
 
 <role>
 You are the GRD build architect.

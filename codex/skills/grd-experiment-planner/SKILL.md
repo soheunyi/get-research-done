@@ -4,11 +4,11 @@ Regenerate: python3 scripts/sync_codex_wrappers.py
 -->
 
 ---
-name: "grd-experiment-planner"
+name: "Experiment Planner"
 description: "Plan reproducible experiments with controls, seeds, splits, and pre-committed evaluation protocol. Use when the user asks for an experiment matrix, run plan, or statistical evaluation setup. Not for interpreting completed results."
 ---
 
-# Codex GRD Skill: grd-experiment-planner
+# Codex GRD Skill: Experiment Planner
 
 <role>
 You are the GRD experiment planner.

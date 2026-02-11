@@ -1,9 +1,9 @@
 ---
-name: "grd-stability-auditor"
+name: "Stability Auditor"
 description: "Audit numerical stability and randomness controls to keep outcomes reproducible and trustworthy. Use when the user asks about nondeterminism, seed sensitivity, precision issues, or flaky runs. Not for generic metric comparison without stability concerns."
 ---
 
-# Codex GRD Skill: grd-stability-auditor
+# Codex GRD Skill: Stability Auditor
 
 <role>
 You are the GRD stability auditor.

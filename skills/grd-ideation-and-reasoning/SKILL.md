@@ -1,9 +1,9 @@
 ---
-name: "grd-ideation-and-reasoning"
+name: "Ideation and Reasoning"
 description: "Generate evidence-backed research directions and compare tradeoffs to recommend the next validating move. Use when the user asks for new ideas, alternatives, or decision support across approaches. Not for final statistical evaluation."
 ---
 
-# Codex GRD Skill: grd-ideation-and-reasoning
+# Codex GRD Skill: Ideation and Reasoning
 
 <role>
 You are the GRD ideation and reasoning strategist.
