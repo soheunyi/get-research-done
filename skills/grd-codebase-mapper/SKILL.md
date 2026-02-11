@@ -42,6 +42,19 @@ If ambiguity remains, continue a short questioning loop (one question per turn) 
 Each question should offer concrete options plus an open-ended response path.
 </clarification_rule>
 
+<reasoning_effort_policy>
+Classify mapping effort at the start of each task:
+- `low`: small subsystem mapping; single-pass local inspection; no subagents.
+- `medium`: multi-directory mapping with moderate complexity; sequential repository scan; no subagents.
+- `high`: large or drifted codebase where parallel evidence gathering improves speed; scoped subagents allowed for parallel module scans.
+
+Rules:
+1. Always report: `Reasoning effort: <low|medium|high> - <one-line rationale>`.
+2. For `high`, ask user confirmation before spawning subagents.
+3. Keep subagents scoped by directory or concern to avoid overlapping reads.
+4. Parent agent is responsible for final synthesis and prioritized gaps.
+</reasoning_effort_policy>
+
 <questioning_loop>
 ## Guided Questioning Loop
 
@@ -145,13 +158,17 @@ Contract:
 
 <execution_contract>
 1. Run a guided questioning loop to determine mapping scope, constraints, and evaluation criteria with the user.
-2. Inspect repository structure, configs, key modules, and tests to capture factual current state.
-3. Write `.grd/codebase/CURRENT.md` with explicit file paths, responsibilities, and known constraints.
-4. Write `.grd/codebase/TARGET.md` describing intended architecture and near-term end state.
-5. Write `.grd/codebase/GAPS.md` as prioritized deltas: gap, impact, confidence, and smallest next action.
-6. Highlight blockers, unknowns, and assumptions separately from verified facts.
-7. If requested, generate deeper domain docs (stack, architecture, conventions, testing, concerns).
-8. End with a concrete next-step queue that can feed `Build Architect` or direct implementation.
+2. Classify reasoning effort using `<reasoning_effort_policy>` and report the tier with one-line rationale.
+3. Inspect repository structure, configs, key modules, and tests to capture factual current state.
+   - low: inspect only scoped subsystem and direct dependencies
+   - medium: inspect all relevant directories sequentially
+   - high: after user confirmation, spawn subagents for parallel module/concern scans
+4. Write `.grd/codebase/CURRENT.md` with explicit file paths, responsibilities, and known constraints.
+5. Write `.grd/codebase/TARGET.md` describing intended architecture and near-term end state.
+6. Write `.grd/codebase/GAPS.md` as prioritized deltas: gap, impact, confidence, and smallest next action.
+7. Highlight blockers, unknowns, and assumptions separately from verified facts.
+8. If requested, generate deeper domain docs (stack, architecture, conventions, testing, concerns).
+9. End with a concrete next-step queue that can feed `Build Architect` or direct implementation.
 </execution_contract>
 
 <quality_bar>

@@ -67,6 +67,19 @@ If ambiguity remains, continue a short questioning loop (one question per turn) 
 Each question should offer concrete options plus an open-ended response path.
 </clarification_rule>
 
+<reasoning_effort_policy>
+Classify reasoning effort at the start of each task:
+- `low`: phase is narrow and familiar; local context is mostly sufficient; no web search.
+- `medium`: external validation needed for stack/pattern choices; web search allowed; no subagents.
+- `high`: fast-moving or high-risk phase with broad uncertainty; web research plus parallel subagents for source gathering is allowed.
+
+Rules:
+1. Always report: `Reasoning effort: <low|medium|high> - <one-line rationale>`.
+2. For `high`, ask user confirmation before spawning subagents.
+3. For any web search, prioritize primary sources (official docs, release notes, maintainers, papers).
+4. Parent agent synthesizes final recommendations; subagents only gather and summarize evidence.
+</reasoning_effort_policy>
+
 <questioning_loop>
 ## Guided Questioning Loop
 
@@ -195,12 +208,17 @@ Before finalizing:
 
 <execution_contract>
 1. Run a guided questioning loop to confirm phase scope, constraints, and expected output.
-2. Capture locked decisions and out-of-scope items first.
-3. Identify standard stack, architecture patterns, and pitfalls for this phase.
-4. Produce a concise don't-hand-roll list to avoid costly custom implementations.
-5. Provide copyable examples tied to authoritative sources.
-6. Assign confidence by section and flag open questions.
-7. Write `.grd/research/phases/{phase_id}-RESEARCH.md` when artifact output is requested.
+2. Classify reasoning effort using `<reasoning_effort_policy>` and report the tier with one-line rationale.
+3. Capture locked decisions and out-of-scope items first.
+4. Execute evidence collection by tier:
+   - low: local context and existing project constraints only
+   - medium: targeted web research without subagents
+   - high: after user confirmation, spawn subagents to gather references in parallel
+5. Identify standard stack, architecture patterns, and pitfalls for this phase.
+6. Produce a concise don't-hand-roll list to avoid costly custom implementations.
+7. Provide copyable examples tied to authoritative sources.
+8. Assign confidence by section and flag open questions.
+9. Write `.grd/research/phases/{phase_id}-RESEARCH.md` when artifact output is requested.
 </execution_contract>
 
 <research_output_spec>
