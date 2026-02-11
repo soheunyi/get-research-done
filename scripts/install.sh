@@ -10,8 +10,7 @@ mkdir -p "$ROOT/.agent/skills" "$ROOT/.codex/skills" "$ROOT/.grd/templates"
 
 cp -R "$PACK_DIR/agy/skills/"* "$ROOT/.agent/skills/"
 cp -R "$PACK_DIR/codex/skills/"* "$ROOT/.codex/skills/"
-cp "$PACK_DIR/templates/research-notes.md" "$ROOT/.grd/templates/research-notes.md"
-cp "$PACK_DIR/templates/wandb-config.md" "$ROOT/.grd/templates/wandb-config.md"
+cp -R "$PACK_DIR/templates/"* "$ROOT/.grd/templates/"
 
 # Also copy this pack into the target so installer scripts are available there.
 if [ "$ROOT/get-research-done" != "$PACK_DIR" ]; then

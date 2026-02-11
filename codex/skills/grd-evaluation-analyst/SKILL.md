@@ -1,6 +1,6 @@
 ---
 name: "GRD Evaluation Analyst"
-description: "Analyze experiment results with uncertainty and significance to classify hypothesis outcomes. Use when the user asks to interpret metrics, compare variants, or decide support versus inconclusive versus reject."
+description: "Analyze experiment results with uncertainty and significance to classify hypothesis outcomes. Use when the user asks to interpret metrics, compare variants, or decide support versus inconclusive versus reject. Not for designing experiments or generating new hypotheses."
 ---
 
 # Codex GRD Skill: grd-evaluation-analyst
@@ -23,11 +23,13 @@ Use when experiment outputs are available and you need a decision.
 
 <source_of_truth>
 Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 3.
+Use artifact naming/frontmatter rules in `@GSD_ROOT@get-research-done/templates/research-artifact-format.md`.
 </source_of_truth>
 
 <upstream_inputs>
 Primary inputs to evaluation:
-- `.grd/research/HYPOTHESIS.md` (planned hypothesis and decision criteria)
+- `.grd/research/runs/{run_id}/HYPOTHESIS.md` (preferred)
+- `.grd/research/HYPOTHESIS.md` (latest pointer fallback)
 - `.grd/research/RESEARCH_NOTES.md` (state-keeper hypothesis notes and updates, when available)
 - experiment result artifacts
 
@@ -130,17 +132,21 @@ Contract:
 </action_policy>
 
 <execution_contract>
-1. Load hypothesis criteria from `.grd/research/HYPOTHESIS.md` and linked notes from `.grd/research/RESEARCH_NOTES.md` when available.
+1. Load hypothesis criteria from `.grd/research/runs/{run_id}/HYPOTHESIS.md` (or latest pointer fallback) and linked notes from `.grd/research/RESEARCH_NOTES.md` when available.
 2. Aggregate results with uncertainty ranges.
 3. Compare observed outcomes against baseline, effect size target, and predeclared decision threshold.
 4. Run planned significance tests.
 5. Check traceability: does observed evidence support or refute the hypothesis prediction and falsifiability condition?
 6. Classify result as supports / inconclusive / rejects with explicit linkage to hypothesis fields.
-7. Produce `.grd/research/EVALUATION.md`.
+7. Produce `.grd/research/runs/{run_id}/EVALUATION.md`.
+8. Update `.grd/research/EVALUATION.md` as latest pointer.
 </execution_contract>
 
 <evaluation_output_spec>
-Include these sections in `EVALUATION.md`:
+Include these sections in `.grd/research/runs/{run_id}/EVALUATION.md`:
+0. Frontmatter (required):
+   - run_id, artifact_type=evaluation, stage=3, analysis_committed, title, summary, status, created_at, updated_at, owner, tags, depends_on
+   - hypothesis_id, plan_id, outcome, decision_check
 1. Hypothesis Linkage (hypothesis_id and source references)
 2. Metric Results with Uncertainty
 3. Decision Rule Check (planned vs observed)

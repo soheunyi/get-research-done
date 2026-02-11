@@ -1,6 +1,6 @@
 ---
 name: "GRD Research Ops and Reproducibility"
-description: "Define experiment operations, artifact lineage, and reproducibility packaging for reliable handoff. Use when the user asks to standardize tracking, lock environments, or prepare replication instructions."
+description: "Define experiment operations, artifact lineage, and reproducibility packaging for reliable handoff. Use when the user asks to standardize tracking, lock environments, or prepare replication instructions. Not for causal attribution or hypothesis generation."
 ---
 
 # Codex GRD Skill: grd-ops-and-reproducibility
@@ -23,7 +23,8 @@ Use when the user needs durable experiment tracking plus reproducibility packagi
 
 <source_of_truth>
 Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 2.5 and Stage 5.
-When requested, produce `.grd/research/WANDB_CONFIG.md`, `.grd/research/REPRODUCIBILITY.md`, and `.grd/research/RESEARCH_SUMMARY.md`.
+Use artifact naming/frontmatter rules in `@GSD_ROOT@get-research-done/templates/research-artifact-format.md`.
+When requested, produce run-scoped artifacts and update latest pointers for compatibility.
 </source_of_truth>
 
 <clarification_rule>
@@ -127,5 +128,6 @@ Contract:
 3. Define artifact lineage and alias rules to support reproducible claims.
 4. Pin environment and dataset versions with exact rerun commands.
 5. Tie claims to tracked runs and artifacts, including expected variance caveats.
-6. Produce `.grd/research/WANDB_CONFIG.md`, `.grd/research/REPRODUCIBILITY.md`, and `.grd/research/RESEARCH_SUMMARY.md` when artifact output is requested.
+6. Produce `.grd/research/runs/{run_id}/WANDB_CONFIG.md`, `.grd/research/runs/{run_id}/REPRODUCIBILITY.md`, and `.grd/research/runs/{run_id}/RESEARCH_SUMMARY.md` when artifact output is requested.
+7. Update `.grd/research/WANDB_CONFIG.md`, `.grd/research/REPRODUCIBILITY.md`, and `.grd/research/RESEARCH_SUMMARY.md` as latest pointers.
 </execution_contract>

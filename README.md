@@ -11,7 +11,7 @@ Portable research workflow pack for AI/statistics projects.
 - Brownfield codebase-mapping skill for Codex: `codex/skills/grd-codebase-mapper/SKILL.md`
 - Phase implementation research skill for Codex: `codex/skills/grd-phase-researcher/SKILL.md`
 - Guided questioning loop for Codex skills: `codex/skills/_shared/COMMON_BLOCKS.md`
-- Templates: `templates/research-notes.md`, `templates/wandb-config.md`, `templates/state.md`, `templates/roadmap.md`
+- Templates: `templates/research-notes.md`, `templates/wandb-config.md`, `templates/state.md`, `templates/roadmap.md`, `templates/research-artifact-format.md`, `templates/run-index.md`
 
 ## Codex Skill Boilerplate Sync
 Shared Codex skill boilerplate lives in:
@@ -37,6 +37,10 @@ For GSD-like continuity in Codex sessions:
 2. Maintain `.grd/STATE.md` and `.grd/ROADMAP.md`
 3. Route to stage skill (`grd-codebase-mapper`, `grd-phase-researcher`, etc.)
 4. Return to state-keeper after each major result to update next action
+
+Run artifact convention:
+- Use `.grd/research/runs/{run_id}/` for linked artifacts (`HYPOTHESIS.md`, `EXPERIMENT_PLAN.md`, `EVALUATION.md`, plus `INDEX.md`)
+- Keep compatibility pointers in `.grd/research/` for latest core artifacts
 
 ## Transplant for Antigravity only
 Antigravity supports slash commands (for example `/grd-...`) from workflow assets in `agy/workflows/`.

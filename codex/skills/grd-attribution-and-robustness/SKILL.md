@@ -1,6 +1,6 @@
 ---
 name: "GRD Attribution and Robustness"
-description: "Analyze attribution, ablations, and robustness to isolate causal drivers of performance changes. Use when the user asks what changed results, which component matters, or how robust findings are."
+description: "Analyze attribution, ablations, and robustness to isolate causal drivers of performance changes. Use when the user asks what changed results, which component matters, or how robust findings are. Not for initial experiment design."
 ---
 
 # Codex GRD Skill: grd-attribution-and-robustness

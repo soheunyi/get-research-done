@@ -1,6 +1,6 @@
 ---
 name: "GRD Codebase Mapper"
-description: "Map current repository state, target state, and prioritized implementation gaps. Use when starting in an existing codebase, resuming after drift, or asking what exists now versus what should be built next."
+description: "Map current repository state, target state, and prioritized implementation gaps. Use when starting in an existing codebase, resuming after drift, or asking what exists now versus what should be built next. Not for hypothesis metrics or evaluation decisions."
 ---
 
 # Codex GRD Skill: grd-codebase-mapper

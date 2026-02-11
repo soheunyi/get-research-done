@@ -1,6 +1,6 @@
 ---
 name: "GRD Research State Keeper"
-description: "Run a guided questioning loop, persist research status, and route to the right next GRD skill or stage. Use when the user starts or resumes work, asks what to do next, or wants `.grd/STATE.md` and `.grd/ROADMAP.md` updated."
+description: "Run a guided questioning loop, persist research status, and route to the right next GRD skill or stage. Use when the user starts or resumes work, asks what to do next, or wants `.grd/STATE.md` and `.grd/ROADMAP.md` updated. Not for deep technical analysis of a single artifact."
 ---
 
 # Codex GRD Skill: grd-state-keeper
@@ -30,6 +30,7 @@ Primary artifacts:
 - `.grd/codebase/CURRENT.md`
 - `.grd/codebase/TARGET.md`
 - `.grd/codebase/GAPS.md`
+- `.grd/research/runs/{run_id}/INDEX.md`
 
 When requested, also write and update:
 - `.grd/research/RESEARCH_NOTES.md`
@@ -48,6 +49,7 @@ Bootstrap sequence:
    - `.grd/codebase/TARGET.md` -> target direction
    - `.grd/codebase/GAPS.md` -> immediate queue for roadmap
 4. Initialize `.grd/STATE.md` and `.grd/ROADMAP.md` using seeded data.
+   - include `active_run_id` only when a run has been created.
 5. Then continue normal stage routing.
 
 Do not guess detailed project context when cold-start data is missing; collect minimal facts first.
@@ -173,12 +175,15 @@ Route by stage intent:
 3. Run a guided questioning loop to collect: objective, scope, environment, success criteria.
 4. Summarize "Captured so far" after each user answer until the next action is clear.
 5. Update `STATE.md` sections: Decisions, AI Agent's Discretion, Deferred, Constraints, Next action.
+   - keep or set `active_run_id` for current run context.
 6. Update `ROADMAP.md` with immediate queue and milestone status.
-7. When requested, append a compact entry to `.grd/research/RESEARCH_NOTES.md` including context, observation, evidence, decision, and next action.
+7. For active run context, ensure `.grd/research/runs/{run_id}/INDEX.md` exists and is current.
+   - maintain links to HYPOTHESIS.md, EXPERIMENT_PLAN.md, EVALUATION.md.
+8. When requested, append a compact entry to `.grd/research/RESEARCH_NOTES.md` including context, observation, evidence, decision, and next action.
    - For Stage 1 handoff notes, include: hypothesis_id, prediction, refutation condition, metric, threshold.
-8. When context drift is likely, nudge an optional thought-log note in `.grd/research/RESEARCH_NOTES.md` (belief, trigger, reasoning, update, branches, next action).
-9. Select and recommend the next skill from `<routing_table>` with one-line rationale.
-10. End with one explicit handoff prompt: proceed now, adjust plan, or ask deeper questions.
+9. When context drift is likely, nudge an optional thought-log note in `.grd/research/RESEARCH_NOTES.md` (belief, trigger, reasoning, update, branches, next action).
+10. Select and recommend the next skill from `<routing_table>` with one-line rationale.
+11. End with one explicit handoff prompt: proceed now, adjust plan, or ask deeper questions.
 </execution_contract>
 
 <quality_bar>

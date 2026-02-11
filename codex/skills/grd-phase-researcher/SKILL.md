@@ -1,6 +1,6 @@
 ---
 name: "GRD Phase Researcher"
-description: "Research implementation patterns for a defined phase and produce prescriptive guidance for execution. Use when the user asks what stack to use, what pitfalls to avoid, or requests phase research before planning or coding."
+description: "Research implementation patterns for a defined phase and produce prescriptive guidance for execution. Use when the user asks what stack to use, what pitfalls to avoid, or requests phase research before planning or coding. Not for end-to-end orchestration or final evaluation."
 ---
 
 # Codex GRD Skill: grd-phase-researcher

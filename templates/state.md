@@ -4,7 +4,9 @@ Use this file as the durable memory for what is decided versus still open.
 
 ## Snapshot
 - Updated: [YYYY-MM-DD HH:MM]
-- Current stage: [for example: Stage 1 Hypothesis Design]
+- Current stage: [0|1|2|3|4|5]
+- Analysis committed: [true|false]
+- Active run id: [YYMMDD_slug or empty]
 - Active thread: [short thread name]
 - Next action: [single concrete action]
 

@@ -1,6 +1,6 @@
 ---
 name: "GRD Build Architect"
-description: "Design repository architecture, module boundaries, and migration slices before implementation. Use when the user asks for project structure, interface boundaries, or a stepwise refactor plan."
+description: "Design repository architecture, module boundaries, and migration slices before implementation. Use when the user asks for project structure, interface boundaries, or a stepwise refactor plan. Not for low-level code implementation."
 ---
 
 # Codex GRD Skill: grd-build-architect

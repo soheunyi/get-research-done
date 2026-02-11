@@ -1,6 +1,6 @@
 ---
 name: "GRD Experiment Planner"
-description: "Plan reproducible experiments with controls, seeds, splits, and pre-committed evaluation protocol. Use when the user asks for an experiment matrix, run plan, or statistical evaluation setup."
+description: "Plan reproducible experiments with controls, seeds, splits, and pre-committed evaluation protocol. Use when the user asks for an experiment matrix, run plan, or statistical evaluation setup. Not for interpreting completed results."
 ---
 
 # Codex GRD Skill: grd-experiment-planner
@@ -22,8 +22,9 @@ Use after hypothesis design and before running experiments, including pre-commit
 </when_to_use>
 
 <source_of_truth>
-Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 1.5 and Stage 2.
-When requested, produce `.grd/research/ANALYSIS_PLAN.md` and `.grd/research/EXPERIMENT_PLAN.md`.
+Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 2.
+Use artifact naming/frontmatter rules in `@GSD_ROOT@get-research-done/templates/research-artifact-format.md`.
+When requested, produce run-scoped artifacts in `.grd/research/runs/{run_id}/`.
 </source_of_truth>
 
 <clarification_rule>
@@ -128,5 +129,6 @@ Contract:
 3. Define strict no test peeking and leakage checklist.
 4. Define control and treatment matrix.
 5. Define dataset versions, seeds, split strategy, and run budget.
-6. Produce `.grd/research/ANALYSIS_PLAN.md` and `.grd/research/EXPERIMENT_PLAN.md` when artifact output is requested.
+6. Produce `.grd/research/runs/{run_id}/EXPERIMENT_PLAN.md` and optional `.grd/research/runs/{run_id}/ANALYSIS_PLAN.md` when artifact output is requested.
+7. Update `.grd/research/EXPERIMENT_PLAN.md` as latest pointer.
 </execution_contract>

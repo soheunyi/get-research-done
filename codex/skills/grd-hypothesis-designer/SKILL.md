@@ -1,6 +1,6 @@
 ---
 name: "GRD Hypothesis Designer"
-description: "Define falsifiable hypotheses, metrics, baselines, and stop criteria for research phases. Use when the user has an idea and asks to convert it into a testable hypothesis."
+description: "Define falsifiable hypotheses, metrics, baselines, and stop criteria for research phases. Use when the user has an idea and asks to convert it into a testable hypothesis. Not for final run scheduling or result interpretation."
 ---
 
 # Codex GRD Skill: grd-hypothesis-designer
@@ -24,6 +24,7 @@ Use for hypothesis framing before writing experiment code.
 
 <source_of_truth>
 Follow `@GSD_ROOT@get-research-done/codex/workflows/research-pipeline.md` Stage 1.
+Use artifact naming/frontmatter rules in `@GSD_ROOT@get-research-done/templates/research-artifact-format.md`.
 </source_of_truth>
 
 <cross_skill_handoff>
@@ -31,6 +32,7 @@ After hypothesis lock, nudge a handoff to `grd-state-keeper` to append a compact
 The note should preserve evaluation-critical fields so Stage 3 can check claims against planned criteria.
 
 Minimum handoff fields:
+- run_id
 - hypothesis_id
 - thesis / antithesis / synthesis summary
 - primary metric and decision threshold
@@ -169,12 +171,16 @@ Contract:
 5. Define explicit falsifiability checks for the synthesis.
 6. Define stop criteria and validity threats.
 7. Record rejected syntheses briefly when relevant.
-8. Produce `.grd/research/HYPOTHESIS.md`.
-9. Nudge the user to call `grd-state-keeper` to append a linked hypothesis note for later Stage 3 evaluation checks.
+8. Produce `.grd/research/runs/{run_id}/HYPOTHESIS.md`; initialize or update `.grd/research/runs/{run_id}/INDEX.md`.
+9. Update `.grd/research/HYPOTHESIS.md` as latest pointer.
+10. Nudge the user to call `grd-state-keeper` to append a linked hypothesis note for later Stage 3 evaluation checks.
 </execution_contract>
 
 <hypothesis_output_spec>
-Include these sections in `HYPOTHESIS.md`:
+Include these sections in `.grd/research/runs/{run_id}/HYPOTHESIS.md`:
+0. Frontmatter (required):
+   - run_id (`YYMMDD_slug`), artifact_type=hypothesis, stage=1, analysis_committed, title, summary, status, created_at, updated_at, owner, tags, depends_on
+   - hypothesis_id, primary_metric, decision_rule, refutation_condition
 1. Thesis (current assumption state)
 2. Antithesis (observed or expected contradiction)
 3. Synthesis (minimal structural expansion)

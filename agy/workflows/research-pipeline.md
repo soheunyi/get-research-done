@@ -2,6 +2,13 @@
 
 Use this pipeline when the primary goal is AI/statistics research instead of production feature delivery.
 
+Artifact format reference:
+- `templates/research-artifact-format.md`
+
+Run convention:
+- Group linked artifacts under `.grd/research/runs/{run_id}/`
+- Keep latest pointers in `.grd/research/` for core artifacts
+
 ## Interaction Contract (Questioning First)
 - Before entering a stage, run a short guided questioning loop if the request is open-ended.
 - Ask one high-leverage question per turn and provide 2-4 concrete options.
@@ -45,7 +52,7 @@ Output:
 - Nudge optional thought-log entries when beliefs update or reasoning fails (do not enforce full template each time).
 
 Output:
-- `RESEARCH_NOTES.md`
+- `.grd/research/RESEARCH_NOTES.md`
 
 ## Stage 0.5: Phase Execution Research (Optional)
 - For implementation-heavy phases, research stack patterns and pitfalls before writing plans or coding.
@@ -59,10 +66,13 @@ Output:
 - Define target metric, baseline, and minimum effect size.
 - Define hard stop criteria (time/budget) and validity threats.
 - Use iterative thesis -> antithesis -> synthesis questioning to refine assumptions before locking the hypothesis.
+- Commit analysis decision rule for this run (`analysis_committed: true`) before execution-heavy stages.
 - After locking hypothesis, nudge state tracking to append a hypothesis handoff note for Stage 3 traceability.
 
 Output:
-- `HYPOTHESIS.md`
+- `.grd/research/runs/{run_id}/INDEX.md`
+- `.grd/research/runs/{run_id}/HYPOTHESIS.md`
+- `.grd/research/HYPOTHESIS.md` (latest pointer)
 
 ## Stage 2: Experiment Plan
 - Build an experiment matrix: variants, controls, datasets, seeds.
@@ -70,14 +80,17 @@ Output:
 - Define reproducible run commands and artifact paths.
 
 Output:
-- `EXPERIMENT_PLAN.md`
+- `.grd/research/runs/{run_id}/EXPERIMENT_PLAN.md`
+- `.grd/research/runs/{run_id}/ANALYSIS_PLAN.md` (optional)
+- `.grd/research/EXPERIMENT_PLAN.md` (latest pointer)
 
 ## Stage 2.5: Experiment Tracking (W&B Recommended)
 - Standardize run metadata and artifact lineage.
 - Ensure every claim can be traced to a run and artifact.
 
 Output:
-- `WANDB_CONFIG.md`
+- `.grd/research/runs/{run_id}/WANDB_CONFIG.md`
+- `.grd/research/WANDB_CONFIG.md` (latest pointer)
 
 ## Stage 3: Evaluation Analysis
 - Summarize raw results with uncertainty, not only point metrics.
@@ -86,7 +99,8 @@ Output:
 - Cross-check results against Stage 1 hypothesis fields (prediction, decision rule, refutation condition) before final classification.
 
 Output:
-- `EVALUATION.md`
+- `.grd/research/runs/{run_id}/EVALUATION.md`
+- `.grd/research/EVALUATION.md` (latest pointer)
 
 ## Stage 4: Ablation and Robustness
 - Isolate contribution of each major component.
@@ -94,7 +108,8 @@ Output:
 - Identify brittle assumptions and failure regions.
 
 Output:
-- `ABLATION.md`
+- `.grd/research/runs/{run_id}/ABLATION.md`
+- `.grd/research/ABLATION.md` (latest pointer)
 
 ## Stage 5: Reproducibility Packaging
 - Lock environment, dataset versions, and exact commands.
@@ -102,5 +117,7 @@ Output:
 - Produce concise research summary with claims tied to evidence.
 
 Output:
-- `REPRODUCIBILITY.md`
-- `RESEARCH_SUMMARY.md`
+- `.grd/research/runs/{run_id}/REPRODUCIBILITY.md`
+- `.grd/research/REPRODUCIBILITY.md` (latest pointer)
+- `.grd/research/runs/{run_id}/RESEARCH_SUMMARY.md`
+- `.grd/research/RESEARCH_SUMMARY.md` (latest pointer)
