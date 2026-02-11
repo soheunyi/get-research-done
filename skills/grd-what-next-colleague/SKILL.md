@@ -24,10 +24,10 @@ Use when the user asks "what should I do next?", feels research is stuck, wants 
 <boundary_rule>
 This skill is conversational direction-setting only.
 If the user asks to execute or deeply plan, hand off immediately:
-- hypothesis definition/refinement -> `grd-hypothesis-designer`
-- experiment design/protocol -> `grd-experiment-planner`
-- results interpretation -> `grd-evaluation-analyst`
-- implementation/coding -> `grd-algo-implementer`
+- hypothesis definition/refinement -> `Hypothesis Designer`
+- experiment design/protocol -> `Experiment Planner`
+- results interpretation -> `Evaluation Analyst`
+- implementation/coding -> `Algo Implementer`
 </boundary_rule>
 
 <source_of_truth>
@@ -152,10 +152,10 @@ Contract:
 4. Keep the conversation interactive until one next action is clear.
    - if a next action is clear but user wants to continue, keep exploring alternatives.
 5. When direction is chosen, recommend the best next skill:
-   - hypothesis changes -> `grd-hypothesis-designer`
-   - experiment design -> `grd-experiment-planner`
-   - result interpretation -> `grd-evaluation-analyst`
-   - implementation -> `grd-algo-implementer`
+   - hypothesis changes -> `Hypothesis Designer`
+   - experiment design -> `Experiment Planner`
+   - result interpretation -> `Evaluation Analyst`
+   - implementation -> `Algo Implementer`
 6. Persist only with explicit user confirmation (for example: "save this direction").
 7. If user requests persistence, update:
    - `.grd/STATE.md` (next action and decision)

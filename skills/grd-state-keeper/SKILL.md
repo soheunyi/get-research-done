@@ -44,7 +44,7 @@ If context is missing (no `.grd/STATE.md`, no `.grd/ROADMAP.md`, or both are eff
 
 Bootstrap sequence:
 1. Ask one bootstrap question: existing codebase vs greenfield.
-2. If existing codebase: route to `grd-codebase-mapper` first.
+2. If existing codebase: route to `Codebase Mapper` first.
 3. Seed initial state from mapper outputs:
    - `.grd/codebase/CURRENT.md` -> current constraints and observed architecture
    - `.grd/codebase/TARGET.md` -> target direction
@@ -156,24 +156,24 @@ Contract:
 <routing_table>
 Route by stage intent:
 
-- Stage -1 Codebase Mapping -> `grd-codebase-mapper`
-- Stage 0.5 Phase Execution Research -> `grd-phase-researcher`
-- Stage 1 Hypothesis Design -> `grd-hypothesis-designer`
-- Stage 2 Experiment Plan -> `grd-experiment-planner`
-- Stage 3 Evaluation -> `grd-evaluation-analyst`
-- Stage 4 Attribution/Ablation/Robustness -> `grd-attribution-and-robustness`
-- Stage 4.5 Stability/Determinism -> `grd-stability-auditor`
-- Stage 5 Reproducibility -> `grd-ops-and-reproducibility`
-- Architecture before coding -> `grd-build-architect`
-- Implementation request -> `grd-algo-implementer`
-- Idea generation and tradeoff analysis -> `grd-ideation-and-reasoning`
-- Conversational "what next" direction-setting -> `grd-what-next-colleague`
-- Ongoing notes capture -> `grd-state-keeper` (self)
+- Stage -1 Codebase Mapping -> `Codebase Mapper`
+- Stage 0.5 Phase Execution Research -> `Phase Researcher`
+- Stage 1 Hypothesis Design -> `Hypothesis Designer`
+- Stage 2 Experiment Plan -> `Experiment Planner`
+- Stage 3 Evaluation -> `Evaluation Analyst`
+- Stage 4 Attribution/Ablation/Robustness -> `Attribution and Robustness`
+- Stage 4.5 Stability/Determinism -> `Stability Auditor`
+- Stage 5 Reproducibility -> `Research Ops and Reproducibility`
+- Architecture before coding -> `Build Architect`
+- Implementation request -> `Algo Implementer`
+- Idea generation and tradeoff analysis -> `Ideation and Reasoning`
+- Conversational "what next" direction-setting -> `What Next Colleague`
+- Ongoing notes capture -> `Research State Keeper` (self)
 </routing_table>
 
 <execution_contract>
 1. Load `.grd/STATE.md` and `.grd/ROADMAP.md` if they exist.
-2. If cold-start, run `<bootstrap_rule>` and seed state via `grd-codebase-mapper` outputs before stage routing.
+2. If cold-start, run `<bootstrap_rule>` and seed state via `Codebase Mapper` outputs before stage routing.
 3. Run a guided questioning loop to collect: objective, scope, environment, success criteria.
 4. Summarize "Captured so far" after each user answer until the next action is clear.
 5. Update `STATE.md` sections: Decisions, AI Agent's Discretion, Deferred, Constraints, Next action.

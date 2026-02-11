@@ -67,7 +67,7 @@ Output:
 - Define hard stop criteria (time/budget) and validity threats.
 - Use iterative thesis -> antithesis -> synthesis questioning to refine assumptions before locking the hypothesis.
 - Commit analysis decision rule for this run (`analysis_committed: true`) before execution-heavy stages.
-- After locking hypothesis, nudge `grd-state-keeper` to append a hypothesis handoff note for Stage 3 traceability.
+- After locking hypothesis, nudge `Research State Keeper` to append a hypothesis handoff note for Stage 3 traceability.
 
 Output:
 - `.grd/research/runs/{run_id}/0_INDEX.md`

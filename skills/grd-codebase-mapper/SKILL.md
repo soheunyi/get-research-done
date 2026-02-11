@@ -151,7 +151,7 @@ Contract:
 5. Write `.grd/codebase/GAPS.md` as prioritized deltas: gap, impact, confidence, and smallest next action.
 6. Highlight blockers, unknowns, and assumptions separately from verified facts.
 7. If requested, generate deeper domain docs (stack, architecture, conventions, testing, concerns).
-8. End with a concrete next-step queue that can feed `grd-build-architect` or direct implementation.
+8. End with a concrete next-step queue that can feed `Build Architect` or direct implementation.
 </execution_contract>
 
 <quality_bar>

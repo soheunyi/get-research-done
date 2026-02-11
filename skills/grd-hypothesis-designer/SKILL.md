@@ -28,7 +28,7 @@ Use artifact naming/frontmatter rules in `.grd/templates/research-artifact-forma
 </source_of_truth>
 
 <cross_skill_handoff>
-After hypothesis lock, nudge a handoff to `grd-state-keeper` to append a compact hypothesis note in `.grd/research/RESEARCH_NOTES.md`.
+After hypothesis lock, nudge a handoff to `Research State Keeper` to append a compact hypothesis note in `.grd/research/RESEARCH_NOTES.md`.
 The note should preserve evaluation-critical fields so Stage 3 can check claims against planned criteria.
 
 Minimum handoff fields:
@@ -177,7 +177,7 @@ Contract:
    mkdir -p .grd/research/runs
    ln -sfn "runs/{run_id}" .grd/research/latest
    ```
-10. Nudge the user to call `grd-state-keeper` to append a linked hypothesis note for later Stage 3 evaluation checks.
+10. Nudge the user to call `Research State Keeper` to append a linked hypothesis note for later Stage 3 evaluation checks.
 </execution_contract>
 
 <hypothesis_output_spec>
