@@ -26,7 +26,7 @@ Default to concise chat output. Only write or update artifact files when the use
 2. Document exact commands to reproduce headline results.
 3. Link every claim to artifacts/tables.
 4. Record known nondeterminism and expected variance.
-5. Save outputs as `.grd/research/REPRODUCIBILITY.md` and `.grd/research/RESEARCH_SUMMARY.md`.
+5. Save outputs as `.grd/research/runs/{run_id}/5_REPRODUCIBILITY.md` and `.grd/research/runs/{run_id}/6_RESEARCH_SUMMARY.md`; then run `mkdir -p .grd/research/runs && ln -sfn "runs/{run_id}" .grd/research/latest`.
 </protocol>
 
 <reference>

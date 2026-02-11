@@ -30,7 +30,8 @@ Primary artifacts:
 - `.grd/codebase/CURRENT.md`
 - `.grd/codebase/TARGET.md`
 - `.grd/codebase/GAPS.md`
-- `.grd/research/runs/{run_id}/INDEX.md`
+- `.grd/research/runs/{run_id}/0_INDEX.md`
+- `.grd/research/latest` (symlink to active run directory)
 
 When requested, also write and update:
 - `.grd/research/RESEARCH_NOTES.md`
@@ -177,8 +178,13 @@ Route by stage intent:
 5. Update `STATE.md` sections: Decisions, AI Agent's Discretion, Deferred, Constraints, Next action.
    - keep or set `active_run_id` for current run context.
 6. Update `ROADMAP.md` with immediate queue and milestone status.
-7. For active run context, ensure `.grd/research/runs/{run_id}/INDEX.md` exists and is current.
-   - maintain links to HYPOTHESIS.md, EXPERIMENT_PLAN.md, EVALUATION.md.
+7. For active run context, ensure `.grd/research/runs/{run_id}/0_INDEX.md` exists and is current.
+   - maintain links to `1_HYPOTHESIS.md`, `2_EXPERIMENT_PLAN.md`, `3_EVALUATION.md`.
+   - refresh latest-run alias:
+     ```bash
+     mkdir -p .grd/research/runs
+     ln -sfn "runs/{run_id}" .grd/research/latest
+     ```
 8. When requested, append a compact entry to `.grd/research/RESEARCH_NOTES.md` including context, observation, evidence, decision, and next action.
    - For Stage 1 handoff notes, include: hypothesis_id, prediction, refutation condition, metric, threshold.
 9. When context drift is likely, nudge an optional thought-log note in `.grd/research/RESEARCH_NOTES.md` (belief, trigger, reasoning, update, branches, next action).

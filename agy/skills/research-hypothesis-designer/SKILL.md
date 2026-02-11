@@ -26,7 +26,7 @@ Default to concise chat output. Only write or update artifact files when the use
 2. Define baseline, target metric, and minimum practical effect size.
 3. Define rejection/acceptance criteria and stop conditions.
 4. List confounders and validity threats.
-5. Save output as `.grd/research/HYPOTHESIS.md`.
+5. Save output as `.grd/research/runs/{run_id}/1_HYPOTHESIS.md` and run `mkdir -p .grd/research/runs && ln -sfn "runs/{run_id}" .grd/research/latest`.
 </protocol>
 
 <reference>

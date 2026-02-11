@@ -26,7 +26,7 @@ Default to concise chat output. Only write or update artifact files when the use
 2. Define dataset versions, split policy, seeds, and run budget.
 3. Define metrics, confidence intervals, and statistical tests.
 4. Define artifact paths and run command templates.
-5. Save output as `.grd/research/EXPERIMENT_PLAN.md`.
+5. Save output as `.grd/research/runs/{run_id}/2_EXPERIMENT_PLAN.md` and run `mkdir -p .grd/research/runs && ln -sfn "runs/{run_id}" .grd/research/latest`.
 </protocol>
 
 <reference>

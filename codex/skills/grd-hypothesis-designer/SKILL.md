@@ -171,13 +171,17 @@ Contract:
 5. Define explicit falsifiability checks for the synthesis.
 6. Define stop criteria and validity threats.
 7. Record rejected syntheses briefly when relevant.
-8. Produce `.grd/research/runs/{run_id}/HYPOTHESIS.md`; initialize or update `.grd/research/runs/{run_id}/INDEX.md`.
-9. Update `.grd/research/HYPOTHESIS.md` as latest pointer.
+8. Produce `.grd/research/runs/{run_id}/1_HYPOTHESIS.md`; initialize or update `.grd/research/runs/{run_id}/0_INDEX.md`.
+9. Refresh latest-run alias:
+   ```bash
+   mkdir -p .grd/research/runs
+   ln -sfn "runs/{run_id}" .grd/research/latest
+   ```
 10. Nudge the user to call `grd-state-keeper` to append a linked hypothesis note for later Stage 3 evaluation checks.
 </execution_contract>
 
 <hypothesis_output_spec>
-Include these sections in `.grd/research/runs/{run_id}/HYPOTHESIS.md`:
+Include these sections in `.grd/research/runs/{run_id}/1_HYPOTHESIS.md`:
 0. Frontmatter (required):
    - run_id (`YYMMDD_slug`), artifact_type=hypothesis, stage=1, analysis_committed, title, summary, status, created_at, updated_at, owner, tags, depends_on
    - hypothesis_id, primary_metric, decision_rule, refutation_condition

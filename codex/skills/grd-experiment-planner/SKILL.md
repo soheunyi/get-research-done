@@ -129,6 +129,10 @@ Contract:
 3. Define strict no test peeking and leakage checklist.
 4. Define control and treatment matrix.
 5. Define dataset versions, seeds, split strategy, and run budget.
-6. Produce `.grd/research/runs/{run_id}/EXPERIMENT_PLAN.md` and optional `.grd/research/runs/{run_id}/ANALYSIS_PLAN.md` when artifact output is requested.
-7. Update `.grd/research/EXPERIMENT_PLAN.md` as latest pointer.
+6. Produce `.grd/research/runs/{run_id}/2_EXPERIMENT_PLAN.md` and optional `.grd/research/runs/{run_id}/2_ANALYSIS_PLAN.md` when artifact output is requested.
+7. Refresh latest-run alias:
+   ```bash
+   mkdir -p .grd/research/runs
+   ln -sfn "runs/{run_id}" .grd/research/latest
+   ```
 </execution_contract>

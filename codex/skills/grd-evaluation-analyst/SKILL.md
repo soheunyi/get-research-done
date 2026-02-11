@@ -28,12 +28,12 @@ Use artifact naming/frontmatter rules in `@GSD_ROOT@get-research-done/templates/
 
 <upstream_inputs>
 Primary inputs to evaluation:
-- `.grd/research/runs/{run_id}/HYPOTHESIS.md` (preferred)
-- `.grd/research/HYPOTHESIS.md` (latest pointer fallback)
+- `.grd/research/runs/{run_id}/1_HYPOTHESIS.md` (preferred)
+- `.grd/research/latest/1_HYPOTHESIS.md` (latest-run fallback)
 - `.grd/research/RESEARCH_NOTES.md` (state-keeper hypothesis notes and updates, when available)
 - experiment result artifacts
 
-If `HYPOTHESIS.md` is missing, classify conclusions as provisional and request hypothesis linkage before strong claims.
+If `1_HYPOTHESIS.md` is missing, classify conclusions as provisional and request hypothesis linkage before strong claims.
 </upstream_inputs>
 
 <clarification_rule>
@@ -132,18 +132,22 @@ Contract:
 </action_policy>
 
 <execution_contract>
-1. Load hypothesis criteria from `.grd/research/runs/{run_id}/HYPOTHESIS.md` (or latest pointer fallback) and linked notes from `.grd/research/RESEARCH_NOTES.md` when available.
+1. Load hypothesis criteria from `.grd/research/runs/{run_id}/1_HYPOTHESIS.md` (or `.grd/research/latest/1_HYPOTHESIS.md` fallback) and linked notes from `.grd/research/RESEARCH_NOTES.md` when available.
 2. Aggregate results with uncertainty ranges.
 3. Compare observed outcomes against baseline, effect size target, and predeclared decision threshold.
 4. Run planned significance tests.
 5. Check traceability: does observed evidence support or refute the hypothesis prediction and falsifiability condition?
 6. Classify result as supports / inconclusive / rejects with explicit linkage to hypothesis fields.
-7. Produce `.grd/research/runs/{run_id}/EVALUATION.md`.
-8. Update `.grd/research/EVALUATION.md` as latest pointer.
+7. Produce `.grd/research/runs/{run_id}/3_EVALUATION.md`.
+8. Refresh latest-run alias:
+   ```bash
+   mkdir -p .grd/research/runs
+   ln -sfn "runs/{run_id}" .grd/research/latest
+   ```
 </execution_contract>
 
 <evaluation_output_spec>
-Include these sections in `.grd/research/runs/{run_id}/EVALUATION.md`:
+Include these sections in `.grd/research/runs/{run_id}/3_EVALUATION.md`:
 0. Frontmatter (required):
    - run_id, artifact_type=evaluation, stage=3, analysis_committed, title, summary, status, created_at, updated_at, owner, tags, depends_on
    - hypothesis_id, plan_id, outcome, decision_check

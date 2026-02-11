@@ -7,7 +7,7 @@ Artifact format reference:
 
 Run convention:
 - Group linked artifacts under `.grd/research/runs/{run_id}/`
-- Keep latest pointers in `.grd/research/` for core artifacts
+- Maintain `.grd/research/latest` alias to the active run directory (`.grd/research/runs/{run_id}/`)
 
 ## Interaction Contract (Questioning First)
 - Before entering a stage, run a short guided questioning loop if the request is open-ended.
@@ -70,9 +70,8 @@ Output:
 - After locking hypothesis, nudge `grd-state-keeper` to append a hypothesis handoff note for Stage 3 traceability.
 
 Output:
-- `.grd/research/runs/{run_id}/INDEX.md`
-- `.grd/research/runs/{run_id}/HYPOTHESIS.md`
-- `.grd/research/HYPOTHESIS.md` (latest pointer)
+- `.grd/research/runs/{run_id}/0_INDEX.md`
+- `.grd/research/runs/{run_id}/1_HYPOTHESIS.md`
 
 ## Stage 2: Experiment Plan
 - Build an experiment matrix: variants, controls, datasets, seeds.
@@ -80,17 +79,15 @@ Output:
 - Define reproducible run commands and artifact paths.
 
 Output:
-- `.grd/research/runs/{run_id}/EXPERIMENT_PLAN.md`
-- `.grd/research/runs/{run_id}/ANALYSIS_PLAN.md` (optional)
-- `.grd/research/EXPERIMENT_PLAN.md` (latest pointer)
+- `.grd/research/runs/{run_id}/2_EXPERIMENT_PLAN.md`
+- `.grd/research/runs/{run_id}/2_ANALYSIS_PLAN.md` (optional)
 
 ## Stage 2.5: Experiment Tracking (W&B Recommended)
 - Standardize run metadata and artifact lineage.
 - Ensure every claim can be traced to a run and artifact.
 
 Output:
-- `.grd/research/runs/{run_id}/WANDB_CONFIG.md`
-- `.grd/research/WANDB_CONFIG.md` (latest pointer)
+- `.grd/research/runs/{run_id}/2_WANDB_CONFIG.md`
 
 ## Stage 3: Evaluation Analysis
 - Summarize raw results with uncertainty, not only point metrics.
@@ -99,8 +96,7 @@ Output:
 - Cross-check results against Stage 1 hypothesis fields (prediction, decision rule, refutation condition) before final classification.
 
 Output:
-- `.grd/research/runs/{run_id}/EVALUATION.md`
-- `.grd/research/EVALUATION.md` (latest pointer)
+- `.grd/research/runs/{run_id}/3_EVALUATION.md`
 
 ## Stage 3.5: Error Analysis and Sanity Checks
 - Slice analysis across data subsets and inspect failure cases.
@@ -116,8 +112,7 @@ Output:
 - Identify brittle assumptions and failure regions.
 
 Output:
-- `.grd/research/runs/{run_id}/ABLATION.md`
-- `.grd/research/ABLATION.md` (latest pointer)
+- `.grd/research/runs/{run_id}/4_ABLATION.md`
 
 ## Stage 4.5: Numerical Stability and Determinism (if applicable)
 - Audit nondeterminism sources and seed propagation.
@@ -125,10 +120,8 @@ Output:
 - Run convergence or refinement tests when using discretizations or solvers.
 
 Output:
-- `.grd/research/runs/{run_id}/NUMERICS_AUDIT.md`
-- `.grd/research/NUMERICS_AUDIT.md` (latest pointer)
-- `.grd/research/runs/{run_id}/RANDOMNESS_AUDIT.md`
-- `.grd/research/RANDOMNESS_AUDIT.md` (latest pointer)
+- `.grd/research/runs/{run_id}/4_NUMERICS_AUDIT.md`
+- `.grd/research/runs/{run_id}/4_RANDOMNESS_AUDIT.md`
 
 ## Stage 5: Reproducibility Packaging
 - Lock environment, dataset versions, and exact commands.
@@ -136,7 +129,5 @@ Output:
 - Produce concise research summary with claims tied to evidence.
 
 Output:
-- `.grd/research/runs/{run_id}/REPRODUCIBILITY.md`
-- `.grd/research/REPRODUCIBILITY.md` (latest pointer)
-- `.grd/research/runs/{run_id}/RESEARCH_SUMMARY.md`
-- `.grd/research/RESEARCH_SUMMARY.md` (latest pointer)
+- `.grd/research/runs/{run_id}/5_REPRODUCIBILITY.md`
+- `.grd/research/runs/{run_id}/6_RESEARCH_SUMMARY.md`

@@ -39,8 +39,8 @@ For GSD-like continuity in Codex sessions:
 4. Return to state-keeper after each major result to update next action
 
 Run artifact convention:
-- Use `.grd/research/runs/{run_id}/` for linked artifacts (`HYPOTHESIS.md`, `EXPERIMENT_PLAN.md`, `EVALUATION.md`, plus `INDEX.md`)
-- Keep compatibility pointers in `.grd/research/` for latest core artifacts
+- Use `.grd/research/runs/{run_id}/` for linked artifacts (`0_INDEX.md`, `1_HYPOTHESIS.md`, `2_EXPERIMENT_PLAN.md`, `3_EVALUATION.md`)
+- Keep `.grd/research/latest` as a symlink to the active run directory (`.grd/research/runs/{run_id}/`)
 
 ## Transplant for Antigravity only
 Antigravity supports slash commands (for example `/grd-...`) from workflow assets in `agy/workflows/`.

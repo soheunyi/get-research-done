@@ -13,7 +13,6 @@ updated_at: "YYYY-MM-DD"
 owner: "ai-agent"
 tags: []
 depends_on: []
-active_artifacts: []
 current_decision: ""
 next_action: ""
 ---
@@ -23,10 +22,8 @@ next_action: ""
 - Current decision:
 - Outcome confidence:
 
-## Artifact Links
-- HYPOTHESIS.md
-- EXPERIMENT_PLAN.md
-- EVALUATION.md
+## Artifact Status
+- Infer artifact set from files present in this run directory.
 
 ## Risks / Blockers
 - None recorded.

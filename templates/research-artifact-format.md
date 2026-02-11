@@ -15,29 +15,31 @@ Examples:
 - `.grd/research/runs/260215_sparse_correction/`
 
 Required files in each run directory:
-- `INDEX.md`
-- `HYPOTHESIS.md`
-- `EXPERIMENT_PLAN.md`
-- `EVALUATION.md`
+- `0_INDEX.md`
+- `1_HYPOTHESIS.md`
+- `2_EXPERIMENT_PLAN.md`
+- `3_EVALUATION.md`
 
 Optional files:
-- `ANALYSIS_PLAN.md`
-- `ABLATION.md`
-- `WANDB_CONFIG.md`
-- `REPRODUCIBILITY.md`
-- `RESEARCH_SUMMARY.md`
-- `NUMERICS_AUDIT.md`
-- `RANDOMNESS_AUDIT.md`
+- `2_ANALYSIS_PLAN.md`
+- `2_WANDB_CONFIG.md`
+- `4_ABLATION.md`
+- `4_NUMERICS_AUDIT.md`
+- `4_RANDOMNESS_AUDIT.md`
+- `5_REPRODUCIBILITY.md`
+- `6_RESEARCH_SUMMARY.md`
 
-## Latest Pointers (Compatibility)
+## Latest Run Alias
 
-Keep latest pointers in `.grd/research/`:
-- `.grd/research/HYPOTHESIS.md`
-- `.grd/research/EXPERIMENT_PLAN.md`
-- `.grd/research/EVALUATION.md`
-- add others as needed
+Keep a single alias to the active run:
+- `.grd/research/latest` -> `.grd/research/runs/{run_id}/`
 
-Pointers should mirror the latest run artifact content.
+Recommended command:
+
+```bash
+mkdir -p .grd/research/runs
+ln -sfn "runs/{run_id}" .grd/research/latest
+```
 
 ## Common Frontmatter (Required)
 
@@ -76,16 +78,12 @@ depends_on: []
 ## Stage-Specific Frontmatter Additions
 
 ### INDEX
-- `active_artifacts`: list of artifact filenames (for example: `["HYPOTHESIS.md","EXPERIMENT_PLAN.md"]`)
 - `current_decision`: enum `supports|inconclusive|rejects|pending`
 - `next_action`: one-line imperative string
+- Artifact inventory should be inferred from files in `.grd/research/runs/{run_id}/` rather than duplicated in frontmatter.
 
 Example:
 ```yaml
-active_artifacts:
-  - "HYPOTHESIS.md"
-  - "EXPERIMENT_PLAN.md"
-  - "EVALUATION.md"
 current_decision: "pending"
 next_action: "Run seed sweep with fixed dataset split."
 ```
@@ -150,5 +148,5 @@ rerun_command: "python train.py --config runs/260211_adaptive_basis/config.yaml"
 
 If you create or update a stage artifact:
 1. write to `.grd/research/runs/{run_id}/{ARTIFACT}.md`
-2. update latest pointer file in `.grd/research/` for core artifacts
+2. refresh `.grd/research/latest` alias to `runs/{run_id}`
 3. keep frontmatter complete and current

@@ -26,7 +26,7 @@ Default to concise chat output. Only write or update artifact files when the use
 2. Ensure each run logs config, seed, code version, dataset version, and key metrics.
 3. Track model/data artifacts with explicit aliases (for example: `best`, `baseline`, `vN`).
 4. Define resume and offline fallback behavior.
-5. Write `.grd/research/WANDB_CONFIG.md` with exact conventions and required fields.
+5. Write `.grd/research/runs/{run_id}/2_WANDB_CONFIG.md` and run `mkdir -p .grd/research/runs && ln -sfn "runs/{run_id}" .grd/research/latest`.
 </protocol>
 
 <required_logging>

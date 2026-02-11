@@ -26,7 +26,7 @@ Default to concise chat output. Only write or update artifact files when the use
 2. Compare to baseline and compute effect sizes.
 3. Run significance tests aligned to experiment design.
 4. Classify result: supports, inconclusive, or rejects hypothesis.
-5. Save output as `.grd/research/EVALUATION.md`.
+5. Save output as `.grd/research/runs/{run_id}/3_EVALUATION.md` and run `mkdir -p .grd/research/runs && ln -sfn "runs/{run_id}" .grd/research/latest`.
 </protocol>
 
 <reference>
