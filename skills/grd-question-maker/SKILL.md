@@ -79,6 +79,13 @@ Ask one focused question at a time to lock:
 Do not draft the final prompt until `<context_sufficiency_gate>` is satisfied, unless the user explicitly asks to proceed with assumptions.
 </clarification_rule>
 
+<template_convention>
+- Template source of truth is shared runtime templates in `.grd/templates/`.
+- Prefer shared templates first (for example: `state.md`, `roadmap.md`, `research-notes.md`, `run-index.md`, `research-artifact-format.md`, `deep-question.md`).
+- Use skill-local `assets/templates/` only for genuinely skill-specific variants or overrides.
+- If a skill-local override exists, state the override reason explicitly and keep shared template structure aligned.
+</template_convention>
+
 <context_sufficiency_gate>
 Required for all prompts:
 - Objective: what the user wants to learn or decide.

@@ -33,6 +33,13 @@ If direction remains unclear, continue a short questioning loop (one question pe
 Each question should offer concrete options plus an open-ended response path.
 </clarification_rule>
 
+<template_convention>
+- Template source of truth is shared runtime templates in `.grd/templates/`.
+- Prefer shared templates first (for example: `state.md`, `roadmap.md`, `research-notes.md`, `run-index.md`, `research-artifact-format.md`, `deep-question.md`).
+- Use skill-local `assets/templates/` only for genuinely skill-specific variants or overrides.
+- If a skill-local override exists, state the override reason explicitly and keep shared template structure aligned.
+</template_convention>
+
 <questioning_loop>
 ## Guided Questioning Loop
 

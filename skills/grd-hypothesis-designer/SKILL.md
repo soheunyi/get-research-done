@@ -45,6 +45,13 @@ Before any complex task, first ask for the user perspective, constraints, and pr
 If intent remains unclear, pause and ask for pseudocode or a concrete step-by-step outline before continuing.
 </clarification_rule>
 
+<template_convention>
+- Template source of truth is shared runtime templates in `.grd/templates/`.
+- Prefer shared templates first (for example: `state.md`, `roadmap.md`, `research-notes.md`, `run-index.md`, `research-artifact-format.md`, `deep-question.md`).
+- Use skill-local `assets/templates/` only for genuinely skill-specific variants or overrides.
+- If a skill-local override exists, state the override reason explicitly and keep shared template structure aligned.
+</template_convention>
+
 <dialectic_protocol>
 ## Dialectical Hypothesis Loop
 

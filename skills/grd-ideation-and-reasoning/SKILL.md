@@ -32,6 +32,13 @@ If intent remains unclear, continue a short questioning loop (one question per t
 Each question should offer concrete options plus an open-ended response path.
 </clarification_rule>
 
+<template_convention>
+- Template source of truth is shared runtime templates in `.grd/templates/`.
+- Prefer shared templates first (for example: `state.md`, `roadmap.md`, `research-notes.md`, `run-index.md`, `research-artifact-format.md`, `deep-question.md`).
+- Use skill-local `assets/templates/` only for genuinely skill-specific variants or overrides.
+- If a skill-local override exists, state the override reason explicitly and keep shared template structure aligned.
+</template_convention>
+
 <reasoning_effort_policy>
 Classify reasoning effort at the start of each task:
 - `low`: local context is sufficient; no web search; no subagents.

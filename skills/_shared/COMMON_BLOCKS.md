@@ -5,6 +5,13 @@
 - Avoid broad scans of unrelated directories.
 </context_budget>
 
+<template_convention>
+- Template source of truth is shared runtime templates in `.grd/templates/`.
+- Prefer shared templates first (for example: `state.md`, `roadmap.md`, `research-notes.md`, `run-index.md`, `research-artifact-format.md`, `deep-question.md`).
+- Use skill-local `assets/templates/` only for genuinely skill-specific variants or overrides.
+- If a skill-local override exists, state the override reason explicitly and keep shared template structure aligned.
+</template_convention>
+
 <intent_lock>
 - Before action, restate the user intent in up to 3 sentences.
 - If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.

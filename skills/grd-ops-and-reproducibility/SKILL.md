@@ -31,6 +31,13 @@ When requested, produce run-scoped artifacts and refresh `.grd/research/latest` 
 If user intent is unclear, ask one short clarification question before continuing.
 </clarification_rule>
 
+<template_convention>
+- Template source of truth is shared runtime templates in `.grd/templates/`.
+- Prefer shared templates first (for example: `state.md`, `roadmap.md`, `research-notes.md`, `run-index.md`, `research-artifact-format.md`, `deep-question.md`).
+- Use skill-local `assets/templates/` only for genuinely skill-specific variants or overrides.
+- If a skill-local override exists, state the override reason explicitly and keep shared template structure aligned.
+</template_convention>
+
 <questioning_loop>
 ## Guided Questioning Loop
 

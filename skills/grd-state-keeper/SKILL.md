@@ -37,6 +37,28 @@ When requested, also write and update:
 - `.grd/research/RESEARCH_NOTES.md`
 </source_of_truth>
 
+<bundled_resources>
+Use bundled resources for deterministic scaffolding when files are missing or stale.
+
+Template convention:
+- Shared runtime templates in `.grd/templates/` are canonical:
+  - `.grd/templates/state.md` -> `.grd/STATE.md`
+  - `.grd/templates/roadmap.md` -> `.grd/ROADMAP.md`
+  - `.grd/templates/research-notes.md` -> `.grd/research/RESEARCH_NOTES.md`
+  - `.grd/templates/run-index.md` -> `.grd/research/runs/{run_id}/0_INDEX.md`
+- Use `assets/templates/` in this skill only for explicit state-keeper-specific overrides.
+
+Helper script:
+- `scripts/bootstrap_state.py`
+- Run from this skill directory or by absolute path:
+  ```bash
+  python scripts/bootstrap_state.py --repo-root <repo-root> --run-id {run_id}
+  ```
+- Use `--include-notes` to scaffold `.grd/research/RESEARCH_NOTES.md`.
+- Use `--force` to overwrite existing artifact files.
+- Use `--template-root` only when intentionally applying a skill-local template override.
+</bundled_resources>
+
 <bootstrap_rule>
 ## Cold-Start Initialization
 
@@ -50,6 +72,10 @@ Bootstrap sequence:
    - `.grd/codebase/TARGET.md` -> target direction
    - `.grd/codebase/GAPS.md` -> immediate queue for roadmap
 4. Initialize `.grd/STATE.md` and `.grd/ROADMAP.md` using seeded data.
+   Prefer deterministic scaffolding with:
+   ```bash
+   python scripts/bootstrap_state.py --repo-root <repo-root> [--run-id {run_id}] [--include-notes]
+   ```
    - include `active_run_id` only when a run has been created.
 5. Then continue normal stage routing.
 
@@ -61,6 +87,13 @@ Start with one high-leverage question to identify objective, scope boundary, and
 If ambiguity remains, continue one question per turn.
 Each question must include concrete options and an open-ended response path.
 </clarification_rule>
+
+<template_convention>
+- Template source of truth is shared runtime templates in `.grd/templates/`.
+- Prefer shared templates first (for example: `state.md`, `roadmap.md`, `research-notes.md`, `run-index.md`, `research-artifact-format.md`, `deep-question.md`).
+- Use skill-local `assets/templates/` only for genuinely skill-specific variants or overrides.
+- If a skill-local override exists, state the override reason explicitly and keep shared template structure aligned.
+</template_convention>
 
 <context_budget>
 - Start with directly relevant files, then expand scope when evidence requires it.
@@ -168,6 +201,7 @@ Route by stage intent:
 - Architecture before coding -> `Build Architect`
 - Implementation request -> `Algo Implementer`
 - Idea generation and tradeoff analysis -> `Ideation and Reasoning`
+- Repeated-workflow detection for new skill opportunities -> `Skill Candidate Scout`
 - Conversational "what next" direction-setting -> `What Next Colleague`
 - Ongoing notes capture -> `Research State Keeper` (self)
 </routing_table>
@@ -182,7 +216,11 @@ Route by stage intent:
 6. Update `ROADMAP.md` with immediate queue and milestone status.
 7. For active run context, ensure `.grd/research/runs/{run_id}/0_INDEX.md` exists and is current.
    - maintain links to `1_HYPOTHESIS.md`, `2_EXPERIMENT_PLAN.md`, `3_EVALUATION.md`.
-   - refresh latest-run alias:
+   - prefer helper script for run index + latest-run alias:
+     ```bash
+     python scripts/bootstrap_state.py --repo-root <repo-root> --run-id {run_id}
+     ```
+   - fallback if script is unavailable:
      ```bash
      mkdir -p .grd/research/runs
      ln -sfn "runs/{run_id}" .grd/research/latest

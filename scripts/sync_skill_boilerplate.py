@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -19,6 +20,7 @@ COMMON_BLOCKS = REPO_ROOT / "skills" / "_shared" / "COMMON_BLOCKS.md"
 SKILLS_ROOT = REPO_ROOT / "skills"
 TAGS = (
     "context_budget",
+    "template_convention",
     "intent_lock",
     "questioning_loop",
     "precision_contract",
@@ -42,6 +44,23 @@ def load_common_blocks() -> dict[str, str]:
 
 
 def find_skill_files() -> list[Path]:
+    try:
+        proc = subprocess.run(
+            ["git", "-C", str(REPO_ROOT), "ls-files", "skills/*/SKILL.md"],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        files = [
+            REPO_ROOT / rel_path
+            for rel_path in proc.stdout.splitlines()
+            if rel_path.strip()
+        ]
+        files.sort()
+        return files
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        pass
+
     files: list[Path] = []
     for path in SKILLS_ROOT.glob("*/SKILL.md"):
         if "__MACOSX" in path.parts:
