@@ -23,6 +23,7 @@ Required files in each run directory:
 Optional files:
 - `2_ANALYSIS_PLAN.md`
 - `2_WANDB_CONFIG.md`
+- `3_5_ERROR_ANALYSIS.md`
 - `4_ABLATION.md`
 - `4_NUMERICS_AUDIT.md`
 - `4_RANDOMNESS_AUDIT.md`
@@ -64,7 +65,7 @@ depends_on: []
 
 - `run_id`: string, pattern `YYMMDD_slug` (example: `260211_adaptive_basis`)
 - `artifact_type`: enum
-  - `index|hypothesis|analysis_plan|experiment_plan|evaluation|ablation|wandb_config|reproducibility|research_summary|numerics_audit|randomness_audit`
+  - `index|hypothesis|analysis_plan|experiment_plan|evaluation|error_analysis|ablation|wandb_config|reproducibility|research_summary|numerics_audit|randomness_audit`
 - `stage`: integer-like string enum `0|1|2|3|4|5`
 - `analysis_committed`: boolean (`true` or `false`)
 - `title`: short string, 3-80 chars
@@ -131,6 +132,12 @@ plan_id: "PLAN-260211-seed-sweep"
 outcome: "inconclusive"
 decision_check: "threshold not met; p-value above precommitted cutoff"
 ```
+
+### Error Analysis (Stage 3.5)
+- Filename: `3_5_ERROR_ANALYSIS.md`
+- Use `artifact_type: error_analysis`.
+- Keep `stage: "3"` for compatibility with existing stage enum.
+- Optional: add `substage: "3.5"` when you need explicit stage-3.5 labeling.
 
 ### Reproducibility
 - `commit_sha`: git sha string (7+ chars)

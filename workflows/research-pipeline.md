@@ -113,7 +113,8 @@ Output:
 - Confirm no leakage, correct split usage, and stable evaluation scripts.
 
 Output:
-- `ERROR_ANALYSIS.md`
+- Preferred: `.grd/research/runs/{run_id}/3_5_ERROR_ANALYSIS.md`
+- Compatibility fallback: `ERROR_ANALYSIS.md` (legacy path)
 
 ## Stage 4: Ablation and Robustness
 - Isolate contribution of each major component.

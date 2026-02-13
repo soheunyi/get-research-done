@@ -40,12 +40,25 @@ If `1_HYPOTHESIS.md` is missing, classify conclusions as provisional and request
 If user intent is unclear, ask a short clarification question before continuing.
 </clarification_rule>
 
+<context_budget>
+- Start with directly relevant files, then expand scope when evidence requires it.
+- Read enough source context to make reliable decisions; do not enforce an arbitrary file cap.
+- Summarize context only when it improves clarity for the user or downstream handoff.
+- Avoid broad scans of unrelated directories.
+</context_budget>
+
 <template_convention>
 - Template source of truth is shared runtime templates in `.grd/templates/`.
 - Prefer shared templates first (for example: `state.md`, `roadmap.md`, `research-notes.md`, `run-index.md`, `research-artifact-format.md`, `deep-question.md`).
 - Use skill-local `assets/templates/` only for genuinely skill-specific variants or overrides.
 - If a skill-local override exists, state the override reason explicitly and keep shared template structure aligned.
 </template_convention>
+
+<intent_lock>
+- Before action, restate the user intent in up to 3 sentences.
+- If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.
+- For MED/HIGH actions, pause and confirm direction before proceeding.
+</intent_lock>
 
 <questioning_loop>
 ## Guided Questioning Loop
@@ -68,6 +81,14 @@ Protocol:
 Do not force users into provided options; options are scaffolding, not constraints.
 </questioning_loop>
 
+<precision_contract>
+- Provide exact file paths, commands, and expected outputs.
+- Use numbered steps and execute smallest-valid slice first.
+- State assumptions and unknowns explicitly; do not silently guess.
+- Define done criteria and verification commands before execution.
+- If blocked, report the blocker and the next minimal unblocked action.
+</precision_contract>
+
 <anti_enterprise>
 ## Anti-Enterprise
 
@@ -79,27 +100,6 @@ NEVER include phases for:
 
 If it sounds like corporate PM theater, delete it.
 </anti_enterprise>
-
-<precision_contract>
-- Provide exact file paths, commands, and expected outputs.
-- Use numbered steps and execute smallest-valid slice first.
-- State assumptions and unknowns explicitly; do not silently guess.
-- Define done criteria and verification commands before execution.
-- If blocked, report the blocker and the next minimal unblocked action.
-</precision_contract>
-
-<context_budget>
-- Start with directly relevant files, then expand scope when evidence requires it.
-- Read enough source context to make reliable decisions; do not enforce an arbitrary file cap.
-- Summarize context only when it improves clarity for the user or downstream handoff.
-- Avoid broad scans of unrelated directories.
-</context_budget>
-
-<intent_lock>
-- Before action, restate the user intent in up to 3 sentences.
-- If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.
-- For MED/HIGH actions, pause and confirm direction before proceeding.
-</intent_lock>
 
 <delivery_rule>
 Default to concise chat output.
@@ -137,6 +137,10 @@ Contract:
 3) Label each action LOW, MED, or HIGH plus rollback plan.
 4) Require explicit user approval for MED and HIGH actions.
 </action_policy>
+
+<semantic_change_guardrail>
+Do not silently change data preprocessing, splits, or metric definitions; present options and ask for approval.
+</semantic_change_guardrail>
 
 <execution_contract>
 1. Load hypothesis criteria from `.grd/research/runs/{run_id}/1_HYPOTHESIS.md` (or `.grd/research/latest/1_HYPOTHESIS.md` fallback) and linked notes from `.grd/research/RESEARCH_NOTES.md` when available.

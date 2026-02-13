@@ -106,7 +106,11 @@ make install-core DEST=/path/to/target-repo
 - Core skills: `skills/*`
 - Core workflow: `workflows/research-pipeline.md`
 - Templates: `templates/*`
-- Shared blocks: `skills/_shared/COMMON_BLOCKS.md`
+- Shared blocks: `skills/_shared/BASE.md`
+
+Skill generation:
+- Skill-specific source: `skills/*/SKILL.src.md`
+- Generated output: `skills/*/SKILL.md` (via `make sync-skills`)
 
 `codex/` and `agy/` are generated compatibility views and are intentionally git-ignored.
 

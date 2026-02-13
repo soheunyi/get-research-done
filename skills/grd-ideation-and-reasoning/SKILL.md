@@ -32,6 +32,13 @@ If intent remains unclear, continue a short questioning loop (one question per t
 Each question should offer concrete options plus an open-ended response path.
 </clarification_rule>
 
+<context_budget>
+- Start with directly relevant files, then expand scope when evidence requires it.
+- Read enough source context to make reliable decisions; do not enforce an arbitrary file cap.
+- Summarize context only when it improves clarity for the user or downstream handoff.
+- Avoid broad scans of unrelated directories.
+</context_budget>
+
 <template_convention>
 - Template source of truth is shared runtime templates in `.grd/templates/`.
 - Prefer shared templates first (for example: `state.md`, `roadmap.md`, `research-notes.md`, `run-index.md`, `research-artifact-format.md`, `deep-question.md`).
@@ -39,18 +46,11 @@ Each question should offer concrete options plus an open-ended response path.
 - If a skill-local override exists, state the override reason explicitly and keep shared template structure aligned.
 </template_convention>
 
-<reasoning_effort_policy>
-Classify reasoning effort at the start of each task:
-- `low`: local context is sufficient; no web search; no subagents.
-- `medium`: external validation needed; web search allowed; no subagents.
-- `high`: broad or ambiguous problem with high-impact decision; web search plus parallel subagents for source gathering is allowed.
-
-Rules:
-1. Always report: `Reasoning effort: <low|medium|high> - <one-line rationale>`.
-2. For `high`, ask user confirmation before spawning subagents.
-3. For any web search, prioritize primary sources (official docs, papers, maintainers).
-4. Parent agent must synthesize and finalize recommendations; subagents only gather/organize evidence.
-</reasoning_effort_policy>
+<intent_lock>
+- Before action, restate the user intent in up to 3 sentences.
+- If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.
+- For MED/HIGH actions, pause and confirm direction before proceeding.
+</intent_lock>
 
 <questioning_loop>
 ## Guided Questioning Loop
@@ -73,6 +73,14 @@ Protocol:
 Do not force users into provided options; options are scaffolding, not constraints.
 </questioning_loop>
 
+<precision_contract>
+- Provide exact file paths, commands, and expected outputs.
+- Use numbered steps and execute smallest-valid slice first.
+- State assumptions and unknowns explicitly; do not silently guess.
+- Define done criteria and verification commands before execution.
+- If blocked, report the blocker and the next minimal unblocked action.
+</precision_contract>
+
 <anti_enterprise>
 ## Anti-Enterprise
 
@@ -84,27 +92,6 @@ NEVER include phases for:
 
 If it sounds like corporate PM theater, delete it.
 </anti_enterprise>
-
-<precision_contract>
-- Provide exact file paths, commands, and expected outputs.
-- Use numbered steps and execute smallest-valid slice first.
-- State assumptions and unknowns explicitly; do not silently guess.
-- Define done criteria and verification commands before execution.
-- If blocked, report the blocker and the next minimal unblocked action.
-</precision_contract>
-
-<context_budget>
-- Start with directly relevant files, then expand scope when evidence requires it.
-- Read enough source context to make reliable decisions; do not enforce an arbitrary file cap.
-- Summarize context only when it improves clarity for the user or downstream handoff.
-- Avoid broad scans of unrelated directories.
-</context_budget>
-
-<intent_lock>
-- Before action, restate the user intent in up to 3 sentences.
-- If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.
-- For MED/HIGH actions, pause and confirm direction before proceeding.
-</intent_lock>
 
 <delivery_rule>
 Default to concise chat output.
@@ -142,6 +129,19 @@ Contract:
 3) Label each action LOW, MED, or HIGH plus rollback plan.
 4) Require explicit user approval for MED and HIGH actions.
 </action_policy>
+
+<reasoning_effort_policy>
+Classify reasoning effort at the start of each task:
+- `low`: local context is sufficient; no web search; no subagents.
+- `medium`: external validation needed; web search allowed; no subagents.
+- `high`: broad or ambiguous problem with high-impact decision; web search plus parallel subagents for source gathering is allowed.
+
+Rules:
+1. Always report: `Reasoning effort: <low|medium|high> - <one-line rationale>`.
+2. For `high`, ask user confirmation before spawning subagents.
+3. For any web search, prioritize primary sources (official docs, papers, maintainers).
+4. Parent agent must synthesize and finalize recommendations; subagents only gather/organize evidence.
+</reasoning_effort_policy>
 
 <execution_contract>
 1. Run a guided questioning loop to confirm topic scope, constraints, success metric, and acceptable risk.
