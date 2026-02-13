@@ -24,7 +24,7 @@ Use when the user asks for checkpointing, kickoff setup, or conversational direc
 
 <mode_policy>
 Mode selection:
-- `mode=checkpoint` (default): update `.grd/STATE.md` and `.grd/ROADMAP.md` with minimal diffs from recent commits/artifacts; ask at most 1 clarifying question if required.
+- `mode=checkpoint` (default): update `.grd/STATE.md` and `.grd/ROADMAP.md` with minimal diffs from recent commits/artifacts; ask at most 1 clarifying question if required; append a compact activity note to `.grd/research/RESEARCH_NOTES.md` unless the user opts out.
 - `mode=kickoff`: run guided questioning for cold start and initialize state from Stage -1 when needed.
 - `mode=colleague`: run conversational direction-setting loop to decide one smallest useful next action.
 
@@ -46,9 +46,31 @@ Primary artifacts:
 - `.grd/research/runs/{run_id}/0_INDEX.md`
 - `.grd/research/latest` (symlink to active run directory)
 
-When requested, also write and update:
+Always maintain:
 - `.grd/research/RESEARCH_NOTES.md`
+- `.grd/research/SKILL_FEEDBACK_LOG.md` (when present, use as input for improvement prioritization)
 </source_of_truth>
+
+<activity_capture_policy>
+Keep a lightweight activity trail so the next session can quickly understand what happened.
+
+Default behavior:
+- `checkpoint`: append one compact entry to `.grd/research/RESEARCH_NOTES.md`.
+- `kickoff`: append one compact kickoff entry after initialization.
+- `colleague`: append only with explicit user confirmation.
+
+Entry minimum fields:
+- Context
+- Observation
+- Evidence (file path or command)
+- Decision
+- Next action
+
+Feedback rollup during `checkpoint`:
+- If `.grd/research/SKILL_FEEDBACK_LOG.md` exists, scan recent entries and identify recurring failure patterns.
+- Surface top 1-3 recurring issues in checkpoint output.
+- Convert recurring issues into concrete roadmap queue items with owner and verification check.
+</activity_capture_policy>
 
 <bundled_resources>
 Use bundled resources for deterministic scaffolding when files are missing or stale.
@@ -221,6 +243,7 @@ Route by stage intent:
 - Persistent literature review and prior-art mapping -> `Literature Synthesizer`
 - Prompt harvesting, deduplication, and reusable prompt cards -> `Prompt Librarian`
 - Implementation quality gate and skeptical diff review -> `Patch Reviewer`
+- User reports misbehavior after a skill call -> `Skill Reliability Keeper` (priority trigger)
 - Architecture before coding -> `Build Architect`
 - Implementation request -> `Algo Implementer`
 - Idea generation and tradeoff analysis -> `Ideation and Reasoning`
@@ -234,6 +257,7 @@ Route by stage intent:
 3. `mode=checkpoint`:
    - infer minimal updates from recent commits and run artifacts;
    - ask at most one clarifying question if needed;
+   - review `.grd/research/SKILL_FEEDBACK_LOG.md` when present and extract top recurring issues;
    - update only changed fields in state/roadmap (minimal diff);
    - recommend the next skill using `<routing_table>`.
 4. `mode=kickoff`:
@@ -255,7 +279,7 @@ Route by stage intent:
      mkdir -p .grd/research/runs
      ln -sfn "runs/{run_id}" .grd/research/latest
      ```
-7. When requested, append a compact entry to `.grd/research/RESEARCH_NOTES.md` with context, observation, evidence, decision, and next action.
+7. Append a compact entry to `.grd/research/RESEARCH_NOTES.md` per `<activity_capture_policy>`.
 8. End with one explicit handoff prompt: proceed now, adjust plan, or ask deeper questions.
 </execution_contract>
 
