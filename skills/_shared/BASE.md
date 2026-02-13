@@ -5,12 +5,25 @@
 - Avoid broad scans of unrelated directories.
 </context_budget>
 
+<grd_context_ingestion>
+- Always look for `<grd_context>` tags in the prompt.
+- This context contains the persistent research state, active hypothesis, and recent exploration findings.
+- Use this information to maintain continuity and avoid re-proposing failed experiments.
+- If the injected context contradicts the current file system, prioritize the file system but call out the discrepancy.
+</grd_context_ingestion>
+
 <template_convention>
 - Template source of truth is shared runtime templates in `.grd/templates/`.
 - Prefer shared templates first (for example: `state.md`, `roadmap.md`, `research-notes.md`, `run-index.md`, `research-artifact-format.md`, `deep-question.md`).
 - Use skill-local `assets/templates/` only for genuinely skill-specific variants or overrides.
 - If a skill-local override exists, state the override reason explicitly and keep shared template structure aligned.
 </template_convention>
+
+<state_awareness_contract>
+- Always load `.grd/state.md` (metadata) and `.grd/journal.md` (findings) as primary runtime context.
+- Treat skills as read-mostly against shared state; canonical state mutations route through specific state-update tasks.
+- Keep injected context bounded and focused: Snapshot, Decisions, and recent Experiment Log entries.
+</state_awareness_contract>
 
 <intent_lock>
 - Before action, restate the user intent in up to 3 sentences.
