@@ -36,6 +36,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: Stable
 
 *Updated after each plan completion*
+| Phase 01 P01 | 15min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -46,6 +47,8 @@ Recent decisions affecting current work:
 
 - [Init]: Two-gear system (explore/confirm) chosen to balance speed and rigor.
 - [Init]: Markdown state files in `.grd/` for maximum portability and readability.
+- [Phase 01]: Markdown with YAML frontmatter chosen for persistent state
+- [Phase 01]: Python class ResearchState implemented for programmatic access
 
 ### Pending Todos
 
