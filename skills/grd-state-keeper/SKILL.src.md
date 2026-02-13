@@ -59,7 +59,9 @@ Template convention:
   - `.grd/templates/roadmap.md` -> `.grd/ROADMAP.md`
   - `.grd/templates/research-notes.md` -> `.grd/research/RESEARCH_NOTES.md`
   - `.grd/templates/run-index.md` -> `.grd/research/runs/{run_id}/0_INDEX.md`
-- Use `assets/templates/` in this skill only for explicit state-keeper-specific overrides.
+- This skill also ships fallback bootstrap assets:
+  - `assets/templates/*` for runtime template initialization
+  - `assets/workflows/research-pipeline.md` for workflow initialization
 
 Helper script:
 - `scripts/bootstrap_state.py`
@@ -67,6 +69,8 @@ Helper script:
   ```bash
   python scripts/bootstrap_state.py --repo-root <repo-root> --run-id {run_id}
   ```
+- Use `--init-templates` to scaffold `.grd/templates/*`.
+- Use `--init-workflows` to scaffold `.grd/workflows/research-pipeline.md`.
 - Use `--include-notes` to scaffold `.grd/research/RESEARCH_NOTES.md`.
 - Use `--force` to overwrite existing artifact files.
 - Use `--template-root` only when intentionally applying a skill-local template override.
@@ -87,7 +91,7 @@ Bootstrap sequence:
 4. Initialize `.grd/STATE.md` and `.grd/ROADMAP.md` using seeded data.
    Prefer deterministic scaffolding with:
    ```bash
-   python scripts/bootstrap_state.py --repo-root <repo-root> [--run-id {run_id}] [--include-notes]
+   python scripts/bootstrap_state.py --repo-root <repo-root> --init-templates --init-workflows [--run-id {run_id}] [--include-notes]
    ```
    - include `active_run_id` only when a run has been created.
 5. Then continue normal stage routing.
@@ -111,13 +115,16 @@ Route by stage intent:
 - Stage 0.5 Phase Execution Research -> `Phase Researcher`
 - Stage 1 Hypothesis Design -> `Hypothesis Designer`
 - Stage 2 Experiment Plan -> `Experiment Planner`
-- Stage 3 Evaluation -> `Evaluation Analyst`
-- Stage 3.5 Error Analysis and Sanity Checks -> `Sanity & Error Analyst`
+- Stage 3 Evaluation -> `Evaluation Suite (mode=decision)`
+- Stage 3.5 Error Analysis and Sanity Checks -> `Evaluation Suite (mode=diagnostics)`
 - Stage 4 Attribution/Ablation/Robustness -> `Attribution and Robustness`
 - Stage 4.5 Stability/Determinism -> `Stability Auditor`
 - Stage 5 Reproducibility -> `Research Ops and Reproducibility`
+- Dataset integrity, split correctness, and leakage auditing -> `Data Auditor`
 - Deep reasoning prompt drafting or literature-review prompt drafting -> `Question Maker`
 - Persistent literature review and prior-art mapping -> `Literature Synthesizer`
+- Prompt harvesting, deduplication, and reusable prompt cards -> `Prompt Librarian`
+- Implementation quality gate and skeptical diff review -> `Patch Reviewer`
 - Architecture before coding -> `Build Architect`
 - Implementation request -> `Algo Implementer`
 - Idea generation and tradeoff analysis -> `Ideation and Reasoning`

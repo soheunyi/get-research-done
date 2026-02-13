@@ -24,6 +24,7 @@ Use when the user asks to draft a prompt/question for another model, requests a 
 <boundary_note>
 `Question Maker` drafts prompts.
 For persistent literature artifacts (`.grd/research/lit/*`), route to `Literature Synthesizer`.
+For prompt harvesting/versioning (`.grd/prompts/*`), route to `Prompt Librarian`.
 </boundary_note>
 
 <trigger_policy>
@@ -86,6 +87,16 @@ Do not draft the final prompt until `<context_sufficiency_gate>` is satisfied, u
 
 {{COMMON_BLOCKS}}
 
+<output_override>
+For this skill, override the generic planning output format.
+
+Delivery rule:
+1. Output the final prompt first as the primary artifact.
+2. Present it in a copy-pastable fenced `text` block.
+3. Optionally append a short footer (`Assumptions` / `Notes`) only when needed.
+4. Keep footer concise (max 5 bullets total) so the prompt remains the main deliverable.
+</output_override>
+
 <context_sufficiency_gate>
 Required for all prompts:
 - Objective: what the user wants to learn or decide.
@@ -132,7 +143,8 @@ If any required field is missing, ask clarification questions before drafting.
 13. Include final section:
    - `## User Additional Question (Optional)`
    - `[User can add one extra question here.]`
-14. When requested, save output at `.grd/research/questions/{question_id}-QUESTION.md`.
+14. Return output using `<output_override>` (prompt first, optional short notes footer).
+15. When requested, save output at `.grd/research/questions/{question_id}-QUESTION.md`.
 </execution_contract>
 
 <question_output_spec>

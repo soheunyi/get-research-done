@@ -7,6 +7,7 @@ import argparse
 from datetime import datetime
 from pathlib import Path
 import sys
+import shutil
 
 
 def parse_args() -> argparse.Namespace:
@@ -25,6 +26,24 @@ def parse_args() -> argparse.Namespace:
             "Optional explicit template directory. "
             "Defaults to shared templates (.grd/templates, then repo templates)."
         ),
+    )
+    parser.add_argument(
+        "--workflow-root",
+        default="",
+        help=(
+            "Optional explicit workflow directory. "
+            "Defaults to repo workflows, then bundled skill assets."
+        ),
+    )
+    parser.add_argument(
+        "--init-templates",
+        action="store_true",
+        help="Initialize .grd/templates from shared or bundled templates.",
+    )
+    parser.add_argument(
+        "--init-workflows",
+        action="store_true",
+        help="Initialize .grd/workflows from shared or bundled workflows.",
     )
     parser.add_argument(
         "--run-id",
@@ -97,6 +116,29 @@ def write_template(
     print(f"{action}: {target_path}")
 
 
+def copy_file(
+    source_path: Path,
+    target_path: Path,
+    *,
+    force: bool,
+    dry_run: bool,
+) -> None:
+    existed_before = target_path.exists()
+    if existed_before and not force:
+        print(f"skip existing: {target_path}")
+        return
+
+    if dry_run:
+        action = "overwrite" if existed_before else "create"
+        print(f"would {action}: {target_path}")
+        return
+
+    target_path.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(source_path, target_path)
+    action = "overwrote" if existed_before else "created"
+    print(f"{action}: {target_path}")
+
+
 def resolve_template_path(
     template_name: str,
     *,
@@ -120,6 +162,103 @@ def resolve_template_path(
         if candidate.exists():
             return candidate
     return None
+
+
+def resolve_template_source_dir(
+    *,
+    repo_root: Path,
+    skill_dir: Path,
+    explicit_template_root: str,
+) -> Path | None:
+    if explicit_template_root:
+        candidate = Path(explicit_template_root).expanduser().resolve()
+        return candidate if candidate.is_dir() else None
+
+    candidates = (
+        repo_root / ".grd" / "templates",
+        skill_dir.parents[1] / "templates",
+        skill_dir / "assets" / "templates",
+    )
+    for candidate in candidates:
+        if candidate.is_dir():
+            return candidate
+    return None
+
+
+def resolve_workflow_source_dir(
+    *,
+    skill_dir: Path,
+    explicit_workflow_root: str,
+) -> Path | None:
+    if explicit_workflow_root:
+        candidate = Path(explicit_workflow_root).expanduser().resolve()
+        return candidate if candidate.is_dir() else None
+
+    candidates = (
+        skill_dir.parents[1] / "workflows",
+        skill_dir / "assets" / "workflows",
+    )
+    for candidate in candidates:
+        if candidate.is_dir():
+            return candidate
+    return None
+
+
+def init_templates(
+    *,
+    repo_root: Path,
+    skill_dir: Path,
+    explicit_template_root: str,
+    force: bool,
+    dry_run: bool,
+) -> bool:
+    source_dir = resolve_template_source_dir(
+        repo_root=repo_root,
+        skill_dir=skill_dir,
+        explicit_template_root=explicit_template_root,
+    )
+    if source_dir is None:
+        return False
+
+    target_dir = repo_root / ".grd" / "templates"
+    for source_path in sorted(source_dir.iterdir()):
+        if not source_path.is_file():
+            continue
+        copy_file(
+            source_path,
+            target_dir / source_path.name,
+            force=force,
+            dry_run=dry_run,
+        )
+    return True
+
+
+def init_workflows(
+    *,
+    repo_root: Path,
+    skill_dir: Path,
+    explicit_workflow_root: str,
+    force: bool,
+    dry_run: bool,
+) -> bool:
+    source_dir = resolve_workflow_source_dir(
+        skill_dir=skill_dir,
+        explicit_workflow_root=explicit_workflow_root,
+    )
+    if source_dir is None:
+        return False
+
+    target_dir = repo_root / ".grd" / "workflows"
+    for source_path in sorted(source_dir.iterdir()):
+        if not source_path.is_file():
+            continue
+        copy_file(
+            source_path,
+            target_dir / source_path.name,
+            force=force,
+            dry_run=dry_run,
+        )
+    return True
 
 
 def ensure_latest_symlink(
@@ -159,6 +298,36 @@ def main() -> int:
     run_id = args.run_id.strip()
 
     skill_dir = Path(__file__).resolve().parents[1]
+
+    if args.init_templates:
+        initialized = init_templates(
+            repo_root=repo_root,
+            skill_dir=skill_dir,
+            explicit_template_root=args.template_root,
+            force=args.force,
+            dry_run=args.dry_run,
+        )
+        if not initialized:
+            print(
+                "could not initialize templates (searched explicit root, .grd/templates, repo templates, skill assets/templates)",
+                file=sys.stderr,
+            )
+            return 2
+
+    if args.init_workflows:
+        initialized = init_workflows(
+            repo_root=repo_root,
+            skill_dir=skill_dir,
+            explicit_workflow_root=args.workflow_root,
+            force=args.force,
+            dry_run=args.dry_run,
+        )
+        if not initialized:
+            print(
+                "could not initialize workflows (searched explicit root, repo workflows, skill assets/workflows)",
+                file=sys.stderr,
+            )
+            return 2
 
     copy_plan: list[tuple[str, Path]] = [
         ("state.md", repo_root / ".grd" / "STATE.md"),

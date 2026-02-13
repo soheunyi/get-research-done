@@ -1,38 +1,30 @@
 # Requirements
 
-## V1: Core Orchestration & State
+## V1: Research Utility & State Management
 
-### Orchestration (ORCH)
-- **ORCH-01**: Orchestration layer that connects skills into a coherent workflow.
-- **ORCH-02**: Workflow commands/skills that guide "what to do next" based on current state.
+### State Management (STATE)
+- **STATE-01**: Persistent state layer (`.grd/`) using Markdown with frontmatter.
+- **STATE-02**: Research journal utility to aggregate findings across multiple sessions.
+- **STATE-03**: Automatic `.grd/` directory initialization and structure management.
 
-### Persistent State (STATE)
-- **STATE-01**: Persistent state layer (`.grd/`) that Codex skills read and write automatically.
-- **STATE-02**: Research journal that accumulates across sessions (prevents re-running forgotten experiments).
+### Utility & Invocation (UTIL)
+- **UTIL-01**: CLI utility to invoke skills with automatic `.grd/` state injection into prompts.
+- **UTIL-02**: "Explore-mode" lightweight experiment logging (what/happened/why).
+- **UTIL-03**: Transition helper to promote exploration notes to formal pipeline stages.
 
-### Explore Mode (EXPLORE)
-- **EXPLORE-01**: Two-gear system: explore mode implementation (lightweight tracking).
-- **EXPLORE-02**: Explore-mode experiment log: what was tried, what happened, why moved on.
-
-### Confirm & Transition (CONFIRM)
-- **CONFIRM-01**: Two-gear system: confirm mode implementation (full rigor pipeline).
-- **TRANS-01**: Transition mechanism from explore → confirm (bootstrap hypothesis from exploration notes).
-
-### Skill Integration (SKILLS)
-- **SKILLS-01**: State-aware skill invocation: each Codex task gets relevant context automatically.
-- **SKILLS-02**: Refactor existing skills to integrate with orchestration and state layer.
+### Skill Refactoring (SKILLS)
+- **SKILLS-01**: Refactor existing 12+ skills to integrate with the `.grd/` state layer.
+- **SKILLS-02**: Ensure skill boilerplate (`BASE.md`) supports state-aware operation.
 
 ## Traceability
 
 | ID | Phase | Status |
 |----|-------|--------|
-| ORCH-01 | Phase 1 | Pending |
-| ORCH-02 | Phase 3 | Pending |
 | STATE-01 | Phase 1 | Pending |
 | STATE-02 | Phase 2 | Pending |
-| EXPLORE-01 | Phase 2 | Pending |
-| EXPLORE-02 | Phase 2 | Pending |
-| CONFIRM-01 | Phase 3 | Pending |
-| TRANS-01 | Phase 3 | Pending |
+| STATE-03 | Phase 1 | Pending |
+| UTIL-01 | Phase 1 | Pending |
+| UTIL-02 | Phase 2 | Pending |
+| UTIL-03 | Phase 3 | Pending |
 | SKILLS-01 | Phase 1 | Pending |
 | SKILLS-02 | Phase 1 | Pending |
