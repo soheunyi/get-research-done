@@ -21,6 +21,14 @@ Use this file as a lightweight queue of upcoming research work.
 2. [next action]
 3. [next action]
 
+## Skill Improvement Queue (From User Feedback)
+- Skill: [grd-<skill-name>]
+  - Issue pattern: [recurring failure pattern]
+  - Priority: [high|medium|low]
+  - Proposed fix: [minimal prompt/contract change]
+  - Verification: [how to confirm the fix]
+  - Status: [todo | doing | done]
+
 ## Blockers
 - [blocker + unblock condition]
 
