@@ -27,6 +27,17 @@ Follow `.grd/workflows/research-pipeline.md` Stage 1.
 Use artifact naming/frontmatter rules in `.grd/templates/research-artifact-format.md`.
 </source_of_truth>
 
+<grd_context>
+Use the injected `.grd/` context block before drafting any hypothesis.
+
+Primary runtime sources for this skill are:
+- `.grd/state.md` (active hypothesis, stage, and current thread)
+- `.grd/journal.md` (recent exploration findings)
+- `.grd/experiments.md` (trial outcomes and baselines)
+
+Use these as the base hypothesis starting point and only generalize when context is explicit.
+</grd_context>
+
 <cross_skill_handoff>
 After hypothesis lock, nudge a handoff to `Research State Keeper` to append a compact hypothesis note in `.grd/research/RESEARCH_NOTES.md`.
 The note should preserve evaluation-critical fields so Stage 3 can check claims against planned criteria.
@@ -58,6 +69,13 @@ If intent remains unclear, pause and ask for pseudocode or a concrete step-by-st
 - Use skill-local `assets/templates/` only for genuinely skill-specific variants or overrides.
 - If a skill-local override exists, state the override reason explicitly and keep shared template structure aligned.
 </template_convention>
+
+<state_awareness_contract>
+- Always load `.grd/state.md` and `.grd/journal.md` (plus `.grd/experiments.md` when available) as primary runtime context.
+- Treat skills as read-mostly against shared state; canonical state mutations route through `Research State Keeper`.
+- If context is missing or corrupt, route to `Research State Keeper` with `mode=kickoff`.
+- Start from recent exploration notes in `.grd/journal.md` and `.grd/experiments.md`, then build the hypothesis from that grounded state.
+</state_awareness_contract>
 
 <intent_lock>
 - Before action, restate the user intent in up to 3 sentences.

@@ -46,6 +46,62 @@ grd-install /path/to/target-repo --target runtime,codex
 grd-install --list-targets
 ```
 
+Runtime state-aware helper:
+
+```bash
+# Show bounded state digest from .grd/STATE.md + .grd/ROADMAP.md
+grd --repo-root /path/to/target-repo info
+
+# Machine-readable output
+grd --repo-root /path/to/target-repo info --json
+
+# Build state-enriched payload for a specific skill (payload-only)
+grd --repo-root /path/to/target-repo run --skill grd-experiment-planner
+grd --repo-root /path/to/target-repo run --skill grd-experiment-planner --json
+
+# Log exploration quickly (what / happened / why)
+grd --repo-root /path/to/target-repo log \
+  --what "Try lr=3e-4" \
+  --happened "Loss flattened after warmup" \
+  --why "Lower LR reduced oscillation"
+
+# Add outcome and artifacts, machine-readable output
+grd --repo-root /path/to/target-repo log \
+  --what "Try augmentation set B" \
+  --happened "Accuracy improved on validation split" \
+  --why "Expected augmentation to regularize noisy labels" \
+  --outcome "pass" \
+  --artifact ".grd/journal.md" \
+  --artifact "outputs/metrics.csv" \
+  --json
+```
+
+`grd log` always records to `.grd/journal.md`, and records to `.grd/experiments.md` when `--outcome` is present.
+
+Phase 3 solo-speed workflow:
+
+```bash
+# 1) Explore quickly
+grd --repo-root /path/to/target-repo log --what "..." --happened "..." --why "..."
+
+# 2) Ask for next best action
+grd --repo-root /path/to/target-repo next
+grd --repo-root /path/to/target-repo next --json
+
+# 3) Promote only when evidence is ready
+grd --repo-root /path/to/target-repo promote \
+  --title "Curriculum schedule hypothesis" \
+  --what "Added warmup + curriculum" \
+  --happened "Validation stabilized" \
+  --why "Likely reduced early optimization shock" \
+  --source-entry "latest" \
+  --artifact "outputs/metrics.csv"
+```
+
+`grd promote` writes formal artifacts to `.grd/hypotheses/` with traceability metadata.
+
+If `.grd/STATE.md` or `.grd/ROADMAP.md` is missing, `grd` auto-bootstraps required state files before rendering output.
+
 Uninstall from a target repository:
 
 ```bash

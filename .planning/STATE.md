@@ -2,69 +2,18 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-02-10)
+See: `.planning/PROJECT.md` (updated 2026-02-13)
 
-**Core value:** Researchers never lose context between experiments through a systematic two-gear system.
-**Current focus:** Phase 1: Foundation & State
+**Core value:** Researchers keep momentum without losing context.
+**Current focus:** Define v1.1 milestone scope.
 
 ## Current Position
 
-**Current Phase:** 1
-**Current Phase Name:** Foundation & State
-**Total Phases:** 3
-**Current Plan:** 3
-**Total Plans in Phase:** 3
-**Status:** Ready to execute
+**Milestone:** v1.0 MVP (complete)
+**Status:** Planning next milestone
 **Last Activity:** 2026-02-13
-**Progress:** [███████░░░] 67%
-
-## Performance Metrics
-
-**Velocity:**
-- Total plans completed: 1
-- Average duration: 15 min
-- Total execution time: 0.25 hours
-
-**By Phase:**
-
-| Phase | Plans | Total | Avg/Plan |
-|-------|-------|-------|----------|
-| 1. Foundation & State | 1/3 | 15min | 15min |
-| 2. Explore Mode & Journal | 0/2 | - | - |
-| 3. Transition & Rigor | 0/2 | - | - |
-
-**Recent Trend:**
-- Last 5 plans: N/A
-- Trend: Stable
-
-*Updated after each plan completion*
-| Phase 01 P01 | 15min | 2 tasks | 4 files |
-| Phase 01 P02 | 10min | 1 tasks | 1 files |
-
-## Accumulated Context
-
-### Decisions
-
-Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
-
-- [Init]: Two-gear system (explore/confirm) chosen to balance speed and rigor.
-- [Init]: Markdown state files in `.grd/` for maximum portability and readability.
-- [Phase 01]: Markdown with YAML frontmatter chosen for persistent state
-- [Phase 01]: Python class ResearchState implemented for programmatic access
-- [Phase 01]: Added 'info' command to CLI for state visibility
-- [Phase 01]: Implemented XML-tagged context injection format for LLM readability
-
-### Pending Todos
-
-None yet.
-
-### Blockers/Concerns
-
-None yet.
 
 ## Session Continuity
 
-**Last Date:** 2026-02-13
-**Stopped At:** Completed 01-01-PLAN.md
-**Resume File:** None
+**Stopped At:** Completed `/gsd:complete-milestone` for v1.0
+**Resume Command:** `/gsd:new-milestone`

@@ -20,10 +20,20 @@
 </template_convention>
 
 <state_awareness_contract>
-- Always load `.grd/state.md` (metadata) and `.grd/journal.md` (findings) as primary runtime context.
-- Treat skills as read-mostly against shared state; canonical state mutations route through specific state-update tasks.
-- Keep injected context bounded and focused: Snapshot, Decisions, and recent Experiment Log entries.
+- Always load injected `.grd/` context and treat `.grd/state.md`, `.grd/journal.md`, and `.grd/experiments.md` as primary runtime sources.
+- For runtime execution, parse `.grd/state.md` first, then enrich with recent `.grd/journal.md` findings and `.grd/experiments.md` outcomes.
+- If injected context is incomplete, request `grd-state-keeper` kickoff/recovery flow before major analysis assumptions.
+- Keep context bounded and focused: Snapshot, Decisions, Immediate Queue, and recent experiment outcomes.
 </state_awareness_contract>
+
+<grd_context>
+**Purpose:** Define the standard `.grd/` context payload contract for all GRD skills.
+
+- Read `<grd_context>` blocks from prompt input before taking action.
+- Use the provided state payload in priority order: state.md → journal.md → experiments.md.
+- Record any assumptions made from context as explicit context-based notes in outputs.
+- If state files are missing, stale, or contradictory, surface this and route through `grd-state-keeper mode=kickoff`.
+</grd_context>
 
 <intent_lock>
 - Before action, restate the user intent in up to 3 sentences.

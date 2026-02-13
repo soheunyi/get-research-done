@@ -1,6 +1,7 @@
 ---
-version: 1.0
+active_hypothesis: test_hyp
 current_phase: -1
-active_hypothesis: null
-last_update: 2026-02-13
+last_update: '2026-02-13'
+version: 1.0
 ---
+

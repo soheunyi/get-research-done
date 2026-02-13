@@ -46,6 +46,13 @@ Each question should offer concrete options plus an open-ended response path.
 - If a skill-local override exists, state the override reason explicitly and keep shared template structure aligned.
 </template_convention>
 
+<state_awareness_contract>
+- Always load `.grd/STATE.md` and `.grd/ROADMAP.md` as primary runtime context.
+- Treat skills as read-mostly against shared state; canonical state mutations route through `Research State Keeper`.
+- If state is missing or corrupt, redirect to `Research State Keeper` with `mode=kickoff` before deep task execution.
+- Keep injected context bounded and focused: Snapshot, Decisions, Immediate Queue, and Deferred items.
+</state_awareness_contract>
+
 <intent_lock>
 - Before action, restate the user intent in up to 3 sentences.
 - If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.

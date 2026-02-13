@@ -75,6 +75,8 @@ def render_template(content: str, template_name: str, run_id: str) -> str:
 
     if template_name == "state.md":
         content = content.replace("[YYYY-MM-DD HH:MM]", timestamp)
+        content = content.replace("[0|1|2|3|4|5]", "0")
+        content = content.replace("[YYMMDD_slug or empty]", "")
         if run_id:
             content = content.replace("[YYMMDD_slug or empty]", run_id)
 

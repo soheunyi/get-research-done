@@ -46,7 +46,7 @@ When `*-CONTEXT.md` exists, treat its `Implementation Decisions` as locked:
 
 1. Implement locked decisions exactly.
 2. Keep deferred ideas out of current phase scope.
-3. Use "Claude's Discretion" areas for technical choices only.
+3. Use "Agent's Discretion" areas for technical choices only.
 
 ## Git + Commit Behavior
 

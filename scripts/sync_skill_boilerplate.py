@@ -23,6 +23,7 @@ MARKER = "{{COMMON_BLOCKS}}"
 TAGS = (
     "context_budget",
     "template_convention",
+    "state_awareness_contract",
     "intent_lock",
     "questioning_loop",
     "precision_contract",
