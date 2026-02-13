@@ -1,1 +1,6 @@
----\nversion: 1.0\ncurrent_phase: -1\nactive_hypothesis: null\nlast_update: 2026-02-13\n---
+---
+version: 1.0
+current_phase: -1
+active_hypothesis: null
+last_update: 2026-02-13
+---
