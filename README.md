@@ -167,13 +167,13 @@ make install-core DEST=/path/to/target-repo
 - Core workflow: `workflows/research-pipeline.md`
 - Templates: `templates/*`
 - Global shared blocks: `skills/_shared/BASE.md`
-- Profile overlays: `skills/_shared/profiles/*.md`
+- Profile base + role deltas: `skills/_shared/profiles/base.md`, `skills/_shared/profiles/{executor,advisor,orchestrator}.md`
 - Skill-to-profile map: `skills/_shared/skill-profiles.json`
 
 Skill generation:
 - Skill-specific source: `skills/*/SKILL.src.md`
 - Generated output: `skills/*/SKILL.md` (via `make sync-skills`)
-- Render model: `{{COMMON_BLOCKS}}` expands to global blocks + profile-specific blocks.
+- Render model: `{{COMMON_BLOCKS}}` expands to global blocks + profile-base blocks + role-specific deltas/overrides.
 
 `codex/` and `agy/` are generated compatibility views and are intentionally git-ignored.
 

@@ -42,8 +42,6 @@ Do not force users into provided options; options are scaffolding, not constrain
 </precision_contract>
 
 <anti_enterprise>
-## Anti-Enterprise
-
 NEVER include phases for:
 - Team coordination, stakeholder management
 - Sprint ceremonies, retrospectives

@@ -20,6 +20,8 @@ SKILLS_ROOT = REPO_ROOT / "skills"
 SHARED_ROOT = SKILLS_ROOT / "_shared"
 BASE_BLOCKS = SHARED_ROOT / "BASE.md"
 PROFILE_BLOCKS_ROOT = SHARED_ROOT / "profiles"
+PROFILE_BASE_NAME = "base"
+PROFILE_BASE_BLOCKS = PROFILE_BLOCKS_ROOT / f"{PROFILE_BASE_NAME}.md"
 SKILL_PROFILES_FILE = SHARED_ROOT / "skill-profiles.json"
 SOURCE_FILE = "SKILL.src.md"
 TARGET_FILE = "SKILL.md"
@@ -39,6 +41,7 @@ PROFILE_TAGS = (
     "output_format",
     "action_policy",
 )
+PROFILE_DELTA_SUFFIX = "_delta"
 
 RENDER_TAGS = (
     "context_budget",
@@ -64,9 +67,48 @@ def extract_tag_blocks(text: str, tags: tuple[str, ...], source: Path) -> dict[s
     return blocks
 
 
+def extract_optional_tag_block(text: str, tag: str) -> str | None:
+    pattern = re.compile(rf"(?s)<{tag}>\n.*?\n</{tag}>")
+    match = pattern.search(text)
+    if not match:
+        return None
+    return match.group(0)
+
+
+def extract_optional_tag_body(text: str, tag: str) -> str | None:
+    block = extract_optional_tag_block(text, tag)
+    if block is None:
+        return None
+    pattern = re.compile(rf"(?s)^<{tag}>\n(.*)\n</{tag}>$")
+    match = pattern.match(block)
+    if not match:
+        return None
+    return match.group(1)
+
+
+def merge_delta_block(base_block: str, tag: str, delta_body: str) -> str:
+    closing_tag = f"</{tag}>"
+    closing_idx = base_block.rfind(closing_tag)
+    if closing_idx == -1:
+        raise ValueError(f"Invalid base profile block for <{tag}>")
+
+    base_without_close = base_block[:closing_idx].rstrip("\n")
+    cleaned_delta = delta_body.strip("\n")
+    if not cleaned_delta:
+        return base_block
+    return f"{base_without_close}\n{cleaned_delta}\n{closing_tag}"
+
+
 def load_global_blocks() -> dict[str, str]:
     text = BASE_BLOCKS.read_text(encoding="utf-8")
     return extract_tag_blocks(text, GLOBAL_TAGS, BASE_BLOCKS)
+
+
+def load_profile_base_blocks() -> dict[str, str]:
+    if not PROFILE_BASE_BLOCKS.exists():
+        raise ValueError(f"Missing profile base blocks file: {PROFILE_BASE_BLOCKS}")
+    text = PROFILE_BASE_BLOCKS.read_text(encoding="utf-8")
+    return extract_tag_blocks(text, PROFILE_TAGS, PROFILE_BASE_BLOCKS)
 
 
 def load_skill_profiles() -> dict[str, str]:
@@ -109,6 +151,8 @@ def find_available_profiles() -> set[str]:
     if not PROFILE_BLOCKS_ROOT.exists():
         return profiles
     for path in PROFILE_BLOCKS_ROOT.glob("*.md"):
+        if path.stem == PROFILE_BASE_NAME:
+            continue
         profiles.add(path.stem)
     return profiles
 
@@ -149,6 +193,7 @@ def validate_skill_profile_map(
 
 def load_profile_blocks(
     profile_name: str,
+    profile_base_blocks: dict[str, str],
     profile_cache: dict[str, dict[str, str]],
 ) -> dict[str, str]:
     cached = profile_cache.get(profile_name)
@@ -160,7 +205,29 @@ def load_profile_blocks(
         raise ValueError(f"Missing profile file: {profile_path}")
 
     text = profile_path.read_text(encoding="utf-8")
-    blocks = extract_tag_blocks(text, PROFILE_TAGS, profile_path)
+    blocks: dict[str, str] = {}
+    has_profile_specific_content = False
+    for tag in PROFILE_TAGS:
+        explicit_block = extract_optional_tag_block(text, tag)
+        if explicit_block is not None:
+            blocks[tag] = explicit_block
+            has_profile_specific_content = True
+            continue
+
+        delta_tag = f"{tag}{PROFILE_DELTA_SUFFIX}"
+        delta_body = extract_optional_tag_body(text, delta_tag)
+        if delta_body is not None:
+            blocks[tag] = merge_delta_block(profile_base_blocks[tag], tag, delta_body)
+            has_profile_specific_content = True
+            continue
+
+        blocks[tag] = profile_base_blocks[tag]
+
+    if not has_profile_specific_content:
+        raise ValueError(
+            f"Profile must define at least one explicit or delta block: {profile_path}"
+        )
+
     profile_cache[profile_name] = blocks
     return blocks
 
@@ -169,10 +236,11 @@ def blocks_for_skill(
     skill_name: str,
     global_blocks: dict[str, str],
     skill_profiles: dict[str, str],
+    profile_base_blocks: dict[str, str],
     profile_cache: dict[str, dict[str, str]],
 ) -> dict[str, str]:
     profile_name = skill_profiles[skill_name]
-    profile_blocks = load_profile_blocks(profile_name, profile_cache)
+    profile_blocks = load_profile_blocks(profile_name, profile_base_blocks, profile_cache)
 
     combined = dict(global_blocks)
     combined.update(profile_blocks)
@@ -395,6 +463,7 @@ def main() -> int:
 
     try:
         global_blocks = load_global_blocks()
+        profile_base_blocks = load_profile_base_blocks()
         skill_dirs = find_skill_dirs()
         skill_profiles = load_skill_profiles()
         available_profiles = find_available_profiles()
@@ -413,6 +482,7 @@ def main() -> int:
                     skill_dir.name,
                     global_blocks,
                     skill_profiles,
+                    profile_base_blocks,
                     profile_cache,
                 )
                 check_error = check_skill(skill_dir, blocks)
@@ -436,6 +506,7 @@ def main() -> int:
                 skill_dir.name,
                 global_blocks,
                 skill_profiles,
+                profile_base_blocks,
                 profile_cache,
             )
             changed, source_created = sync_skill(skill_dir, blocks)

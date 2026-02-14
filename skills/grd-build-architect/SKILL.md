@@ -49,8 +49,10 @@ Each question should offer concrete options plus an open-ended response path.
 
 <intent_lock>
 - Before action, restate the user intent in up to 3 sentences.
-- If ambiguity could change the recommendation or comparison outcome, run a short questioning loop using <questioning_loop>.
-- For MED/HIGH actions, pause and confirm direction before proceeding.
+- Tag conventions: `<questioning_loop>` defines the ambiguity-resolution loop (prefer 1 focused question per turn, cap 2 if tightly coupled, stop once next action is clear); `<source_of_truth>` is the canonical file/path contract declared by each skill.
+- If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.
+- For MED/HIGH actions, require confirmation only when you are about to execute them (not while proposing plans).
+- If ambiguity could change a recommendation or comparison outcome, resolve it before final guidance.
 </intent_lock>
 
 <questioning_loop>
@@ -83,8 +85,6 @@ Do not force users into provided options; options are scaffolding, not constrain
 </precision_contract>
 
 <anti_enterprise>
-## Anti-Enterprise
-
 NEVER include phases for:
 - Team coordination, stakeholder management
 - Sprint ceremonies, retrospectives
@@ -111,12 +111,15 @@ Always structure the response as:
    - If user DID ask to write files: write or update artifact files named in <source_of_truth>
 4) Verification steps (how to check it worked)
 5) Risks and failure modes (brief; include data leakage and confounds when relevant)
+
+If the profile adds extra numbered items, keep their order after item 5.
+If the skill defines additional required sections (for example, evidence taxonomy or artifact tables), include them after the last numbered item in this profile.
 6) Tradeoff pass (required for recommendation/comparison responses)
    - include options considered
    - include advantage/disadvantage for each
    - include explicit decision criteria and final choice rationale
 
-If the skill defines additional required sections (for example, evidence taxonomy or artifact tables), include them after item 5.
+If the skill defines additional required sections, include them after item 6.
 </output_format>
 
 <action_policy>
@@ -128,11 +131,13 @@ Risk tiers:
 - MED: modify code or configs, run tests or training scripts, change evaluation protocol.
 - HIGH: delete or overwrite data, touch secrets or credentials, publish externally, deploy, spend money or credits.
 
+Execution confirmation rule:
+- Ask for explicit approval only when executing MED/HIGH actions; planning and proposal alone do not require an execution pause.
+
 Contract:
-1) Ask for user thoughts before starting any MED or HIGH complexity task and confirm the preferred direction.
-2) List Proposed Actions (files, commands, external calls).
-3) Label each action LOW, MED, or HIGH plus rollback plan.
-4) Require explicit user approval for MED and HIGH actions.
+1) List Proposed Actions (files, commands, external calls).
+2) Label each action LOW, MED, or HIGH plus rollback plan.
+3) Require explicit user approval before executing MED/HIGH actions.
 </action_policy>
 
 <execution_contract>

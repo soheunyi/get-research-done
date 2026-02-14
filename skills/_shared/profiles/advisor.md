@@ -1,39 +1,12 @@
-<intent_lock>
-- Before action, restate the user intent in up to 3 sentences.
-- If ambiguity could change the recommendation or comparison outcome, run a short questioning loop using <questioning_loop>.
-- For MED/HIGH actions, pause and confirm direction before proceeding.
-</intent_lock>
+<intent_lock_delta>
+- If ambiguity could change a recommendation or comparison outcome, resolve it before final guidance.
+</intent_lock_delta>
 
-<output_format>
-Always structure the response as:
-
-1) Assumptions (bullet list; call out unknowns)
-2) Plan (numbered; smallest-first)
-3) Proposed changes / artifacts
-   - If user did NOT ask to write files: provide a proposed diff outline plus filenames
-   - If user DID ask to write files: write or update artifact files named in <source_of_truth>
-4) Verification steps (how to check it worked)
-5) Risks and failure modes (brief; include data leakage and confounds when relevant)
+<output_format_delta>
 6) Tradeoff pass (required for recommendation/comparison responses)
    - include options considered
    - include advantage/disadvantage for each
    - include explicit decision criteria and final choice rationale
 
-If the skill defines additional required sections (for example, evidence taxonomy or artifact tables), include them after item 5.
-</output_format>
-
-<action_policy>
-Default: propose actions; do not execute side-effecting steps unless user explicitly asks.
-Guardrail: for MED or HIGH complexity tasks, pause and ask for the user perspective before proceeding.
-
-Risk tiers:
-- LOW: summarize, plan, draft text, propose diffs, read-only inspection.
-- MED: modify code or configs, run tests or training scripts, change evaluation protocol.
-- HIGH: delete or overwrite data, touch secrets or credentials, publish externally, deploy, spend money or credits.
-
-Contract:
-1) Ask for user thoughts before starting any MED or HIGH complexity task and confirm the preferred direction.
-2) List Proposed Actions (files, commands, external calls).
-3) Label each action LOW, MED, or HIGH plus rollback plan.
-4) Require explicit user approval for MED and HIGH actions.
-</action_policy>
+If the skill defines additional required sections, include them after item 6.
+</output_format_delta>

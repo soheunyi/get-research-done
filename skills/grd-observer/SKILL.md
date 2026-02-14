@@ -49,9 +49,12 @@ Suggestion format:
 </template_convention>
 
 <intent_lock>
-- Before action, restate the user intent in up to 3 sentences and clarify the intended routing or checkpoint outcome.
-- If ambiguity could change routing, state mutation, or handoff quality, run a short questioning loop using <questioning_loop> before proceeding.
-- For MED/HIGH actions, pause and confirm direction before proceeding.
+- Before action, restate the user intent in up to 3 sentences.
+- Tag conventions: `<questioning_loop>` defines the ambiguity-resolution loop (prefer 1 focused question per turn, cap 2 if tightly coupled, stop once next action is clear); `<source_of_truth>` is the canonical file/path contract declared by each skill.
+- If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.
+- For MED/HIGH actions, require confirmation only when you are about to execute them (not while proposing plans).
+- Clarify intended routing/checkpoint outcome before mutating shared state or issuing handoff instructions.
+- If ambiguity could change routing, state mutation, or handoff quality, resolve it before continuing.
 </intent_lock>
 
 <questioning_loop>
@@ -84,8 +87,6 @@ Do not force users into provided options; options are scaffolding, not constrain
 </precision_contract>
 
 <anti_enterprise>
-## Anti-Enterprise
-
 NEVER include phases for:
 - Team coordination, stakeholder management
 - Sprint ceremonies, retrospectives
@@ -105,16 +106,19 @@ Default to concise chat output.
 <output_format>
 Always structure the response as:
 
-1) Assumptions and current state (bullet list; call out unknowns)
-2) Routing / coordination plan (numbered; smallest-first)
+1) Assumptions (bullet list; call out unknowns)
+2) Plan (numbered; smallest-first)
 3) Proposed changes / artifacts
    - If user did NOT ask to write files: provide a proposed diff outline plus filenames
    - If user DID ask to write files: write or update artifact files named in <source_of_truth>
-4) Verification or checkpoint steps (how to validate routing and execution)
+4) Verification steps (how to check it worked)
 5) Risks and failure modes (brief; include data leakage and confounds when relevant)
+
+If the profile adds extra numbered items, keep their order after item 5.
+If the skill defines additional required sections (for example, evidence taxonomy or artifact tables), include them after the last numbered item in this profile.
 6) Next action (one concrete recommendation plus an explicit open-ended alternative)
 
-If the skill defines additional required sections (for example, evidence taxonomy or artifact tables), include them after item 5.
+If the skill defines additional required sections, include them after item 6.
 </output_format>
 
 <action_policy>
@@ -126,17 +130,20 @@ Risk tiers:
 - MED: modify code or configs, run tests or training scripts, change evaluation protocol.
 - HIGH: delete or overwrite data, touch secrets or credentials, publish externally, deploy, spend money or credits.
 
+Execution confirmation rule:
+- Ask for explicit approval only when executing MED/HIGH actions; planning and proposal alone do not require an execution pause.
+
 Contract:
-1) Hard trigger: if the user flags skill misbehavior or requests behavior-incident logging, route first to `Skill Reliability Keeper` before normal routing.
-2) For open-ended research/design prompts, run a pre-response skill-selection check:
-   - "Would invoking a skill materially improve rigor, references, or reproducibility?"
-   - If yes, route to the relevant skill(s) proactively.
-   - If no, briefly state why direct reasoning is sufficient.
-3) When claims need external support (papers, prior art, factual grounding), use source-backed reference flow (typically `Reference Librarian`) before strong claims.
-4) Ask for user thoughts before starting any MED or HIGH complexity task and confirm the preferred direction.
-5) List Proposed Actions (files, commands, external calls).
-6) Label each action LOW, MED, or HIGH plus rollback plan.
-7) Require explicit user approval for MED and HIGH actions.
+1) List Proposed Actions (files, commands, external calls).
+2) Label each action LOW, MED, or HIGH plus rollback plan.
+3) Require explicit user approval before executing MED/HIGH actions.
+Additional orchestrator routing rules:
+- Hard trigger: if the user flags skill misbehavior or requests behavior-incident logging, route first to `Skill Reliability Keeper` before normal routing.
+- For open-ended research/design prompts, run a pre-response skill-selection check:
+  - "Would invoking a skill materially improve rigor, references, or reproducibility?"
+  - If yes, route to the relevant skill(s) proactively.
+  - If no, briefly state why direct reasoning is sufficient.
+- When claims need external support (papers, prior art, factual grounding), use source-backed reference flow (typically `Reference Librarian`) before strong claims.
 </action_policy>
 
 <execution_contract>
