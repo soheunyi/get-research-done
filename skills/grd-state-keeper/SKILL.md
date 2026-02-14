@@ -242,7 +242,14 @@ Contract:
 2) Label each action LOW, MED, or HIGH plus rollback plan.
 3) Require explicit user approval before executing MED/HIGH actions.
 Additional orchestrator routing rules:
+- First-pass reliability gate:
+  - Before normal orchestration, scan the latest user message for reliability-incident intent (for example: "should have called X skill", "log this behavior", "skill behavior issue", "wrong skill flow").
+  - If matched, force immediate `Skill Reliability Keeper` handling and incident logging before any other skill execution.
 - Hard trigger: if the user flags skill misbehavior or requests behavior-incident logging, route first to `Skill Reliability Keeper` before normal routing.
+- Deterministic multi-skill sequencing:
+  - When two skills apply in one turn, execute both in one pass using explicit order.
+  - If a hard-trigger incident skill applies, run it first.
+  - Then run the substantive domain skill (for example: `Reference Librarian`, `Build Architect`, `Research Cycle`) with incident context carried forward.
 - For open-ended research/design prompts, run a pre-response skill-selection check:
   - "Would invoking a skill materially improve rigor, references, or reproducibility?"
   - If yes, route to the relevant skill(s) proactively.
@@ -277,25 +284,28 @@ Route by stage intent:
 
 <execution_contract>
 1. If the latest user message flags post-skill misbehavior, route to `Skill Reliability Keeper` first and defer normal state-keeper flow until incident logging is complete.
-2. Resolve mode using `<mode_policy>` (`checkpoint` default).
-3. Load `.grd/STATE.md`, `.grd/ROADMAP.md`, and available run artifacts.
-4. `mode=checkpoint`:
+2. If both an incident skill and a substantive domain skill apply in one turn, execute both with deterministic order:
+   - run `Skill Reliability Keeper` first;
+   - then run the substantive domain skill using the incident findings as context.
+3. Resolve mode using `<mode_policy>` (`checkpoint` default).
+4. Load `.grd/STATE.md`, `.grd/ROADMAP.md`, and available run artifacts.
+5. `mode=checkpoint`:
    - infer minimal updates from recent commits and run artifacts;
    - ask at most one clarifying question if needed;
    - review `.grd/SKILL_FEEDBACK_LOG.md` when present and extract top recurring issues;
    - enforce `<artifact_placement_policy>` for any newly proposed artifact write paths;
    - update only changed fields in state/roadmap (minimal diff);
    - recommend the next skill using `<routing_table>`.
-5. `mode=kickoff`:
+6. `mode=kickoff`:
    - if cold-start, run `<bootstrap_rule>`;
    - run guided questioning loop to collect objective, scope, environment, success criteria;
    - initialize or update `STATE.md` and `ROADMAP.md`.
-6. `mode=colleague`:
+7. `mode=colleague`:
    - run conversational direction-setting loop around the current bottleneck;
    - use thesis -> antithesis -> synthesis framing to converge on one next action;
    - continue until user signals stop/satisfied or requests handoff;
    - persist decisions only with explicit user confirmation.
-7. For active run context, ensure `.grd/research/runs/{run_id}/0_INDEX.md` exists and latest-run alias is refreshed.
+8. For active run context, ensure `.grd/research/runs/{run_id}/0_INDEX.md` exists and latest-run alias is refreshed.
    - prefer helper script for run index + latest-run alias:
      ```bash
      python scripts/bootstrap_state.py --repo-root <repo-root> --run-id {run_id}
@@ -305,8 +315,8 @@ Route by stage intent:
      mkdir -p .grd/research/runs
      ln -sfn "runs/{run_id}" .grd/research/latest
      ```
-8. Append a compact entry to `.grd/research/RESEARCH_NOTES.md` per `<activity_capture_policy>`.
-9. End with one explicit handoff prompt: proceed now, adjust plan, or ask deeper questions.
+9. Append a compact entry to `.grd/research/RESEARCH_NOTES.md` per `<activity_capture_policy>`.
+10. End with one explicit handoff prompt: proceed now, adjust plan, or ask deeper questions.
 </execution_contract>
 
 <quality_bar>

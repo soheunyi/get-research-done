@@ -9,3 +9,5 @@ agy/
 .research/
 .grd/
 src/get_research_done/__pycache__/
+
+__pycache__
