@@ -59,6 +59,11 @@ Default behavior:
 - `kickoff`: append one compact kickoff entry after initialization.
 - `colleague`: append only with explicit user confirmation.
 
+Timestamp guard for dated note headers:
+- When writing a time-specific header in `.grd/research/RESEARCH_NOTES.md`, fetch exact local system time immediately before write.
+- If exact time is unnecessary or cannot be verified, use explicit date-only format (`YYYY-MM-DD`).
+- Never use inferred/approximate session-flow timestamps for note headers.
+
 Entry minimum fields:
 - Context
 - Observation
@@ -196,7 +201,8 @@ For unmatched or ambiguous intents outside this hot-path table, consult:
      ln -sfn "runs/{run_id}" .grd/research/latest
      ```
 9. Append a compact entry to `.grd/research/RESEARCH_NOTES.md` per `<activity_capture_policy>`.
-10. End with one explicit handoff prompt: proceed now, adjust plan, or ask deeper questions.
+10. If note header includes time, verify timestamp source was local system time fetched immediately before write; otherwise use date-only header.
+11. End with one explicit handoff prompt: proceed now, adjust plan, or ask deeper questions.
 </execution_contract>
 
 <quality_bar>

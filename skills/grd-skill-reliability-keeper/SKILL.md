@@ -38,6 +38,13 @@ For each case, capture:
 - Desired behavior or improvement request
 - Minimal fix recommendation
 - Follow-up signal to improve the target skill prompt/contract
+
+Incident-class checks to run explicitly:
+- Classify the incident type (for example: routing/sequencing, suggestion quality, artifact integrity, metadata/timestamp, safety gating, or contract mismatch).
+- For each incident class, run a dual verification:
+  - Contract check: does the affected skill contract include the expected rule/guardrail?
+  - Behavior check: does observed output/artifact evidence show the rule was actually followed?
+- Record both checks with pass/fail status, confidence, and missing-evidence notes.
 </verification_policy>
 
 <bundled_resources>
@@ -213,5 +220,9 @@ Additional orchestrator routing rules:
    - Priority (`high|medium|low`)
    - Verification follow-up status
 9. Confirm `.grd/SKILL_FEEDBACK_LOG.md` is non-empty after incident handling; if write fails or file is empty, surface blocker and retry before continuing.
-10. Write `.grd/SKILL_VERIFICATION.md` when artifact output is requested.
+10. Classify incident type and run dual verification for each applicable class:
+   - Contract check (rule exists in target skill contract).
+   - Behavior check (rule is reflected in actual output/artifact evidence).
+11. Record pass/fail outcomes and confidence for both checks; if evidence is missing, mark unresolved and add a concrete follow-up check.
+12. Write `.grd/SKILL_VERIFICATION.md` when artifact output is requested.
 </execution_contract>

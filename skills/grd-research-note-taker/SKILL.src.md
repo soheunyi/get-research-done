@@ -92,10 +92,14 @@ Template source of truth:
 1. Confirm note intent and context (`topic_slug` or `run_id`).
 2. Validate minimum inputs from `<input_contract>`; ask one focused question if missing.
 3. Normalize raw inputs into `<output_contract>` sections.
-4. Write notes to the path from `<artifact_placement_policy>`.
-5. Optionally append compact digest to `.grd/research/RESEARCH_NOTES.md`.
-6. If user requests final judgment/classification, hand off to `Research Cycle`/`State Keeper` instead of deciding here.
-7. End with one smallest next action and confidence on note completeness.
+4. Timestamp guard for dated headers:
+   - If writing a time-specific note header, fetch exact local system time immediately before write and use it verbatim.
+   - If exact time is unnecessary or cannot be verified, use explicit date-only format (`YYYY-MM-DD`).
+   - Never infer/approximate time labels from conversational flow.
+5. Write notes to the path from `<artifact_placement_policy>`.
+6. Optionally append compact digest to `.grd/research/RESEARCH_NOTES.md`; when digest includes time, follow the same timestamp guard.
+7. If user requests final judgment/classification, hand off to `Research Cycle`/`State Keeper` instead of deciding here.
+8. End with one smallest next action and confidence on note completeness.
 </execution_contract>
 
 <quality_bar>

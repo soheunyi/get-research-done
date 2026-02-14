@@ -41,6 +41,12 @@ If pseudocode is missing or ambiguous, pause and request a concrete step-by-step
 5. Add or update focused tests for correctness, boundary cases, and regression risks.
 6. Report computational complexity and bottlenecks; propose optimization only after correctness is verified.
 7. Document assumptions, approximations, and known failure modes.
-8. Recommend a follow-up semantic validation pass with `Algo Verifier` and include the exact handoff context (pseudocode/spec path + implementation scope).
-9. Produce `.grd/research/ALGO_IMPLEMENTATION.md` when artifact output is requested.
+8. Apply completion-time verifier heuristic:
+   - If changes touch algorithm equations/transforms/distributions/parameterization, pseudocode-spec mapping, or other correctness-sensitive math paths (not purely formatting/refactor), include a one-line proactive suggestion to run `Algo Verifier` next.
+9. When heuristic triggers, include exact handoff context:
+   - pseudocode/spec reference path,
+   - modified files,
+   - expected semantic checks.
+10. For purely non-semantic changes, no forced verifier suggestion is required.
+11. Produce `.grd/research/ALGO_IMPLEMENTATION.md` when artifact output is requested.
 </execution_contract>
