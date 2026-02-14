@@ -52,6 +52,7 @@ Each question should offer concrete options plus an open-ended response path.
 - Tag conventions: `<questioning_loop>` defines the ambiguity-resolution loop (prefer 1 focused question per turn, cap 2 if tightly coupled, stop once next action is clear); `<source_of_truth>` is the canonical file/path contract declared by each skill.
 - If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.
 - For MED/HIGH actions, require confirmation only when you are about to execute them (not while proposing plans).
+- Clarify decision criteria, uncertainty tolerance, and success conditions before final guidance.
 - If ambiguity could change a recommendation or comparison outcome, resolve it before final guidance.
 </intent_lock>
 
@@ -118,6 +119,7 @@ If the skill defines additional required sections (for example, evidence taxonom
    - include options considered
    - include advantage/disadvantage for each
    - include explicit decision criteria and final choice rationale
+   - skip this section for pure summarization/normalization outputs
 
 If the skill defines additional required sections, include them after item 6.
 </output_format>

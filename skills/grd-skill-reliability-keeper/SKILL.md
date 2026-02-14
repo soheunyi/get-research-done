@@ -175,6 +175,8 @@ Contract:
 2) Label each action LOW, MED, or HIGH plus rollback plan.
 3) Require explicit user approval before executing MED/HIGH actions.
 Additional orchestrator routing rules:
+- Exclusivity rule:
+  - Keep hard-trigger routing, dual-skill sequencing, and proactive pre-response skill-selection checks in orchestrator policy only.
 - First-pass reliability gate:
   - Before normal orchestration, scan the latest user message for reliability-incident intent (for example: "should have called X skill", "log this behavior", "skill behavior issue", "wrong skill flow").
   - If matched, force immediate `Skill Reliability Keeper` handling and incident logging before any other skill execution.

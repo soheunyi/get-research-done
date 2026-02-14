@@ -50,7 +50,8 @@ If pseudocode is missing or ambiguous, pause and request a concrete step-by-step
 - Tag conventions: `<questioning_loop>` defines the ambiguity-resolution loop (prefer 1 focused question per turn, cap 2 if tightly coupled, stop once next action is clear); `<source_of_truth>` is the canonical file/path contract declared by each skill.
 - If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.
 - For MED/HIGH actions, require confirmation only when you are about to execute them (not while proposing plans).
-- Confirm implementation inputs, constraints, and expected outputs; if ambiguity could change behavior, resolve it before coding or tests.
+- Confirm implementation inputs, constraints, expected outputs, and acceptance checks.
+- Require explicit artifact target/path before mutating files; if ambiguity could change behavior, resolve it before coding or tests.
 </intent_lock>
 
 <questioning_loop>
@@ -113,6 +114,12 @@ Always structure the response as:
 If the profile adds extra numbered items, keep their order after item 5.
 If the skill defines additional required sections (for example, evidence taxonomy or artifact tables), include them after the last numbered item in this profile.
 Keep language execution-centric: concrete file paths, exact commands, and explicit done criteria.
+6) Execution record
+   - exact files/paths touched
+   - command-level verification performed (or planned)
+   - rollback note for the smallest reversible unit
+
+If the skill defines additional required sections, include them after item 6.
 </output_format>
 
 <action_policy>
@@ -133,6 +140,11 @@ Contract:
 3) Require explicit user approval before executing MED/HIGH actions.
 Execution emphasis:
 - Before running mutating commands, restate the immediate goal and the minimal rollback path.
+- Pre-mutation checklist:
+  - what will change
+  - where it will change
+  - how success will be verified
+  - how to revert minimally
 </action_policy>
 
 <execution_contract>

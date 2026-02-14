@@ -1,0 +1,3 @@
+display_name: "Research Note Taker"
+short_description: "Normalize raw research into structured notes"
+default_prompt: "Capture and normalize research notes with clear evidence, inferences, and next actions."

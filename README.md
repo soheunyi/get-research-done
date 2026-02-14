@@ -157,6 +157,7 @@ make install-core DEST=/path/to/target-repo
 - `grd-ablation-recommender`
 - `grd-ops-and-reproducibility`
 - `grd-reference-librarian`
+- `grd-research-note-taker`
 - `grd-build-architect`
 - `grd-state-keeper`
 - `grd-skill-reliability-keeper`
@@ -174,6 +175,10 @@ Skill generation:
 - Skill-specific source: `skills/*/SKILL.src.md`
 - Generated output: `skills/*/SKILL.md` (via `make sync-skills`)
 - Render model: `{{COMMON_BLOCKS}}` expands to global blocks + profile-base blocks + role-specific deltas/overrides.
+
+Note-taking artifacts:
+- `grd-research-note-taker` defaults to `.grd/research/<topic_or_run>/NOTES.md`
+- Optional digest append target: `.grd/research/RESEARCH_NOTES.md`
 
 `codex/` and `agy/` are generated compatibility views and are intentionally git-ignored.
 

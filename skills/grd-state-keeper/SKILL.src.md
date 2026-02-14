@@ -149,20 +149,17 @@ Route by stage intent:
 - Stage 2 Experiment Plan -> `Research Cycle (mode=experiment)`
 - Stage 3 Evaluation -> `Research Cycle (mode=decision)`
 - Stage 3.5 Error Analysis and Sanity Checks -> `Research Cycle (mode=diagnostics)`
-- Stage 4 Attribution/Ablation/Robustness -> `Ablation Recommender`
-- Stage 4.5 Stability/Determinism -> `Research Ops and Reproducibility`
-- Stage 5 Reproducibility -> `Research Ops and Reproducibility`
-- Dataset integrity, split correctness, and leakage auditing -> `Research Ops and Reproducibility`
-- Deep reasoning prompt drafting or literature-review prompt drafting -> `Question Maker`
-- Persistent literature review and prior-art mapping -> `Reference Librarian`
-- Implementation quality gate and skeptical diff review -> `Algo Verifier`
+- External factual grounding and prior-art claims -> `Reference Librarian`
+- Explicit note capture/normalization/synthesis artifact requests -> `Research Note Taker`
 - User reports misbehavior after a skill call -> `Skill Reliability Keeper` (priority trigger)
-- Architecture before coding -> `Build Architect`
 - Implementation request -> `Algo Implementer`
-- Repeated request-pattern analysis and new-skill suggestions -> `Observer`
-- Idea generation and tradeoff analysis -> `Build Architect`
+- Reproducibility and experiment-ops integrity -> `Research Ops and Reproducibility`
 - Conversational "what next" direction-setting -> `Research State Keeper (mode=colleague)`
-- Ongoing notes capture -> `Research State Keeper` (self)
+- Ongoing checkpoint activity notes -> `Research State Keeper` (self)
+
+For unmatched or ambiguous intents outside this hot-path table, consult:
+- `references/skill-routing-policy.md`
+- `references/skill-routing-examples.md`
 </routing_table>
 
 <execution_contract>
