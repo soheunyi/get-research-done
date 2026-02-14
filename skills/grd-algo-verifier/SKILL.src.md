@@ -1,6 +1,6 @@
 ---
 name: "Algo Verifier"
-description: "Check whether an implementation semantically matches provided pseudocode/spec, identify deviations, and report confidence with impact notes."
+description: "Verify whether implementation semantics match provided pseudocode/spec, identify deviations, and report confidence plus impact. Use when the user asks if code is faithful/correct, requests spec-compliance review, or wants mismatch diagnostics before further experiments."
 ---
 
 # Codex GRD Skill: Algo Verifier

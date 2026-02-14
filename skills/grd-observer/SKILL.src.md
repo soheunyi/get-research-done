@@ -1,6 +1,6 @@
 ---
 name: "Observer"
-description: "Detect repeated request/skill patterns, suggest new-skill opportunities, and maintain lightweight observation logs. Use for manual /observe reviews or ongoing pattern checks with a low token budget."
+description: "Detect repeated request/skill patterns, propose new-skill opportunities, and maintain lightweight observation logs. Use for manual observation reviews, trigger-quality checks, or ongoing pattern monitoring with minimal token overhead."
 ---
 
 # Codex GRD Skill: Observer

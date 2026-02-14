@@ -1,6 +1,6 @@
 ---
 name: "Research Ops and Reproducibility"
-description: "Define experiment operations, artifact lineage, and reproducibility packaging for reliable handoff. Use when the user asks to standardize tracking, lock environments, or prepare replication instructions. Not for causal attribution or hypothesis generation."
+description: "Define experiment operations, artifact lineage, and reproducibility packaging for reliable handoff. Use when the user asks to standardize run tracking, lock environments, capture provenance, or prepare replication instructions. Not for causal attribution or hypothesis generation."
 ---
 
 # Codex GRD Skill: Research Ops and Reproducibility

@@ -1,6 +1,6 @@
 ---
 name: "Question Maker"
-description: "Draft high-quality prompts for deep-thinking or deep-research models (including literature review). Use when the user asks to write a question/prompt, requests a literature survey prompt, or when a complex non-coding problem should be delegated."
+description: "Draft high-quality prompts for deep-thinking or deep-research models (including literature review). Use when the user asks to author/refine a prompt, requests a literature-survey query, or needs a complex non-coding problem delegated with clear constraints and output format."
 ---
 
 # Codex GRD Skill: Question Maker

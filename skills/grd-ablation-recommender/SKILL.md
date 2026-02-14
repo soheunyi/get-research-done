@@ -1,6 +1,6 @@
 ---
 name: "Ablation Recommender"
-description: "Design prioritized ablation plans with expected outcomes and run-budget awareness. Use when the user asks what to ablate and in what order."
+description: "Design prioritized ablation plans with expected effects, confidence signals, and run-budget constraints. Use when the user asks what to ablate, which variants to compare, or how to sequence ablation runs under limited compute/time."
 ---
 
 # Codex GRD Skill: Ablation Recommender

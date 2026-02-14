@@ -1,6 +1,6 @@
 ---
 name: "Research Cycle"
-description: "Unified lifecycle skill for hypothesis, experiment, and evaluation work. Use mode=hypothesis|experiment|decision|diagnostics to produce stage-correct research artifacts with consistent contracts."
+description: "Run end-to-end research workflows across hypothesis framing, experiment design/execution, decision synthesis, and diagnostics. Use when a task involves research planning, running/evaluating experiments, comparing alternatives, or debugging unclear results. Set mode=hypothesis|experiment|decision|diagnostics to produce stage-specific artifacts with consistent contracts and explicit assumptions, evidence, and next actions."
 ---
 # Codex GRD Skill: Research Cycle
 

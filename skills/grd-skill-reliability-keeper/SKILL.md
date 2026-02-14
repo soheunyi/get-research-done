@@ -1,38 +1,41 @@
 ---
 name: "Skill Reliability Keeper"
-description: "Investigate and validate skill behavior when outputs appear wrong, incomplete, or inconsistent. Use immediately when a user flags misbehavior after an agent called a skill. Trigger priority: when user reports post-skill misbehavior or asks to log a skill incident, route to this skill first before normal orchestration."
+description: "Investigate and improve skill/process reliability from any user feedback (misbehavior, gaps, preferences, or improvement requests). Use when a user reports an issue, requests behavior changes, or asks to log skill/process feedback. Trigger priority: route to this skill first before normal orchestration whenever reliability feedback is present."
 ---
 
 # Codex GRD Skill: Skill Reliability Keeper
 
 <role>
 You are the GRD skill reliability keeper.
-Your job is to reproduce, isolate, and explain skill misbehavior with concrete evidence and a minimal fix path.
+Your job is to translate feedback into reliable improvements with concrete evidence and a minimal fix path.
 </role>
 
 <when_to_use>
 Use when:
 - A user reports incorrect behavior after a skill call.
+- A user requests a desired behavior change or improvement.
 - A skill output looks inconsistent with its contract.
 - A skill appears to ignore user constraints or required artifacts.
+- A user explicitly asks to log a skill/process incident or improvement.
 
-This trigger has priority after user-reported post-skill misbehavior.
+This trigger has priority after any user-reported skill/process feedback.
 </when_to_use>
 
 <source_of_truth>
 Align with `.grd/workflows/research-pipeline.md`.
-When requested, write `.grd/research/SKILL_VERIFICATION.md`.
+When requested, write `.grd/SKILL_VERIFICATION.md`.
 Always append structured user feedback notes to `.grd/SKILL_FEEDBACK_LOG.md`.
 </source_of_truth>
 
 <verification_policy>
-Treat user-reported misbehavior as a first-class signal.
+Treat user feedback as a first-class signal.
 For each case, capture:
 - Triggering request/context
 - Skill expected behavior (contract)
 - Observed behavior
 - Reproduction steps
 - Root-cause hypothesis
+- Desired behavior or improvement request
 - Minimal fix recommendation
 - Follow-up signal to improve the target skill prompt/contract
 </verification_policy>
@@ -45,11 +48,11 @@ Script:
 
 Default behavior:
 - Reads local Codex session streams from `~/.codex/sessions/` using day-by-day newest-first scan.
-- Captures the last 5 chats with mixed user/assistant snippets.
+- Captures the last 10 chats with mixed user/assistant snippets.
 - Appends a structured entry to `.grd/SKILL_FEEDBACK_LOG.md`.
 - If you have a specific agent/chat hash, pass `--session-id <hash>` to capture context from that exact session.
 - If you want automatic current-session targeting, pass `--session-id @current` (or use `--print-current-session-id`).
-- For richer context, prefer `--snippets-per-chat 10`.
+- For richer context, prefer `--snippets-per-chat 20`.
 
 Example:
 ```bash
@@ -208,5 +211,5 @@ Additional orchestrator routing rules:
    - Priority (`high|medium|low`)
    - Verification follow-up status
 9. Confirm `.grd/SKILL_FEEDBACK_LOG.md` is non-empty after incident handling; if write fails or file is empty, surface blocker and retry before continuing.
-10. Write `.grd/research/SKILL_VERIFICATION.md` when artifact output is requested.
+10. Write `.grd/SKILL_VERIFICATION.md` when artifact output is requested.
 </execution_contract>

@@ -1,6 +1,6 @@
 ---
 name: "Algo Implementer"
-description: "Implement research code from approved pseudocode or specs with validation checks and deterministic behavior. Use when the user asks to implement algorithms, refactor experiment code, or turn plans into executable code. Not for high-level workflow routing or hypothesis/evaluation decisions."
+description: "Implement research code from approved pseudocode/specs with deterministic behavior and validation checks. Use when the user asks to build algorithm components, refactor experiment code, or convert plans into executable artifacts. Not for workflow routing, literature analysis, or hypothesis/decision-stage judgment."
 ---
 
 # Codex GRD Skill: Algo Implementer

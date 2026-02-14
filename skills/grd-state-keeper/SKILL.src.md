@@ -1,6 +1,6 @@
 ---
 name: "Research State Keeper"
-description: "Invoked macro for checkpointing research state and choosing the next move across GRD stages. Use mode=checkpoint (default) for minimal updates to `.grd/STATE.md` and `.grd/ROADMAP.md`, mode=kickoff for cold-start guided setup, and mode=colleague for conversational 'what next' direction-setting. For open-ended research/design prompts, proactively route to specialized skills when they materially improve rigor; for externally grounded claims, route to Reference Librarian; if user flags post-skill misbehavior, route first to Skill Reliability Keeper. Not for deep technical analysis of a single artifact."
+description: "Checkpoint research state and choose the next move across GRD stages. Use mode=checkpoint (default) for minimal updates to `.grd/STATE.md` and `.grd/ROADMAP.md`, mode=kickoff for cold-start setup, and mode=colleague for conversational next-step direction. Proactively route to specialized skills when they improve rigor (including Reference Librarian for external claims and Skill Reliability Keeper for feedback incidents). Not for deep single-artifact technical analysis."
 ---
 
 # Codex GRD Skill: Research State Keeper
