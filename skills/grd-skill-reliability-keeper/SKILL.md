@@ -22,7 +22,7 @@ This trigger has priority after user-reported post-skill misbehavior.
 <source_of_truth>
 Align with `.grd/workflows/research-pipeline.md`.
 When requested, write `.grd/research/SKILL_VERIFICATION.md`.
-Always append structured user feedback notes to `.grd/research/SKILL_FEEDBACK_LOG.md`.
+Always append structured user feedback notes to `.grd/SKILL_FEEDBACK_LOG.md`.
 </source_of_truth>
 
 <verification_policy>
@@ -141,7 +141,7 @@ Contract:
 3. Reproduce the mismatch using the smallest realistic scenario.
 4. Report discrepancy, likely cause, and confidence.
 5. Provide minimal corrective action and verification checks.
-6. Append a structured entry to `.grd/research/SKILL_FEEDBACK_LOG.md` with:
+6. Append a structured entry to `.grd/SKILL_FEEDBACK_LOG.md` with:
    - Date
    - Skill name
    - User feedback summary
