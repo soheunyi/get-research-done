@@ -31,7 +31,7 @@ def _to_iso_utc(ts: int) -> str:
     return dt.datetime.fromtimestamp(ts, tz=dt.timezone.utc).isoformat()
 
 
-def _clean_snippet(text: str, max_len: int = 180) -> str:
+def _clean_snippet(text: str, max_len: int = 400) -> str:
     collapsed = " ".join(text.split())
     if len(collapsed) <= max_len:
         return collapsed
@@ -320,6 +320,7 @@ def _load_recent_from_sessions(
     sessions_dir: Path,
     chat_count: int,
     snippets_per_chat: int,
+    snippet_max_len: int,
     session_id_filter: str | None = None,
 ) -> list[ChatSnapshot]:
     snapshots: list[ChatSnapshot] = []
@@ -338,7 +339,7 @@ def _load_recent_from_sessions(
         session_id = snap.session_id
         if session_id_filter is not None and session_id != session_id_filter:
             continue
-        cleaned = [_clean_snippet(t) for t in snap.snippets]
+        cleaned = [_clean_snippet(t, max_len=snippet_max_len) for t in snap.snippets]
         snippets = _limit_mixed_snippets(
             _dedupe_preserve_order(cleaned),
             snippets_per_chat,
@@ -353,6 +354,7 @@ def _resolve_chat_context(
     sessions_dir_override: Path | None,
     chat_count: int,
     snippets_per_chat: int,
+    snippet_max_len: int,
     session_id: str | None,
 ) -> tuple[list[ChatSnapshot], str]:
     sessions_dir = sessions_dir_override or (codex_home / "sessions")
@@ -362,6 +364,7 @@ def _resolve_chat_context(
             sessions_dir,
             chat_count,
             snippets_per_chat,
+            snippet_max_len,
             session_id_filter=session_id,
         )
         if snapshots:
@@ -394,6 +397,7 @@ def _resolve_current_session_id(
             sessions_dir=sessions_dir,
             chat_count=1,
             snippets_per_chat=1,
+            snippet_max_len=80,
             session_id_filter=None,
         )
         if snapshots:
@@ -469,6 +473,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--chat-count", type=int, default=5)
     parser.add_argument("--snippets-per-chat", type=int, default=2)
     parser.add_argument(
+        "--snippet-max-len",
+        type=int,
+        default=400,
+        help="Maximum characters per captured snippet (minimum 80).",
+    )
+    parser.add_argument(
         "--session-id",
         default=None,
         help=(
@@ -516,6 +526,8 @@ def main() -> int:
             codex_home=codex_home,
         )
 
+    snippet_max_len = max(80, int(args.snippet_max_len))
+
     if args.print_current_session_id:
         current = _resolve_current_session_id(
             codex_home=codex_home,
@@ -549,6 +561,7 @@ def main() -> int:
         sessions_dir_override=sessions_dir,
         chat_count=max(1, args.chat_count),
         snippets_per_chat=max(1, args.snippets_per_chat),
+        snippet_max_len=snippet_max_len,
         session_id=requested_session_id,
     )
 

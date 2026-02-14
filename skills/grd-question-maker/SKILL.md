@@ -224,6 +224,20 @@ Additional requirements by mode:
 If any required field is missing, ask clarification questions before drafting.
 </context_sufficiency_gate>
 
+<portability_guard>
+Before finalizing any prompt intended for another model, enforce:
+1. Expand acronyms at first mention.
+2. Replace internal shorthand labels with explicit method/task descriptions.
+3. Include one standalone setup sentence that states:
+   - task objective,
+   - data regime/observation setting (for example: snapshot-only vs sequence),
+   - selection target,
+   - evaluation metric definitions.
+4. Run a transfer check by asking this self-question:
+   - "Is this prompt self-contained and understandable by another model with zero session context?"
+5. If the answer is not an unambiguous "yes", revise the prompt before final output.
+</portability_guard>
+
 <execution_contract>
 1. Confirm trigger path (explicit request vs implicit complexity + user confirmation).
 2. Choose mode using `<mode_policy>` (`deep_reasoning` or `lit_review`).
@@ -249,8 +263,9 @@ If any required field is missing, ask clarification questions before drafting.
 13. Include final section:
    - `## User Additional Question (Optional)`
    - `[User can add one extra question here.]`
-14. Return output using `<output_override>` (prompt first, optional short notes footer).
-15. When requested, save output at `.grd/research/questions/{question_id}-QUESTION.md`.
+14. Run `<portability_guard>` and fix any failing portability items before final output.
+15. Return output using `<output_override>` (prompt first, optional short notes footer).
+16. When requested, save output at `.grd/research/questions/{question_id}-QUESTION.md`.
 </execution_contract>
 
 <question_output_spec>

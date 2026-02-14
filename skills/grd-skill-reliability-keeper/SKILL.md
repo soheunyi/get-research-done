@@ -40,11 +40,14 @@ For each case, capture:
 - Follow-up signal to improve the target skill prompt/contract
 
 Incident-class checks to run explicitly:
-- Classify the incident type (for example: routing/sequencing, suggestion quality, artifact integrity, metadata/timestamp, safety gating, or contract mismatch).
+- Classify the incident type (for example: routing/sequencing, suggestion quality, context portability, artifact integrity, metadata/timestamp, safety gating, or contract mismatch).
 - For each incident class, run a dual verification:
   - Contract check: does the affected skill contract include the expected rule/guardrail?
   - Behavior check: does observed output/artifact evidence show the rule was actually followed?
 - Record both checks with pass/fail status, confidence, and missing-evidence notes.
+- For context portability incidents, explicitly verify:
+  - Contract includes portability guardrails for context-free transfer.
+  - Behavior evidence includes expanded terms plus a standalone setup sentence.
 </verification_policy>
 
 <bundled_resources>
@@ -60,6 +63,7 @@ Default behavior:
 - If you have a specific agent/chat hash, pass `--session-id <hash>` to capture context from that exact session.
 - If you want automatic current-session targeting, pass `--session-id @current` (or use `--print-current-session-id`).
 - For richer context, prefer `--snippets-per-chat 20`.
+- For longer per-message context, raise `--snippet-max-len` (for example: `400` or `900`).
 
 Example:
 ```bash
@@ -69,6 +73,7 @@ python scripts/log_incident_with_context.py \
   --priority high \
   --session-id @current \
   --snippets-per-chat 10 \
+  --snippet-max-len 400 \
   --user-feedback-summary "Skill should have been called first." \
   --expected "Route immediately to reliability flow before normal orchestration." \
   --observed "Normal orchestration continued before incident handling." \
