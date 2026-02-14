@@ -3,6 +3,7 @@
 Use this file as a running log for experiment decisions and anomalies.
 
 ## YYYY-MM-DD HH:MM
+- Mode: [checkpoint|kickoff|colleague]
 - Context: [phase/experiment]
 - Observation: [result + metric]
 - Evidence: [artifact path or command]

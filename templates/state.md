@@ -10,6 +10,11 @@ Use this file as the durable memory for what is decided versus still open.
 - Active thread: [short thread name]
 - Next action: [single concrete action]
 
+## Recent Activity (Latest 3)
+- [YYYY-MM-DD HH:MM] [what changed] -> [next action]
+- [YYYY-MM-DD HH:MM] [what changed] -> [next action]
+- [YYYY-MM-DD HH:MM] [what changed] -> [next action]
+
 ## Decisions (Locked)
 - [decision + why]
 
