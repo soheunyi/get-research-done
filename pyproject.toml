@@ -27,8 +27,8 @@ Homepage = "https://github.com/soheunyi/get-research-done"
 
 [project.scripts]
 grd = "get_research_done.grd_cli:main"
-grd-install = "get_research_done.cli:main"
-grd-uninstall = "get_research_done.uninstall_cli:main"
+grd-install = "get_research_done.install_skills:main"
+grd-uninstall = "get_research_done.uninstall_skills:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/get_research_done"]
