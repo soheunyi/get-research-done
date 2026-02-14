@@ -27,16 +27,15 @@ Follow `.grd/workflows/research-pipeline.md` Stage 1.
 Use artifact naming/frontmatter rules in `.grd/templates/research-artifact-format.md`.
 </source_of_truth>
 
-<grd_context>
-Use the injected `.grd/` context block before drafting any hypothesis.
+<artifact_placement_policy>
+Canonical hypothesis artifact path:
+- `.grd/research/{hypothesis_id}/01_HYPOTHESIS.md`
 
-Primary runtime sources for this skill are:
-- `.grd/state.md` (active hypothesis, stage, and current thread)
-- `.grd/journal.md` (recent exploration findings)
-- `.grd/experiments.md` (trial outcomes and baselines)
-
-Use these as the base hypothesis starting point and only generalize when context is explicit.
-</grd_context>
+Rules:
+- Do not write hypothesis artifacts as flat files directly under `.grd/research/`.
+- When `run_id` is present, keep run continuity by updating `.grd/research/runs/{run_id}/0_INDEX.md` and referencing the canonical hypothesis path.
+- If a flat legacy hypothesis file already exists, migrate it into the canonical per-hypothesis directory.
+</artifact_placement_policy>
 
 <cross_skill_handoff>
 After hypothesis lock, nudge a handoff to `Research State Keeper` to append a compact hypothesis note in `.grd/research/RESEARCH_NOTES.md`.
@@ -69,13 +68,6 @@ If intent remains unclear, pause and ask for pseudocode or a concrete step-by-st
 - Use skill-local `assets/templates/` only for genuinely skill-specific variants or overrides.
 - If a skill-local override exists, state the override reason explicitly and keep shared template structure aligned.
 </template_convention>
-
-<state_awareness_contract>
-- Always load `.grd/state.md` and `.grd/journal.md` (plus `.grd/experiments.md` when available) as primary runtime context.
-- Treat skills as read-mostly against shared state; canonical state mutations route through `Research State Keeper`.
-- If context is missing or corrupt, route to `Research State Keeper` with `mode=kickoff`.
-- Start from recent exploration notes in `.grd/journal.md` and `.grd/experiments.md`, then build the hypothesis from that grounded state.
-</state_awareness_contract>
 
 <intent_lock>
 - Before action, restate the user intent in up to 3 sentences.
@@ -196,27 +188,38 @@ Agent rules:
 5. Define explicit falsifiability checks for the synthesis.
 6. Define stop criteria and validity threats.
 7. Record rejected syntheses briefly when relevant.
-8. Produce `.grd/research/runs/{run_id}/1_HYPOTHESIS.md`; initialize or update `.grd/research/runs/{run_id}/0_INDEX.md`.
-9. Refresh latest-run alias:
+8. Produce `.grd/research/{hypothesis_id}/01_HYPOTHESIS.md` and never place hypothesis artifacts as flat files in `.grd/research/`.
+9. If `run_id` exists, initialize or update `.grd/research/runs/{run_id}/0_INDEX.md` with a reference to the canonical hypothesis path.
+10. Refresh latest-run alias:
    ```bash
    mkdir -p .grd/research/runs
    ln -sfn "runs/{run_id}" .grd/research/latest
    ```
-10. Nudge the user to call `Research State Keeper` to append a linked hypothesis note for later Stage 3 evaluation checks.
+11. Nudge the user to call `Research State Keeper` to append a linked hypothesis note for later Stage 3 evaluation checks.
 </execution_contract>
 
 <hypothesis_output_spec>
-Include these sections in `.grd/research/runs/{run_id}/1_HYPOTHESIS.md`:
+Include these sections in `.grd/research/{hypothesis_id}/01_HYPOTHESIS.md`:
 0. Frontmatter (required):
    - run_id (`YYMMDD_slug`), artifact_type=hypothesis, stage=1, analysis_committed, title, summary, status, created_at, updated_at, owner, tags, depends_on
    - hypothesis_id, primary_metric, decision_rule, refutation_condition
-1. Thesis (current assumption state)
-2. Antithesis (observed or expected contradiction)
-3. Synthesis (minimal structural expansion)
-4. Falsifiability Check
-5. Metric/Baseline/Effect Size/Decision Threshold
-6. Failure-Type Classification
-7. Rejected Syntheses (optional)
-8. Evaluation Handoff Fields (hypothesis_id, prediction, refutation condition, planned decision rule)
-9. Next Concrete Action
+1. Hypothesis Statement
+   - include `what`, `happened`, `why`
+2. Supporting Exploration Evidence
+   - include `source_entry`, `notes`, and `artifacts`
+3. Expected Validation Path
+4. Thesis (current assumption state)
+5. Antithesis (observed or expected contradiction)
+6. Synthesis (minimal structural expansion)
+7. Falsifiability Check
+8. Metric/Baseline/Effect Size/Decision Threshold
+9. Failure-Type Classification
+10. Rejected Syntheses (optional)
+11. Evaluation Handoff Fields (hypothesis_id, prediction, refutation condition, planned decision rule)
+12. Next Concrete Action
+
+Section order requirement:
+- Always keep the first three sections in this exact order:
+  `Hypothesis Statement` -> `Supporting Exploration Evidence` -> `Expected Validation Path`
+- This order must match `.grd/templates/research-artifact-format.md` and `grd promote` output.
 </hypothesis_output_spec>

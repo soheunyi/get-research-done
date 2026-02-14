@@ -23,8 +23,18 @@ Use when the user needs research idea discovery plus decision-quality reasoning 
 
 <source_of_truth>
 Use `.grd/workflows/research-pipeline.md` to align recommendations with stage goals.
-When requested, write `.grd/research/IDEATION_AND_REASONING.md`.
+When requested, write ideation artifacts under `.grd/research/<topic_slug>/`.
 </source_of_truth>
+
+<artifact_placement_policy>
+Default placement for ideation/theory artifacts:
+- `.grd/research/<topic_slug>/<artifact_name>.md`
+
+Rules:
+- Do not default to flat `.grd/research/<artifact>.md` placement.
+- Use flat placement only when the user explicitly asks for it.
+- Derive `<topic_slug>` from user topic intent (or ask one clarifying question if ambiguous).
+</artifact_placement_policy>
 
 <clarification_rule>
 Start with one focused question about scope, constraints, and desired output.
@@ -162,8 +172,8 @@ Rules:
 6. Evaluate tradeoffs for each approach: assumptions, expected impact, risk, effort, and time.
 7. Recommend one approach with explicit rationale and known failure modes.
 8. Propose the next smallest validating action and optional follow-up experiments.
-9. Produce `.grd/research/IDEATION_AND_REASONING.md` when artifact output is requested.
-10. Ask whether to save a research note as `.grd/research/notes/<timestamp_title>.md`.
+9. Produce `.grd/research/<topic_slug>/IDEATION_AND_REASONING.md` when artifact output is requested (unless the user explicitly requests flat placement).
+10. Ask whether to save a research note as `.grd/research/<topic_slug>/<timestamp_title>.md`.
 </execution_contract>
 
 <quality_bar>

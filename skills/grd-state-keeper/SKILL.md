@@ -48,7 +48,7 @@ Primary artifacts:
 
 Always maintain:
 - `.grd/research/RESEARCH_NOTES.md`
-- `.grd/research/SKILL_FEEDBACK_LOG.md` (when present, use as input for improvement prioritization)
+- `.grd/SKILL_FEEDBACK_LOG.md` (when present, use as input for improvement prioritization)
 </source_of_truth>
 
 <activity_capture_policy>
@@ -67,10 +67,20 @@ Entry minimum fields:
 - Next action
 
 Feedback rollup during `checkpoint`:
-- If `.grd/research/SKILL_FEEDBACK_LOG.md` exists, scan recent entries and identify recurring failure patterns.
+- If `.grd/SKILL_FEEDBACK_LOG.md` exists, scan recent entries and identify recurring failure patterns.
 - Surface top 1-3 recurring issues in checkpoint output.
 - Convert recurring issues into concrete roadmap queue items with owner and verification check.
 </activity_capture_policy>
+
+<artifact_placement_policy>
+For ad-hoc research artifacts (for example theory notes, guidance notes, topic memos):
+- Default write path: `.grd/research/<topic_slug>/<artifact_name>.md`
+- Flat `.grd/research/<artifact_name>.md` is allowed only when explicitly requested by the user.
+
+Canonical exceptions that remain fixed:
+- `.grd/research/RESEARCH_NOTES.md`
+- `.grd/research/runs/{run_id}/0_INDEX.md`
+</artifact_placement_policy>
 
 <bundled_resources>
 Use bundled resources for deterministic scaffolding when files are missing or stale.
@@ -264,7 +274,8 @@ Route by stage intent:
 3. `mode=checkpoint`:
    - infer minimal updates from recent commits and run artifacts;
    - ask at most one clarifying question if needed;
-   - review `.grd/research/SKILL_FEEDBACK_LOG.md` when present and extract top recurring issues;
+   - review `.grd/SKILL_FEEDBACK_LOG.md` when present and extract top recurring issues;
+   - enforce `<artifact_placement_policy>` for any newly proposed artifact write paths;
    - update only changed fields in state/roadmap (minimal diff);
    - recommend the next skill using `<routing_table>`.
 4. `mode=kickoff`:

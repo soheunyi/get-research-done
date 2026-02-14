@@ -2,9 +2,15 @@
 
 Use this format for stage artifacts in `.grd/research/`.
 
-## Directory Convention (Run-Centric)
+## Directory Convention (Canonical + Run Support)
 
 Create one directory per linked hypothesis/plan/evaluation set.
+
+Canonical hypothesis artifact path:
+- `.grd/research/{hypothesis_id}/01_HYPOTHESIS.md`
+
+Rule:
+- Do not write hypothesis artifacts as flat files directly under `.grd/research/`.
 
 Pattern:
 - Run directory: `.grd/research/runs/{run_id}/`
@@ -16,11 +22,11 @@ Examples:
 
 Required files in each run directory:
 - `0_INDEX.md`
-- `1_HYPOTHESIS.md`
 - `2_EXPERIMENT_PLAN.md`
 - `3_EVALUATION.md`
 
 Optional files:
+- `1_HYPOTHESIS.md` (compatibility mirror; canonical hypothesis remains `.grd/research/{hypothesis_id}/01_HYPOTHESIS.md`)
 - `2_ANALYSIS_PLAN.md`
 - `2_WANDB_CONFIG.md`
 - `3_5_ERROR_ANALYSIS.md`
@@ -103,6 +109,39 @@ decision_rule: "supports if delta_val_f1 >= 0.02 over baseline with p < 0.05"
 refutation_condition: "reject if delta_val_f1 < 0.005 across 5 seeds"
 ```
 
+### Unified Hypothesis Display Format (Required)
+
+Hypothesis artifacts should render with this stable section order:
+
+1. `# <title>`
+2. `## Hypothesis Statement`
+3. `## Supporting Exploration Evidence`
+4. `## Expected Validation Path`
+
+The frontmatter above remains required; this section order is for human and CLI display consistency.
+
+Minimal body skeleton:
+
+```markdown
+# <title>
+
+## Hypothesis Statement
+- what: <what was attempted>
+- happened: <observed behavior>
+- why: <reasoning for hypothesis>
+
+## Supporting Exploration Evidence
+- source_entry: <id|timestamp|manual>
+- notes: <optional context>
+- artifacts:
+  - <path-or-id>
+
+## Expected Validation Path
+- [ ] Define success metric
+- [ ] Run focused validation experiment
+- [ ] Record pass/fail decision
+```
+
 ### Experiment / Analysis Plan
 - `hypothesis_id`: string id matching hypothesis artifact
 - `plan_id`: string id (recommended: `PLAN-YYMMDD-slug`)
@@ -154,6 +193,7 @@ rerun_command: "python train.py --config runs/260211_adaptive_basis/config.yaml"
 ## Minimal Operational Rule
 
 If you create or update a stage artifact:
-1. write to `.grd/research/runs/{run_id}/{ARTIFACT}.md`
-2. refresh `.grd/research/latest` alias to `runs/{run_id}`
-3. keep frontmatter complete and current
+1. if artifact type is `hypothesis`, write to `.grd/research/{hypothesis_id}/01_HYPOTHESIS.md`
+2. otherwise write to `.grd/research/runs/{run_id}/{ARTIFACT}.md`
+3. refresh `.grd/research/latest` alias to `runs/{run_id}` when run context is active
+4. keep frontmatter complete and current
