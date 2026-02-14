@@ -46,6 +46,49 @@ grd-install /path/to/target-repo --target runtime,codex
 grd-install --list-targets
 ```
 
+Runtime state-aware helper:
+
+```bash
+# Show bounded state digest from .grd/STATE.md + .grd/ROADMAP.md
+grd --repo-root /path/to/target-repo info
+
+# Machine-readable output
+grd --repo-root /path/to/target-repo info --json
+
+# Build state-enriched payload for a specific skill
+grd --repo-root /path/to/target-repo run --skill grd-experiment-planner
+grd --repo-root /path/to/target-repo run --skill grd-experiment-planner --json
+
+# Log exploration quickly
+grd --repo-root /path/to/target-repo log --what "..." --happened "..." --why "..."
+
+# Suggest next actions for a specific mode
+grd --repo-root /path/to/target-repo next --mode explore
+grd --repo-root /path/to/target-repo next --mode evaluate --json
+
+# Let GRD infer the best mode from current state
+grd --repo-root /path/to/target-repo next
+
+# Promote evidence into unified hypothesis format
+grd --repo-root /path/to/target-repo promote \
+  --title "Curriculum schedule hypothesis" \
+  --what "Added warmup + curriculum" \
+  --happened "Validation stabilized" \
+  --why "Reduced early optimization shock" \
+  --source-entry latest \
+  --artifact outputs/metrics.csv
+```
+
+Modes available in `grd next --mode`:
+- `explore`
+- `plan`
+- `implement`
+- `evaluate`
+- `synthesize`
+- `promote`
+
+`grd promote` writes hypothesis artifacts to `.grd/hypotheses/` and uses one unified hypothesis format for both saved markdown and CLI display.
+
 Uninstall from a target repository:
 
 ```bash

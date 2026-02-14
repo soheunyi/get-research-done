@@ -6,3 +6,6 @@ __MACOSX
 .claude/
 codex/
 agy/
+.research/
+.grd/
+src/get_research_done/__pycache__/
