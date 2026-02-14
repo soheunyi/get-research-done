@@ -41,5 +41,6 @@ If pseudocode is missing or ambiguous, pause and request a concrete step-by-step
 5. Add or update focused tests for correctness, boundary cases, and regression risks.
 6. Report computational complexity and bottlenecks; propose optimization only after correctness is verified.
 7. Document assumptions, approximations, and known failure modes.
-8. Produce `.grd/research/ALGO_IMPLEMENTATION.md` when artifact output is requested.
+8. Recommend a follow-up semantic validation pass with `Algo Verifier` and include the exact handoff context (pseudocode/spec path + implementation scope).
+9. Produce `.grd/research/ALGO_IMPLEMENTATION.md` when artifact output is requested.
 </execution_contract>

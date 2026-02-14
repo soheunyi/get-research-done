@@ -44,7 +44,7 @@ Always report:
 
 <intent_lock>
 - Before action, restate the user intent in up to 3 sentences.
-- If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.
+- Confirm implementation inputs, constraints, and expected outputs; if ambiguity could change behavior, run a short questioning loop using <questioning_loop>.
 - For MED/HIGH actions, pause and confirm direction before proceeding.
 </intent_lock>
 

@@ -1,6 +1,6 @@
 ---
 name: "Reference Librarian"
-description: "Search for real papers, validate metadata, and persist references for a research thread. Use when the user needs source-backed literature context and durable citation artifacts."
+description: "Search for real papers, validate metadata, and persist references for a research thread. Use when the user needs source-backed literature context and durable citation artifacts, and proactively when open-ended technical/research discussion would benefit from citations before strong recommendations."
 ---
 
 # Codex GRD Skill: Reference Librarian

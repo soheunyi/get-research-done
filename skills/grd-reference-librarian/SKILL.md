@@ -1,6 +1,6 @@
 ---
 name: "Reference Librarian"
-description: "Search for real papers, validate metadata, and persist references for a research thread. Use when the user needs source-backed literature context and durable citation artifacts."
+description: "Search for real papers, validate metadata, and persist references for a research thread. Use when the user needs source-backed literature context and durable citation artifacts, and proactively when open-ended technical/research discussion would benefit from citations before strong recommendations."
 ---
 
 # Codex GRD Skill: Reference Librarian
@@ -47,7 +47,7 @@ For each retained paper, capture at minimum:
 
 <intent_lock>
 - Before action, restate the user intent in up to 3 sentences.
-- If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.
+- If ambiguity could change the recommendation or comparison outcome, run a short questioning loop using <questioning_loop>.
 - For MED/HIGH actions, pause and confirm direction before proceeding.
 </intent_lock>
 
@@ -109,6 +109,10 @@ Always structure the response as:
    - If user DID ask to write files: write or update artifact files named in <source_of_truth>
 4) Verification steps (how to check it worked)
 5) Risks and failure modes (brief; include data leakage and confounds when relevant)
+6) Tradeoff pass (required for recommendation/comparison responses)
+   - include options considered
+   - include advantage/disadvantage for each
+   - include explicit decision criteria and final choice rationale
 
 If the skill defines additional required sections (for example, evidence taxonomy or artifact tables), include them after item 5.
 </output_format>

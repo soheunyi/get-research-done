@@ -1,6 +1,6 @@
 ---
 name: "Skill Reliability Keeper"
-description: "Investigate and validate skill behavior when outputs appear wrong, incomplete, or inconsistent. Use immediately when a user flags misbehavior after an agent called a skill."
+description: "Investigate and validate skill behavior when outputs appear wrong, incomplete, or inconsistent. Use immediately when a user flags misbehavior after an agent called a skill. Trigger priority: when user reports post-skill misbehavior or asks to log a skill incident, route to this skill first before normal orchestration."
 ---
 
 # Codex GRD Skill: Skill Reliability Keeper
@@ -52,8 +52,8 @@ For each case, capture:
 </template_convention>
 
 <intent_lock>
-- Before action, restate the user intent in up to 3 sentences.
-- If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.
+- Before action, restate the user intent in up to 3 sentences and clarify the intended routing or checkpoint outcome.
+- If ambiguity could change routing, state mutation, or handoff quality, run a short questioning loop using <questioning_loop> before proceeding.
 - For MED/HIGH actions, pause and confirm direction before proceeding.
 </intent_lock>
 
@@ -108,13 +108,14 @@ Default to concise chat output.
 <output_format>
 Always structure the response as:
 
-1) Assumptions (bullet list; call out unknowns)
-2) Plan (numbered; smallest-first)
+1) Assumptions and current state (bullet list; call out unknowns)
+2) Routing / coordination plan (numbered; smallest-first)
 3) Proposed changes / artifacts
    - If user did NOT ask to write files: provide a proposed diff outline plus filenames
    - If user DID ask to write files: write or update artifact files named in <source_of_truth>
-4) Verification steps (how to check it worked)
+4) Verification or checkpoint steps (how to validate routing and execution)
 5) Risks and failure modes (brief; include data leakage and confounds when relevant)
+6) Next action (one concrete recommendation plus an explicit open-ended alternative)
 
 If the skill defines additional required sections (for example, evidence taxonomy or artifact tables), include them after item 5.
 </output_format>
@@ -129,19 +130,26 @@ Risk tiers:
 - HIGH: delete or overwrite data, touch secrets or credentials, publish externally, deploy, spend money or credits.
 
 Contract:
-1) Ask for user thoughts before starting any MED or HIGH complexity task and confirm the preferred direction.
-2) List Proposed Actions (files, commands, external calls).
-3) Label each action LOW, MED, or HIGH plus rollback plan.
-4) Require explicit user approval for MED and HIGH actions.
+1) Hard trigger: if the user flags skill misbehavior or requests behavior-incident logging, route first to `Skill Reliability Keeper` before normal routing.
+2) For open-ended research/design prompts, run a pre-response skill-selection check:
+   - "Would invoking a skill materially improve rigor, references, or reproducibility?"
+   - If yes, route to the relevant skill(s) proactively.
+   - If no, briefly state why direct reasoning is sufficient.
+3) When claims need external support (papers, prior art, factual grounding), use source-backed reference flow (typically `Reference Librarian`) before strong claims.
+4) Ask for user thoughts before starting any MED or HIGH complexity task and confirm the preferred direction.
+5) List Proposed Actions (files, commands, external calls).
+6) Label each action LOW, MED, or HIGH plus rollback plan.
+7) Require explicit user approval for MED and HIGH actions.
 </action_policy>
 
 <execution_contract>
-1. Collect the exact failing interaction and expected outcome.
-2. Identify the target skill contract from its `SKILL.md` / `SKILL.src.md`.
-3. Reproduce the mismatch using the smallest realistic scenario.
-4. Report discrepancy, likely cause, and confidence.
-5. Provide minimal corrective action and verification checks.
-6. Append a structured entry to `.grd/SKILL_FEEDBACK_LOG.md` with:
+1. On hard trigger, acknowledge incident handling and begin structured capture before other routing.
+2. Collect the exact failing interaction and expected outcome.
+3. Identify the target skill contract from its `SKILL.md` / `SKILL.src.md`.
+4. Reproduce the mismatch using the smallest realistic scenario.
+5. Report discrepancy, likely cause, and confidence.
+6. Provide minimal corrective action and verification checks.
+7. Append a structured entry to `.grd/SKILL_FEEDBACK_LOG.md` with:
    - Date
    - Skill name
    - User feedback summary
@@ -150,5 +158,5 @@ Contract:
    - Proposed skill improvement
    - Priority (`high|medium|low`)
    - Verification follow-up status
-7. Write `.grd/research/SKILL_VERIFICATION.md` when artifact output is requested.
+8. Write `.grd/research/SKILL_VERIFICATION.md` when artifact output is requested.
 </execution_contract>

@@ -1,6 +1,6 @@
 ---
 name: "Research State Keeper"
-description: "Invoked macro for checkpointing research state and choosing the next move across GRD stages. Use mode=checkpoint (default) for minimal updates to `.grd/STATE.md` and `.grd/ROADMAP.md`, mode=kickoff for cold-start guided setup, and mode=colleague for conversational 'what next' direction-setting. Not for deep technical analysis of a single artifact."
+description: "Invoked macro for checkpointing research state and choosing the next move across GRD stages. Use mode=checkpoint (default) for minimal updates to `.grd/STATE.md` and `.grd/ROADMAP.md`, mode=kickoff for cold-start guided setup, and mode=colleague for conversational 'what next' direction-setting. For open-ended research/design prompts, proactively route to specialized skills when they materially improve rigor; for externally grounded claims, route to Reference Librarian; if user flags post-skill misbehavior, route first to Skill Reliability Keeper. Not for deep technical analysis of a single artifact."
 ---
 
 # Codex GRD Skill: Research State Keeper
@@ -153,8 +153,8 @@ Each question must include concrete options and an open-ended response path.
 </template_convention>
 
 <intent_lock>
-- Before action, restate the user intent in up to 3 sentences.
-- If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.
+- Before action, restate the user intent in up to 3 sentences and clarify the intended routing or checkpoint outcome.
+- If ambiguity could change routing, state mutation, or handoff quality, run a short questioning loop using <questioning_loop> before proceeding.
 - For MED/HIGH actions, pause and confirm direction before proceeding.
 </intent_lock>
 
@@ -209,13 +209,14 @@ Default to concise chat output.
 <output_format>
 Always structure the response as:
 
-1) Assumptions (bullet list; call out unknowns)
-2) Plan (numbered; smallest-first)
+1) Assumptions and current state (bullet list; call out unknowns)
+2) Routing / coordination plan (numbered; smallest-first)
 3) Proposed changes / artifacts
    - If user did NOT ask to write files: provide a proposed diff outline plus filenames
    - If user DID ask to write files: write or update artifact files named in <source_of_truth>
-4) Verification steps (how to check it worked)
+4) Verification or checkpoint steps (how to validate routing and execution)
 5) Risks and failure modes (brief; include data leakage and confounds when relevant)
+6) Next action (one concrete recommendation plus an explicit open-ended alternative)
 
 If the skill defines additional required sections (for example, evidence taxonomy or artifact tables), include them after item 5.
 </output_format>
@@ -230,10 +231,16 @@ Risk tiers:
 - HIGH: delete or overwrite data, touch secrets or credentials, publish externally, deploy, spend money or credits.
 
 Contract:
-1) Ask for user thoughts before starting any MED or HIGH complexity task and confirm the preferred direction.
-2) List Proposed Actions (files, commands, external calls).
-3) Label each action LOW, MED, or HIGH plus rollback plan.
-4) Require explicit user approval for MED and HIGH actions.
+1) Hard trigger: if the user flags skill misbehavior or requests behavior-incident logging, route first to `Skill Reliability Keeper` before normal routing.
+2) For open-ended research/design prompts, run a pre-response skill-selection check:
+   - "Would invoking a skill materially improve rigor, references, or reproducibility?"
+   - If yes, route to the relevant skill(s) proactively.
+   - If no, briefly state why direct reasoning is sufficient.
+3) When claims need external support (papers, prior art, factual grounding), use source-backed reference flow (typically `Reference Librarian`) before strong claims.
+4) Ask for user thoughts before starting any MED or HIGH complexity task and confirm the preferred direction.
+5) List Proposed Actions (files, commands, external calls).
+6) Label each action LOW, MED, or HIGH plus rollback plan.
+7) Require explicit user approval for MED and HIGH actions.
 </action_policy>
 
 <routing_table>
@@ -262,25 +269,26 @@ Route by stage intent:
 </routing_table>
 
 <execution_contract>
-1. Resolve mode using `<mode_policy>` (`checkpoint` default).
-2. Load `.grd/STATE.md`, `.grd/ROADMAP.md`, and available run artifacts.
-3. `mode=checkpoint`:
+1. If the latest user message flags post-skill misbehavior, route to `Skill Reliability Keeper` first and defer normal state-keeper flow until incident logging is complete.
+2. Resolve mode using `<mode_policy>` (`checkpoint` default).
+3. Load `.grd/STATE.md`, `.grd/ROADMAP.md`, and available run artifacts.
+4. `mode=checkpoint`:
    - infer minimal updates from recent commits and run artifacts;
    - ask at most one clarifying question if needed;
    - review `.grd/SKILL_FEEDBACK_LOG.md` when present and extract top recurring issues;
    - enforce `<artifact_placement_policy>` for any newly proposed artifact write paths;
    - update only changed fields in state/roadmap (minimal diff);
    - recommend the next skill using `<routing_table>`.
-4. `mode=kickoff`:
+5. `mode=kickoff`:
    - if cold-start, run `<bootstrap_rule>`;
    - run guided questioning loop to collect objective, scope, environment, success criteria;
    - initialize or update `STATE.md` and `ROADMAP.md`.
-5. `mode=colleague`:
+6. `mode=colleague`:
    - run conversational direction-setting loop around the current bottleneck;
    - use thesis -> antithesis -> synthesis framing to converge on one next action;
    - continue until user signals stop/satisfied or requests handoff;
    - persist decisions only with explicit user confirmation.
-6. For active run context, ensure `.grd/research/runs/{run_id}/0_INDEX.md` exists and latest-run alias is refreshed.
+7. For active run context, ensure `.grd/research/runs/{run_id}/0_INDEX.md` exists and latest-run alias is refreshed.
    - prefer helper script for run index + latest-run alias:
      ```bash
      python scripts/bootstrap_state.py --repo-root <repo-root> --run-id {run_id}
@@ -290,8 +298,8 @@ Route by stage intent:
      mkdir -p .grd/research/runs
      ln -sfn "runs/{run_id}" .grd/research/latest
      ```
-7. Append a compact entry to `.grd/research/RESEARCH_NOTES.md` per `<activity_capture_policy>`.
-8. End with one explicit handoff prompt: proceed now, adjust plan, or ask deeper questions.
+8. Append a compact entry to `.grd/research/RESEARCH_NOTES.md` per `<activity_capture_policy>`.
+9. End with one explicit handoff prompt: proceed now, adjust plan, or ask deeper questions.
 </execution_contract>
 
 <quality_bar>

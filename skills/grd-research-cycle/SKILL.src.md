@@ -2,7 +2,6 @@
 name: "Research Cycle"
 description: "Unified lifecycle skill for hypothesis, experiment, and evaluation work. Use mode=hypothesis|experiment|decision|diagnostics to produce stage-correct research artifacts with consistent contracts."
 ---
-
 # Codex GRD Skill: Research Cycle
 
 <role>

@@ -1,0 +1,13 @@
+{
+  "grd-ablation-recommender": "advisor",
+  "grd-algo-implementer": "executor",
+  "grd-algo-verifier": "executor",
+  "grd-build-architect": "advisor",
+  "grd-observer": "orchestrator",
+  "grd-ops-and-reproducibility": "executor",
+  "grd-question-maker": "advisor",
+  "grd-reference-librarian": "advisor",
+  "grd-research-cycle": "executor",
+  "grd-skill-reliability-keeper": "orchestrator",
+  "grd-state-keeper": "orchestrator"
+}

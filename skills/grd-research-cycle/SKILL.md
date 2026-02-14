@@ -2,7 +2,6 @@
 name: "Research Cycle"
 description: "Unified lifecycle skill for hypothesis, experiment, and evaluation work. Use mode=hypothesis|experiment|decision|diagnostics to produce stage-correct research artifacts with consistent contracts."
 ---
-
 # Codex GRD Skill: Research Cycle
 
 <role>
@@ -71,7 +70,7 @@ Ask one high-leverage clarification question when any of these are missing:
 
 <intent_lock>
 - Before action, restate the user intent in up to 3 sentences.
-- If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.
+- Confirm implementation inputs, constraints, and expected outputs; if ambiguity could change behavior, run a short questioning loop using <questioning_loop>.
 - For MED/HIGH actions, pause and confirm direction before proceeding.
 </intent_lock>
 

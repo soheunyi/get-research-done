@@ -1,6 +1,6 @@
 ---
 name: "Skill Reliability Keeper"
-description: "Investigate and validate skill behavior when outputs appear wrong, incomplete, or inconsistent. Use immediately when a user flags misbehavior after an agent called a skill."
+description: "Investigate and validate skill behavior when outputs appear wrong, incomplete, or inconsistent. Use immediately when a user flags misbehavior after an agent called a skill. Trigger priority: when user reports post-skill misbehavior or asks to log a skill incident, route to this skill first before normal orchestration."
 ---
 
 # Codex GRD Skill: Skill Reliability Keeper
@@ -40,12 +40,13 @@ For each case, capture:
 {{COMMON_BLOCKS}}
 
 <execution_contract>
-1. Collect the exact failing interaction and expected outcome.
-2. Identify the target skill contract from its `SKILL.md` / `SKILL.src.md`.
-3. Reproduce the mismatch using the smallest realistic scenario.
-4. Report discrepancy, likely cause, and confidence.
-5. Provide minimal corrective action and verification checks.
-6. Append a structured entry to `.grd/SKILL_FEEDBACK_LOG.md` with:
+1. On hard trigger, acknowledge incident handling and begin structured capture before other routing.
+2. Collect the exact failing interaction and expected outcome.
+3. Identify the target skill contract from its `SKILL.md` / `SKILL.src.md`.
+4. Reproduce the mismatch using the smallest realistic scenario.
+5. Report discrepancy, likely cause, and confidence.
+6. Provide minimal corrective action and verification checks.
+7. Append a structured entry to `.grd/SKILL_FEEDBACK_LOG.md` with:
    - Date
    - Skill name
    - User feedback summary
@@ -54,5 +55,5 @@ For each case, capture:
    - Proposed skill improvement
    - Priority (`high|medium|low`)
    - Verification follow-up status
-7. Write `.grd/research/SKILL_VERIFICATION.md` when artifact output is requested.
+8. Write `.grd/research/SKILL_VERIFICATION.md` when artifact output is requested.
 </execution_contract>
