@@ -54,12 +54,13 @@ Ask one high-leverage clarification question when any of these are missing:
 - expected artifact output scope
 </clarification_rule>
 
-<context_budget>
+<context_policy>
 - Start with directly relevant files, then expand scope when evidence requires it.
+- For research-scoped tasks, check `.grd/STATE.md` first for current stage, current decisions, constraints, and terminology registry.
 - Read enough source context to make reliable decisions; do not enforce an arbitrary file cap.
 - Summarize context only when it improves clarity for the user or downstream handoff.
 - Avoid broad scans of unrelated directories.
-</context_budget>
+</context_policy>
 
 <template_convention>
 - Template source of truth is shared runtime templates in `.grd/templates/`.

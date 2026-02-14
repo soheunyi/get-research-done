@@ -77,6 +77,22 @@ Feedback rollup during `checkpoint`:
 - Convert recurring issues into concrete roadmap queue items with owner and verification check.
 </activity_capture_policy>
 
+<terminology_registry_policy>
+Maintain a compact terminology registry in `.grd/STATE.md` so repeated project terms are stable across sessions and model handoffs.
+
+When to update:
+- Always when the user explicitly requests terminology capture.
+- Proactively when repeated shorthand is reused and could cause ambiguity across turns or tools.
+
+Registry rule:
+- Store terms under `## Terminology Registry` in `.grd/STATE.md`.
+- Prefer one entry per term in this format:
+  - `term`: short canonical label
+  - `definition`: plain-language meaning in project context
+  - `operationalization`: measurable/implementation meaning when relevant
+  - `aliases`: optional shorthand/synonyms
+</terminology_registry_policy>
+
 <artifact_placement_policy>
 For ad-hoc research artifacts (for example theory notes, guidance notes, topic memos):
 - Default write path: `.grd/research/<topic_slug>/<artifact_name>.md`
@@ -178,6 +194,7 @@ For unmatched or ambiguous intents outside this hot-path table, consult:
    - infer minimal updates from recent commits and run artifacts;
    - ask at most one clarifying question if needed;
    - review `.grd/SKILL_FEEDBACK_LOG.md` when present and extract top recurring issues;
+   - apply `<terminology_registry_policy>` when explicit or ambiguity-reducing;
    - enforce `<artifact_placement_policy>` for any newly proposed artifact write paths;
    - update only changed fields in state/roadmap (minimal diff);
    - recommend the next skill using `<routing_table>`.

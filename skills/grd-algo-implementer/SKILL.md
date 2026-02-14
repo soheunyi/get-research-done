@@ -31,12 +31,13 @@ Before implementation, ask the user for pseudocode and confirm the exact algorit
 If pseudocode is missing or ambiguous, pause and request a concrete step-by-step outline before continuing.
 </clarification_rule>
 
-<context_budget>
+<context_policy>
 - Start with directly relevant files, then expand scope when evidence requires it.
+- For research-scoped tasks, check `.grd/STATE.md` first for current stage, current decisions, constraints, and terminology registry.
 - Read enough source context to make reliable decisions; do not enforce an arbitrary file cap.
 - Summarize context only when it improves clarity for the user or downstream handoff.
 - Avoid broad scans of unrelated directories.
-</context_budget>
+</context_policy>
 
 <template_convention>
 - Template source of truth is shared runtime templates in `.grd/templates/`.

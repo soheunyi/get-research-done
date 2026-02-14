@@ -28,7 +28,7 @@ TARGET_FILE = "SKILL.md"
 MARKER = "{{COMMON_BLOCKS}}"
 
 GLOBAL_TAGS = (
-    "context_budget",
+    "context_policy",
     "template_convention",
     "questioning_loop",
     "precision_contract",
@@ -44,7 +44,7 @@ PROFILE_TAGS = (
 PROFILE_DELTA_SUFFIX = "_delta"
 
 RENDER_TAGS = (
-    "context_budget",
+    "context_policy",
     "template_convention",
     "intent_lock",
     "questioning_loop",
