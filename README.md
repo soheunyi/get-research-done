@@ -46,6 +46,9 @@ grd-install /path/to/target-repo --target runtime,codex
 grd-install --list-targets
 ```
 
+Upgrade note:
+- `grd-install` and `grd-uninstall` automatically prune legacy removed skill directories from target installs.
+
 Runtime state-aware helper:
 
 ```bash
@@ -56,8 +59,8 @@ grd --repo-root /path/to/target-repo info
 grd --repo-root /path/to/target-repo info --json
 
 # Build state-enriched payload for a specific skill
-grd --repo-root /path/to/target-repo run --skill grd-experiment-planner
-grd --repo-root /path/to/target-repo run --skill grd-experiment-planner --json
+grd --repo-root /path/to/target-repo run --skill grd-research-cycle
+grd --repo-root /path/to/target-repo run --skill grd-research-cycle --json
 
 # Log exploration quickly
 grd --repo-root /path/to/target-repo log --what "..." --happened "..." --why "..."
@@ -143,6 +146,20 @@ make install-core DEST=/path/to/target-repo
   - Claude Code: `.claude/skills/*/SKILL.md`
   - OpenCode native: `.opencode/skills/*/SKILL.md`
   - Gemini CLI: `.gemini/skills/*/SKILL.md`
+
+## Current Shipped Skills
+
+- `grd-research-cycle`
+- `grd-question-maker`
+- `grd-observer`
+- `grd-algo-implementer`
+- `grd-algo-verifier`
+- `grd-ablation-recommender`
+- `grd-ops-and-reproducibility`
+- `grd-reference-librarian`
+- `grd-build-architect`
+- `grd-state-keeper`
+- `grd-skill-reliability-keeper`
 
 ## Source Of Truth
 

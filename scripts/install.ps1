@@ -32,4 +32,4 @@ Write-Host "  - $(Join-Path $RootPath '.claude/skills') (Claude/OpenCode)"
 Write-Host "  - $(Join-Path $RootPath '.opencode/skills') (OpenCode)"
 Write-Host "  - $(Join-Path $RootPath '.gemini/skills') (Gemini CLI workspace skills)"
 Write-Host "Runtime docs: $(Join-Path $RootPath '.grd/workflows/research-pipeline.md')"
-Write-Host 'Use GRD skills: Hypothesis Designer, Experiment Planner, Evaluation Analyst'
+Write-Host 'Use GRD skills: Research Cycle, Question Maker, Observer, Algo Implementer, Algo Verifier, Ablation Recommender, Research Ops and Reproducibility, Reference Librarian, Build Architect, Research State Keeper, Skill Reliability Keeper'

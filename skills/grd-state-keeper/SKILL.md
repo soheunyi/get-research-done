@@ -115,8 +115,8 @@ If context is missing (no `.grd/STATE.md`, no `.grd/ROADMAP.md`, or both are eff
 
 Bootstrap sequence:
 1. Ask one bootstrap question: existing codebase vs greenfield.
-2. If existing codebase: route to `Codebase Mapper` first.
-3. Seed initial state from mapper outputs:
+2. If existing codebase: route to `Build Architect` for a quick architecture + gap map first.
+3. Seed initial state from architectural map outputs:
    - `.grd/codebase/CURRENT.md` -> current constraints and observed architecture
    - `.grd/codebase/TARGET.md` -> target direction
    - `.grd/codebase/GAPS.md` -> immediate queue for roadmap
@@ -239,24 +239,24 @@ Contract:
 <routing_table>
 Route by stage intent:
 
-- Stage -1 Codebase Mapping -> `Codebase Mapper`
-- Stage 0.5 Phase Execution Research -> `Phase Researcher`
-- Stage 1 Hypothesis Design -> `Hypothesis Designer`
-- Stage 2 Experiment Plan -> `Experiment Planner`
-- Stage 3 Evaluation -> `Evaluation Suite (mode=decision)`
-- Stage 3.5 Error Analysis and Sanity Checks -> `Evaluation Suite (mode=diagnostics)`
-- Stage 4 Attribution/Ablation/Robustness -> `Attribution and Robustness`
-- Stage 4.5 Stability/Determinism -> `Stability Auditor`
+- Stage -1 Codebase Mapping -> `Build Architect`
+- Stage 0.5 Phase Execution Research -> `Build Architect`
+- Stage 1 Hypothesis Design -> `Research Cycle (mode=hypothesis)`
+- Stage 2 Experiment Plan -> `Research Cycle (mode=experiment)`
+- Stage 3 Evaluation -> `Research Cycle (mode=decision)`
+- Stage 3.5 Error Analysis and Sanity Checks -> `Research Cycle (mode=diagnostics)`
+- Stage 4 Attribution/Ablation/Robustness -> `Ablation Recommender`
+- Stage 4.5 Stability/Determinism -> `Research Ops and Reproducibility`
 - Stage 5 Reproducibility -> `Research Ops and Reproducibility`
-- Dataset integrity, split correctness, and leakage auditing -> `Data Auditor`
+- Dataset integrity, split correctness, and leakage auditing -> `Research Ops and Reproducibility`
 - Deep reasoning prompt drafting or literature-review prompt drafting -> `Question Maker`
-- Persistent literature review and prior-art mapping -> `Literature Synthesizer`
-- Prompt harvesting, deduplication, and reusable prompt cards -> `Prompt Librarian`
-- Implementation quality gate and skeptical diff review -> `Patch Reviewer`
+- Persistent literature review and prior-art mapping -> `Reference Librarian`
+- Implementation quality gate and skeptical diff review -> `Algo Verifier`
 - User reports misbehavior after a skill call -> `Skill Reliability Keeper` (priority trigger)
 - Architecture before coding -> `Build Architect`
 - Implementation request -> `Algo Implementer`
-- Idea generation and tradeoff analysis -> `Ideation and Reasoning`
+- Repeated request-pattern analysis and new-skill suggestions -> `Observer`
+- Idea generation and tradeoff analysis -> `Build Architect`
 - Conversational "what next" direction-setting -> `Research State Keeper (mode=colleague)`
 - Ongoing notes capture -> `Research State Keeper` (self)
 </routing_table>

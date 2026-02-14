@@ -13,6 +13,23 @@ SKILL_TARGET_DIRS = {
     "opencode": ".opencode/skills",
     "gemini": ".gemini/skills",
 }
+LEGACY_SKILL_BASENAMES = (
+    "attribution-and-robustness",
+    "codebase-mapper",
+    "data-auditor",
+    "evaluation-suite",
+    "execution-planner",
+    "experiment-planner",
+    "hypothesis-designer",
+    "ideation-and-reasoning",
+    "literature-synthesizer",
+    "patch-reviewer",
+    "phase-researcher",
+    "prompt-librarian",
+    "reference-checker",
+    "result-interpreter",
+    "stability-auditor",
+)
 
 VALID_TARGETS = ("runtime", "codex", "claude", "opencode", "gemini", "core", "all")
 SKILL_TARGET_ORDER = ("codex", "claude", "opencode", "gemini")
@@ -40,6 +57,16 @@ def _copy_tree_contents(source_dir: Path, dest_dir: Path) -> None:
             shutil.copy2(item, target)
 
 
+def _copy_skill_dirs(source_dir: Path, dest_dir: Path) -> None:
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    for item in source_dir.iterdir():
+        if not item.is_dir():
+            continue
+        if not item.name.startswith("grd-"):
+            continue
+        shutil.copytree(item, dest_dir / item.name, dirs_exist_ok=True)
+
+
 def _remove_path(path: Path) -> None:
     if not (path.exists() or path.is_symlink()):
         return
@@ -52,6 +79,12 @@ def _remove_path(path: Path) -> None:
 def _remove_tree_contents(source_dir: Path, dest_dir: Path) -> None:
     for item in source_dir.iterdir():
         _remove_path(dest_dir / item.name)
+
+
+def _remove_legacy_skill_dirs(dest_dir: Path) -> None:
+    _remove_path(dest_dir / "_shared")
+    for basename in LEGACY_SKILL_BASENAMES:
+        _remove_path(dest_dir / f"grd-{basename}")
 
 
 def _prune_empty_dirs(start: Path, root: Path) -> None:
@@ -171,9 +204,11 @@ def install_targets(dest: str | Path, targets: list[str] | tuple[str, ...]) -> I
         for target, relative_path in SKILL_TARGET_DIRS.items():
             if target not in selected:
                 continue
-            _copy_tree_contents(
+            target_dir = resolved_dest / relative_path
+            _remove_legacy_skill_dirs(target_dir)
+            _copy_skill_dirs(
                 assets_dir / "skills",
-                resolved_dest / relative_path,
+                target_dir,
             )
 
     return InstallResult(dest=resolved_dest, installed_targets=selected)
@@ -208,10 +243,12 @@ def uninstall_targets(
         for target, relative_path in SKILL_TARGET_DIRS.items():
             if target not in selected:
                 continue
+            target_dir = resolved_dest / relative_path
             _remove_tree_contents(
                 assets_dir / "skills",
-                resolved_dest / relative_path,
+                target_dir,
             )
-            _prune_empty_dirs(resolved_dest / relative_path, resolved_dest)
+            _remove_legacy_skill_dirs(target_dir)
+            _prune_empty_dirs(target_dir, resolved_dest)
 
     return UninstallResult(dest=resolved_dest, removed_targets=selected)

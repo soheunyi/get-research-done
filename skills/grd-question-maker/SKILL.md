@@ -23,8 +23,7 @@ Use when the user asks to draft a prompt/question for another model, requests a 
 
 <boundary_note>
 `Question Maker` drafts prompts.
-For persistent literature artifacts (`.grd/research/lit/*`), route to `Literature Synthesizer`.
-For prompt harvesting/versioning (`.grd/prompts/*`), route to `Prompt Librarian`.
+For persistent literature and citation artifacts, route to `Reference Librarian`.
 </boundary_note>
 
 <trigger_policy>

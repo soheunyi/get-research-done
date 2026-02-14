@@ -31,4 +31,4 @@ echo "  - $ROOT/.claude/skills      (Claude/OpenCode)"
 echo "  - $ROOT/.opencode/skills    (OpenCode)"
 echo "  - $ROOT/.gemini/skills      (Gemini CLI workspace skills)"
 echo "Runtime docs: $ROOT/.grd/workflows/research-pipeline.md"
-echo 'Use GRD skills: Hypothesis Designer, Experiment Planner, Evaluation Analyst'
+echo 'Use GRD skills: Research Cycle, Question Maker, Observer, Algo Implementer, Algo Verifier, Ablation Recommender, Research Ops and Reproducibility, Reference Librarian, Build Architect, Research State Keeper, Skill Reliability Keeper'
