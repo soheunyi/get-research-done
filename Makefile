@@ -3,7 +3,7 @@ DEST ?= .
 DEST_RESOLVED := $(if $(filter ~,$(DEST)),$(HOME),$(patsubst ~/%,$(HOME)/%,$(DEST)))
 
 .PHONY: \
-	sync-skills check-skills sync-codex sync-agy \
+	sync-skills check-skills check-skill-lengths check-skill-references check-questioning-policy sync-codex sync-agy \
 	install-runtime install-codex install-claude install-opencode install-gemini \
 	install-core install-all install-help
 
@@ -13,8 +13,20 @@ sync-skills:
 sync-codex: sync-skills
 	$(PYTHON) scripts/sync_codex_wrappers.py
 
+check-skill-lengths:
+	$(PYTHON) scripts/check_skill_lengths.py
+
+check-skill-references:
+	$(PYTHON) scripts/check_skill_references.py --strict-mentions
+
+check-questioning-policy:
+	$(PYTHON) scripts/check_questioning_policy.py
+
 check-skills:
 	$(PYTHON) scripts/sync_skill_boilerplate.py --check
+	$(PYTHON) scripts/check_skill_lengths.py
+	$(PYTHON) scripts/check_skill_references.py --strict-mentions
+	$(PYTHON) scripts/check_questioning_policy.py
 
 sync-agy:
 	$(PYTHON) scripts/sync_agy_wrappers.py

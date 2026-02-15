@@ -176,6 +176,23 @@ Skill generation:
 - Generated output: `skills/*/SKILL.md` (via `make sync-skills`)
 - Render model: `{{COMMON_BLOCKS}}` expands to global blocks + profile-base blocks + role-specific deltas/overrides.
 
+Skill length budget:
+- Budget applies to `SKILL.src.md` only (generated `SKILL.md` is derived output).
+- Target: `SKILL.src.md` <= 80 lines.
+- Move detailed procedures/examples into `references/` and keep source files task-critical.
+- Check with `make check-skill-lengths` (also included in `make check-skills`).
+
+Skill references policy:
+- Every `skills/grd-*` skill must include at least one `references/*.md` file.
+- `SKILL.src.md` should remain an orchestration shell and explicitly point to `references/...` files for detailed contracts.
+- Check with `make check-skill-references` (also included in `make check-skills`).
+
+Questioning policy:
+- Shared loop is adaptive-minimal: ask questions only for blocking/material ambiguity.
+- Ask at most one high-leverage question per response.
+- Options and "Captured so far" recap are optional scaffolding, not mandatory turn-by-turn output.
+- Check with `make check-questioning-policy` (also included in `make check-skills`).
+
 Note-taking artifacts:
 - `grd-research-note-taker` defaults to `.grd/research/<topic_or_run>/NOTES.md`
 - Optional digest append target: `.grd/research/RESEARCH_NOTES.md`
