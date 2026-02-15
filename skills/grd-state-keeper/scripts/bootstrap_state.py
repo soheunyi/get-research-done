@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 from datetime import datetime
 from pathlib import Path
+import subprocess
 import sys
 import shutil
 
@@ -68,15 +69,36 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def render_template(content: str, template_name: str, run_id: str) -> str:
-    now = datetime.now()
+def _resolve_repo_commit(repo_root: Path) -> str | None:
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "--short", "HEAD"],
+            cwd=repo_root,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        return None
+    commit = result.stdout.strip()
+    return commit or None
+
+
+def render_template(content: str, template_name: str, run_id: str, repo_root: Path) -> str:
+    now = datetime.now().astimezone()
     today = now.strftime("%Y-%m-%d")
     timestamp = now.strftime("%Y-%m-%d %H:%M")
+    timestamp_with_tz = now.strftime("%Y-%m-%d %H:%M %Z").rstrip()
 
     if template_name == "state.md":
         content = content.replace("[YYYY-MM-DD HH:MM]", timestamp)
+        content = content.replace("<YYYY-MM-DD HH:MM TZ>", timestamp_with_tz)
         if run_id:
             content = content.replace("[YYMMDD_slug or empty]", run_id)
+            content = content.replace("<R-... or empty>", run_id)
+        commit = _resolve_repo_commit(repo_root)
+        if commit:
+            content = content.replace("<git sha>", commit)
 
     if template_name == "run-index.md":
         if run_id:
@@ -90,6 +112,7 @@ def write_template(
     template_path: Path,
     target_path: Path,
     *,
+    repo_root: Path,
     run_id: str,
     force: bool,
     dry_run: bool,
@@ -103,6 +126,7 @@ def write_template(
         template_path.read_text(encoding="utf-8"),
         template_path.name,
         run_id,
+        repo_root,
     )
 
     if dry_run:
@@ -374,6 +398,7 @@ def main() -> int:
         write_template(
             template_path,
             target_path,
+            repo_root=repo_root,
             run_id=run_id,
             force=args.force,
             dry_run=args.dry_run,

@@ -1,7 +1,7 @@
 <intent_lock>
 - Before action, restate the user intent in up to 3 sentences.
 - Tag conventions: `<questioning_loop>` defines the ambiguity-resolution loop (prefer 1 focused question per turn, cap 2 if tightly coupled, stop once next action is clear); `<source_of_truth>` is the canonical file/path contract declared by each skill.
-- If ambiguity could change the outcome, run a short questioning loop using <questioning_loop>.
+- If blocking or material ambiguity could change the outcome, run a short questioning loop using <questioning_loop>; otherwise proceed with explicit assumptions.
 - For MED/HIGH actions, require confirmation only when you are about to execute them (not while proposing plans).
 </intent_lock>
 

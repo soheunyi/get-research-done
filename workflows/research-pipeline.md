@@ -9,12 +9,13 @@ Run convention:
 - Group linked artifacts under `.grd/research/runs/{run_id}/`
 - Maintain `.grd/research/latest` alias to the active run directory (`.grd/research/runs/{run_id}/`)
 
-## Interaction Contract (Questioning First)
-- Before entering a stage, run a short guided questioning loop if the request is open-ended.
-- Ask one high-leverage question per turn and provide 2-4 concrete options.
-- Always include an explicit open-ended path: "If none fit, describe your own direction."
-- After each answer, summarize captured constraints before asking the next question.
-- Stop questioning when the next verifiable action is clear; avoid completeness theater.
+## Interaction Contract (Adaptive Questioning)
+- Run questioning only when missing information materially changes recommendation quality, artifact shape/path, or execution safety.
+- Ask at most one high-leverage question per response.
+- Prefer direct questions; include options only when they reduce ambiguity or user effort.
+- When options are offered, include an explicit open-ended path: "If none fit, describe your own direction."
+- Summarize captured constraints only after multi-turn clarification or when alignment is uncertain.
+- Stop questioning as soon as the next verifiable action is clear; proceed with explicit assumptions when safe.
 
 Recommended question order:
 1. Goal and "done" definition
@@ -23,11 +24,12 @@ Recommended question order:
 4. Preferred tradeoff (speed, rigor, novelty, cost)
 
 Continuity handoff:
-- Record decisions in `.grd/STATE.md` under `Decisions`, `AI Agent's Discretion`, and `Deferred`.
-- Use those constraints to drive stage outputs.
+- Record active constraints in `.grd/STATE.md` under `Decisions -> Current decisions (active constraints)`.
+- Append major directional changes in `Decisions -> Decision log (append-only)`.
+- Track planned and executed evidence in `Experiment queue (planned)` and `Run registry (executed evidence)` when relevant.
 
 ## Persistent State Layer (Always On)
-- Keep `.grd/STATE.md` as the canonical memory for locked decisions and constraints.
+- Keep `.grd/STATE.md` as the canonical memory for current decisions, experiment queue, run registry, and constraints.
 - Keep `.grd/ROADMAP.md` as the active queue of milestones and smallest next actions.
 - Update both after major stage transitions or when direction changes.
 - If state files are missing or empty, initialize through Stage -1 codebase mapping before choosing later stages.
