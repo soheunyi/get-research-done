@@ -46,11 +46,6 @@ Do not force users into provided options; options are scaffolding, not constrain
 - If blocked, report the blocker and the next minimal unblocked action.
 </precision_contract>
 
-<markdown_math_policy>
-- In Markdown files, render math with `$...$` for inline and `$$...$$` for display equations.
-- Avoid alternative delimiters unless a target renderer explicitly requires them.
-</markdown_math_policy>
-
 <anti_enterprise>
 NEVER include phases for:
 - Team coordination, stakeholder management
