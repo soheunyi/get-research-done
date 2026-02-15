@@ -115,6 +115,7 @@ Always structure the response as:
 
 If the profile adds extra numbered items, keep their order after item 5.
 If the skill defines additional required sections (for example, evidence taxonomy or artifact tables), include them after the last numbered item in this profile.
+For Markdown output containing math, use `$...$` inline and `$$...$$` for display math.
 Keep language execution-centric: concrete file paths, exact commands, and explicit done criteria.
 6) Execution record
    - exact files/paths touched

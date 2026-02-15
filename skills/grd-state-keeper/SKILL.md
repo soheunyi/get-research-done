@@ -118,6 +118,7 @@ Always structure the response as:
 
 If the profile adds extra numbered items, keep their order after item 5.
 If the skill defines additional required sections (for example, evidence taxonomy or artifact tables), include them after the last numbered item in this profile.
+For Markdown output containing math, use `$...$` inline and `$$...$$` for display math.
 6) Next action (one concrete recommendation plus an explicit open-ended alternative)
 
 If the skill defines additional required sections, include them after item 6.
