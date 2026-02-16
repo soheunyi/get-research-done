@@ -137,9 +137,30 @@ Contract:
 Additional orchestrator routing rules:
 - Exclusivity rule:
   - Keep hard-trigger routing, dual-skill sequencing, and proactive pre-response skill-selection checks in orchestrator policy only.
+- Gate order:
+  - Run reliability-incident scan first.
+  - If no reliability incident is matched, run note-capture scan before any checkpoint/state mutation.
 - First-pass reliability gate:
   - Before normal orchestration, scan the latest user message for reliability-incident intent (for example: "should have called X skill", "log this behavior", "skill behavior issue", "wrong skill flow").
   - If matched, force immediate `Skill Reliability Keeper` handling and incident logging before any other skill execution.
+- First-pass note-capture gate:
+  - Before checkpoint or state mutation, scan the latest user message for deterministic note-intent phrases:
+    - "take note"
+    - "note this"
+    - "save this update"
+    - "log this update"
+    - "record this"
+    - "capture this"
+    - "write this down"
+    - "add to notes"
+  - If matched, announce explicit routing before edits:
+    - Primary route: `Research Note Taker`
+    - Fallback route: `Research State Keeper` only when note-routing context/path is unavailable, with one-line fallback rationale.
+  - Emit a one-line route trace before edits:
+    - `Routing: Research Note Taker (trigger: "<matched phrase>")`
+    - `Routing: Research State Keeper (fallback: "<one-line rationale>")`
+  - For fallback path, ask one clarification question before mutation if artifact path/context is still ambiguous.
+  - Apply note-capture workflow first, then sync `.grd/STATE.md` or `.grd/ROADMAP.md` only if checkpoint deltas remain.
 - Hard trigger: if the user flags skill misbehavior or requests behavior-incident logging, route first to `Skill Reliability Keeper` before normal routing.
 - Deterministic multi-skill sequencing:
   - When two skills apply in one turn, execute both in one pass using explicit order.
@@ -156,7 +177,8 @@ Additional orchestrator routing rules:
 1. Handle reliability feedback first when present.
 2. Capture expected vs observed behavior and reproducible evidence.
 3. Run incident classification and dual verification via `references/incident-taxonomy.md`.
-4. Propose minimal corrective action with confidence and missing-evidence notes.
-5. Log incident using `references/logger-usage.md` workflow.
-6. Confirm `.grd/SKILL_FEEDBACK_LOG.md` is non-empty after logging.
+4. For `routing/sequencing` incidents, capture route-trace evidence (matched trigger phrase, pre-edit route announcement status, first mutated artifact).
+5. Propose minimal corrective action with confidence and missing-evidence notes.
+6. Log incident using `references/logger-usage.md` workflow.
+7. Confirm `.grd/SKILL_FEEDBACK_LOG.md` is non-empty after logging.
 </execution_contract>

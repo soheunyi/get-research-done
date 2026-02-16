@@ -34,7 +34,8 @@ If pseudocode is missing or ambiguous in ways that materially affect correctness
 1. Confirm pseudocode/spec and success criteria.
 2. Map algorithm into modules/functions/interfaces/data contracts.
 3. Implement smallest testable path first, then iterate edge cases.
-4. Apply deterministic defaults and focused correctness tests per `references/implementation-contract.md`.
-5. Include verifier handoff context when triggered by `references/verifier-handoff.md`.
-6. Write `.grd/research/ALGO_IMPLEMENTATION.md` when artifact output is requested.
+4. Apply vectorization-first implementation choices and deterministic defaults per `references/implementation-contract.md`.
+5. By default, suggest an optional `Algo Verifier` follow-up and do not run it automatically.
+6. Include verifier handoff context when triggered by `references/verifier-handoff.md`.
+7. Write `.grd/research/ALGO_IMPLEMENTATION.md` when artifact output is requested.
 </execution_contract>

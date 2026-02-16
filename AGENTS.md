@@ -44,7 +44,7 @@ For milestone phases, follow this sequence unless user asks otherwise:
 
 When `*-CONTEXT.md` exists, treat its `Implementation Decisions` as locked:
 
-1. Implement locked decisions exactly.
+1. Implement current decisions exactly.
 2. Keep deferred ideas out of current phase scope.
 3. Use "Claude's Discretion" areas for technical choices only.
 
@@ -60,3 +60,9 @@ When `*-CONTEXT.md` exists, treat its `Implementation Decisions` as locked:
 1. Prefer `.agents/*` for command/workflow execution in Codex sessions.
 2. `.gemini/*` may still contain tracked framework files; use as fallback only.
 3. Keep command behavior compatible with existing `scout` CLI conventions.
+
+
+## Skill Update Policy
+
+1. When skill incident report is submitted, you should update the skill profile to reflect the incident.
+2. When updating skills, you should refer to $skill-creator for conventions and best practices for updating skills. 
