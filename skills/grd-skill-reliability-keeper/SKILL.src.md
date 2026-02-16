@@ -31,7 +31,8 @@ Always append incidents to `.grd/SKILL_FEEDBACK_LOG.md`; write `.grd/SKILL_VERIF
 1. Handle reliability feedback first when present.
 2. Capture expected vs observed behavior and reproducible evidence.
 3. Run incident classification and dual verification via `references/incident-taxonomy.md`.
-4. Propose minimal corrective action with confidence and missing-evidence notes.
-5. Log incident using `references/logger-usage.md` workflow.
-6. Confirm `.grd/SKILL_FEEDBACK_LOG.md` is non-empty after logging.
+4. For `routing/sequencing` incidents, capture route-trace evidence (matched trigger phrase, pre-edit route announcement status, first mutated artifact).
+5. Propose minimal corrective action with confidence and missing-evidence notes.
+6. Log incident using `references/logger-usage.md` workflow.
+7. Confirm `.grd/SKILL_FEEDBACK_LOG.md` is non-empty after logging.
 </execution_contract>

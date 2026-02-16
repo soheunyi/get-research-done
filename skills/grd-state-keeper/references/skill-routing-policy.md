@@ -14,9 +14,27 @@ Use this file when a user intent is not covered by the hot-path `<routing_table>
 
 When multiple long-tail mappings appear applicable:
 1. If user message includes reliability incident intent, route to `Skill Reliability Keeper` first.
-2. If external factual grounding is required, run `Reference Librarian` before strong claims.
-3. If a request requires concrete artifact production, choose the skill that owns the target artifact contract.
-4. If still ambiguous, ask one high-leverage clarification question and present 2-3 likely skill routes.
+2. If user message includes explicit note-capture intent, route to `Research Note Taker` before any checkpoint/state mutation.
+3. If external factual grounding is required, run `Reference Librarian` before strong claims.
+4. If a request requires concrete artifact production, choose the skill that owns the target artifact contract.
+5. If still ambiguous, ask one high-leverage clarification question and present 2-3 likely skill routes.
+
+## Deterministic Note-Intent Triggers
+
+Treat these phrases as direct note-routing triggers:
+- "take note"
+- "note this"
+- "save this update"
+- "log this update"
+- "record this"
+- "capture this"
+- "write this down"
+- "add to notes"
+
+On match:
+1. Announce explicit route before edits (`Research Note Taker` or `Research State Keeper` fallback rationale).
+2. Run note capture first.
+3. Apply checkpoint updates only after note capture when state deltas remain.
 
 ## Promotion Rule (Long-Tail -> Hot-Path)
 

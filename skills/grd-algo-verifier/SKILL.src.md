@@ -29,7 +29,7 @@ When requested, write `.grd/research/ALGO_VERIFICATION.md`.
 <execution_contract>
 1. Confirm pseudocode/spec and implementation scope.
 2. Normalize both into comparable logical steps.
-3. Compare control/data flow and invariants per `references/verification-policy.md`.
+3. Compare control/data flow, invariants, and vectorization-first adherence per `references/verification-policy.md`.
 4. Report matches, deviations, impact, confidence, and missing evidence.
 5. Write `.grd/research/ALGO_VERIFICATION.md` when artifact output is requested.
 </execution_contract>

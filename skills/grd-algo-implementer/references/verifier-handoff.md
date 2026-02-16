@@ -1,6 +1,10 @@
 # Verifier Handoff Contract
 
-Use this file when implementation touches correctness-sensitive math paths.
+Default behavior:
+- Suggest an optional follow-up with `Algo Verifier` after implementation.
+- Do not run `Algo Verifier` unless the user explicitly asks.
+
+Use triggered handoff context when implementation touches correctness-sensitive math paths.
 
 Trigger handoff suggestion to `Algo Verifier` when changes touch:
 - equations/transforms/distributions/parameterization

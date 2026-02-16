@@ -25,6 +25,15 @@ For each applicable class, record:
 - What evidence is unavailable?
 - What concrete follow-up check resolves uncertainty?
 
+## Routing/Sequencing Evidence Checklist
+
+For `routing/sequencing` incidents, include:
+- matched trigger phrase (or explicit "no deterministic match")
+- pre-edit routing announcement evidence (exact line, or explicit absence)
+- first mutated artifact/path
+- ordering check: note capture happened before state/checkpoint mutation
+- follow-up evidence hook (for example, route trace line in response plus log entry reference)
+
 ## Context Portability Specific Checks
 
 Contract must include portability guardrails for context-free transfer.
